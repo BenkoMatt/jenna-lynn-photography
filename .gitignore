@@ -16,8 +16,8 @@ npm-debug.log*
 
 # Don't commit real client photos until you've reviewed them
 # (uncomment to enforce)
-/photos/*.JPG
-/photos/*.jpg
-/photos/*.PNG
-/photos/*.png
-/photos/*.HEIC
+# /photos/*.JPG
+# /photos/*.jpg
+# /photos/*.PNG
+# /photos/*.png
+# /photos/*.HEIC
