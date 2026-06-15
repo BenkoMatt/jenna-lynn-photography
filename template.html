@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site.meta.title | e }}</title>
+  <meta name="description" content="{{ site.meta.description | e }}">
+
+  <!-- Open Graph (Facebook, LinkedIn, iMessage, Slack, Discord) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ site.meta.title | e }}" />
+  <meta property="og:description" content="{{ site.meta.description | e }}" />
+  <meta property="og:url" content="https://photographybyjennalynn.com/" />
+  <meta property="og:site_name" content="{{ site.brand.name | e }}" />
+  <meta property="og:image" content="https://photographybyjennalynn.com/{{ site.meta.og_image }}" />
+  <meta property="og:image:width" content="{{ site.meta.og_image_width }}" />
+  <meta property="og:image:height" content="{{ site.meta.og_image_height }}" />
+  <meta property="og:image:alt" content="{{ site.brand.tagline | e }}" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ site.meta.title | e }}" />
+  <meta name="twitter:description" content="{{ site.meta.description | e }}" />
+  <meta name="twitter:image" content="https://photographybyjennalynn.com/{{ site.meta.og_image }}" />
+  <meta name="twitter:image:alt" content="{{ site.brand.tagline | e }}" />
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- NAVIGATION -->
+  <!-- ═══════════════════════════════════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">{{ site.brand.name | e }}</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">{% for link in site.nav %}
+        <li><a href="{{ link.href }}"{% if link.cta %} class="nav-cta"{% endif %}>{{ link.label | e }}</a></li>{% endfor %}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ═══════════════════════════════════════════ -->
+  <header class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">{{ site.hero.tag | e }}</p>
+      <h1 class="hero-title">{{ site.hero.title | replace('\n', '<br>') | safe }}</h1>
+      <p class="hero-sub">"{{ site.hero.verse | e }}" — {{ site.hero.verse_ref | e }}<br>{{ site.hero.subtitle | e }}</p>
+      <a href="{{ site.hero.cta_href }}" class="btn btn-primary">{{ site.hero.cta_text | e }}</a>
+    </div>
+    <div class="hero-scroll">
+      <span>{{ site.hero.scroll_text | e }}</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- ABOUT -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <div class="about-image-inner">
+            <img src="{{ site.about.portrait }}" alt="{{ site.about.portrait_alt | e }}" />
+          </div>
+        </div>
+        <div class="about-text">
+          <p class="section-tag">{{ site.about.section_tag | e }}</p>
+          <h2 class="section-title">{{ site.about.title | replace('\n', '<br>') | safe }}</h2>
+          {% for para in site.about.paragraphs %}
+          <p>{{ para | replace('[City]', site.brand.city) | e }}</p>
+          {% endfor %}
+          <a href="{{ site.about.cta_href }}" class="btn btn-outline">{{ site.about.cta_text | e }}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SERVICES -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="services" id="services">
+    <div class="container">
+      <p class="section-tag center">{{ site.services.section_tag | e }}</p>
+      <h2 class="section-title center">{{ site.services.title | e }}</h2>
+      <p class="section-sub center">{{ site.services.subtitle | e }}</p>
+
+      <div class="services-grid">
+        {% for pkg in site.services.packages %}
+        <div class="service-card">
+          <div class="service-card-img">
+            <img src="{{ pkg.image }}" alt="{{ pkg.image_alt | e }}" />
+          </div>
+          <div class="service-card-body">
+            <h3>{{ pkg.name | e }}</h3>
+            <p class="service-price">{{ pkg.price_prefix | e }}<span class="price-amount">{{ pkg.price }}</span></p>
+            <p class="service-tagline">{{ pkg.tagline | e }}</p>
+            <ul class="service-includes">
+              {% for item in pkg.includes %}
+              <li>{{ item | e }}</li>
+              {% endfor %}
+            </ul>
+            <a href="{{ pkg.cta_href }}" class="btn {% if pkg.primary %}btn-primary{% else %}btn-outline{% endif %}">{{ pkg.cta_text | e }}</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <p class="services-note">{{ site.services.note | e }}</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- GALLERY -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <p class="section-tag center">{{ site.gallery.section_tag | e }}</p>
+      <h2 class="section-title center">{{ site.gallery.title | e }}</h2>
+      <p class="section-sub center">{{ site.gallery.subtitle | e }}</p>
+
+      <div class="gallery-grid">
+        {% for item in site.gallery.entries %}
+        <div class="gallery-item {{ item.classes }}">
+          {% if item.placeholder %}
+          <div class="placeholder-img gallery-ph" style="{{ item.placeholder_style }}">
+            <span>{{ item.alt | e }}</span>
+          </div>
+          {% else %}
+          <img src="{{ item.image }}" alt="{{ item.alt | e }}" class="gallery-ph" style="object-fit: {{ item.object_fit }}; {% if item.object_position %}object-position: {{ item.object_position }};{% endif %} width: 100%; height: 100%;">
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="gallery-cta">
+        <a href="{{ site.gallery.cta_href }}" class="btn btn-outline">{{ site.gallery.cta_text | e }}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- PROCESS -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="process" id="process">
+    <div class="container">
+      <p class="section-tag center">{{ site.process.section_tag | e }}</p>
+      <h2 class="section-title center">{{ site.process.title | e }}</h2>
+      <p class="section-sub center">{{ site.process.subtitle | e }}</p>
+
+      <div class="process-grid">
+        {% for step in site.process.steps %}
+        <div class="process-step">
+          <div class="process-number">{{ step.number }}</div>
+          <h3>{{ step.title | e }}</h3>
+          <p>{{ step.text | e }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- KIND WORDS / TESTIMONIALS -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="kind-words" id="kind-words">
+    <div class="container">
+      <p class="section-tag center">{{ site.testimonials.section_tag | e }}</p>
+      <h2 class="section-title center">{{ site.testimonials.title | e }}</h2>
+
+      <div class="testimonials-grid">
+        {% for t in site.testimonials.entries %}
+        <div class="testimonial">
+          <div class="testimonial-stars">★★★★★</div>
+          <blockquote>"{{ t.text | e }}"</blockquote>
+          <cite>— {{ t.author | e }}</cite>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FAQ -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <p class="section-tag center">{{ site.faq.section_tag | e }}</p>
+      <h2 class="section-title center">{{ site.faq.title | e }}</h2>
+
+      <div class="faq-list">
+        {% for item in site.faq.entries %}
+        <details class="faq-item" {% if item.open %}open{% endif %}>
+          <summary>{{ item.question | e }}</summary>
+          <div class="faq-answer">
+            <p>{{ item.answer | e }}</p>
+          </div>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- CONTACT / INQUIRY -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-text">
+          <p class="section-tag">{{ site.contact.section_tag | e }}</p>
+          <h2 class="section-title">{{ site.contact.title | e }}</h2>
+          <p>{{ site.contact.intro | e }}</p>
+          <div class="contact-info">
+            <p><strong>Email:</strong> {{ site.brand.email | e }}</p>
+            <p><strong>{{ site.contact.location_label | e }}:</strong> {{ site.brand.location | e }}</p>
+            <p><strong>{{ site.contact.follow_label | e }}:</strong> <a href="#">@{{ site.brand.instagram | e }}</a></p>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <form class="contact-form" id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your Name(s)</label>
+                <input type="text" id="name" name="name" placeholder="Both your names!" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@email.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="session-type">What are you looking for?</label>
+              <select id="session-type" name="session_type">
+                <option value="">Select a session type</option>
+                <option value="couples">Couples Session</option>
+                <option value="engagement">Engagement Session</option>
+                <option value="wedding">Wedding Collection</option>
+                <option value="other">Something else!</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">Ideal Date (if known)</label>
+                <input type="date" id="date" name="date">
+              </div>
+              <div class="form-group">
+                <label for="location">Session Location</label>
+                <input type="text" id="location" name="location" placeholder="City, venue, or idea">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Tell me about you two!</label>
+              <textarea id="message" name="message" rows="5" placeholder="How did you meet? What's your vibe? Anything you want me to know!"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">{{ site.contact.cta_text | e }}</button>
+            <p class="form-note">{{ site.contact.form_note | e }}</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- INSTAGRAM -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="instagram" id="instagram">
+    <div class="container">
+      <p class="section-tag center">{{ site.instagram.section_tag | e }}</p>
+      <h2 class="section-title center">{{ site.instagram.title | e }}</h2>
+      <div class="insta-grid">
+        {% for ig in site.instagram.entries %}
+        <div class="insta-item">
+          <div class="placeholder-img" style="{{ ig.style }}">
+            <span>{{ ig.label | e }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- FOOTER -->
+  <!-- ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>{{ site.brand.name | e }}</h3>
+          <p>{{ site.brand.tagline | e }}<br>{{ site.brand.location | e }} — Available Worldwide</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            {% for link in site.footer.links %}
+            <li><a href="{{ link.href }}">{{ link.label | e }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="footer-connect">
+          <h4>Connect</h4>
+          <ul>
+            {% for link in site.footer.social %}
+            <li><a href="{{ link.href }}">{{ link.label | e }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>{{ site.footer.copyright | e }}</p>
+        <p>
+          {% for link in site.footer.links %}
+          <a href="{{ link.href }}">{{ link.label | e }}</a> {% if not loop.last %}·{% endif %}
+          {% endfor %}
+          · <em>"{{ site.footer.verse | e }}" — {{ site.footer.verse_ref | e }}</em>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

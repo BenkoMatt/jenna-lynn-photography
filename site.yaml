@@ -1,0 +1,274 @@
+---
+# Editable site content for Jenna Lynn Photography
+# This file is the single source of truth for the site.
+# Edit it through the Caddy CMS web editor, or by hand.
+
+meta:
+  title: "Jenna Lynn Photography — Wedding & Couples Photography"
+  description: "Wedding and couples photography in Michigan, available worldwide. Sessions crafted with you in mind — couples, engagements, and full wedding collections."
+  og_image: "photos/about/jenna-portrait.jpg"
+  og_image_width: 2571
+  og_image_height: 3600
+
+brand:
+  name: "Jenna Lynn Photography"
+  tagline: "Wedding & Couples Photographer"
+  email: "hello@photographybyjennalynn.com"
+  instagram: "jennalynnphotography"
+  location: "[City], Michigan"
+  city: "[City]"
+
+nav:
+  - label: "About"
+    href: "#about"
+  - label: "Pricing"
+    href: "#services"
+  - label: "Gallery"
+    href: "#gallery"
+  - label: "Process"
+    href: "#process"
+  - label: "Kind Words"
+    href: "#kind-words"
+  - label: "FAQ"
+    href: "#faq"
+  - label: "Let's Connect"
+    href: "#contact"
+    cta: true
+
+hero:
+  tag: "Wedding & Couples Photographer"
+  title: "Your Love Story,\nBeautifully Told"
+  verse: "Three things will last forever — faith, hope, and love — and the greatest of these is love."
+  verse_ref: "1 Corinthians 13:13"
+  subtitle: "Authentic, joyful photography that celebrates the love God gave you."
+  cta_text: "Inquire Now"
+  cta_href: "#contact"
+  scroll_text: "Scroll"
+
+about:
+  section_tag: "Meet Jenna"
+  title: "I'm Not Just Your Photographer —\nI'm Your Biggest Hype Girl"
+  portrait: "photos/about/jenna-portrait.jpg"
+  portrait_alt: "Jenna Lynn — Wedding & Couples Photographer"
+  paragraphs:
+    - "I believe God writes beautiful love stories, and your photo session should reflect that. No stiff poses, no awkward silences — just the two of you, being completely yourselves, while I capture the real moments that matter."
+    - "Whether you're newly engaged, celebrating an anniversary, or saying \"I do\" — I'm here to make you feel confident, comfortable, and completely cared for. I'll hype you up, make you laugh (dad jokes included), and deliver a gallery that makes you fall in love all over again."
+    - "Proudly Michigan-made. I was born and raised in the Great Lakes State, and there's nowhere I'd rather build my business. Michigan gives us four breathtaking seasons, endless lakeshore backdrops, and sunsets that paint the sky over Lake Michigan in ways that make my camera weep with joy. Whether we're shooting among the dunes of Sleeping Bear, beneath a canopy of autumn maples, or in a cozy downtown café in Grand Rapids — this state is part of your story, and I wouldn't have it any other way."
+    - "Every love story is a gift from above — and it's my joy to help you tell yours. Based in [City], Michigan — available for travel worldwide."
+  cta_text: "Let's Get to Know Each Other"
+  cta_href: "#contact"
+
+services:
+  section_tag: "Pricing"
+  title: "Sessions Crafted With You in Mind"
+  subtitle: "Every love story is unique — your photos should be too. Choose the experience that fits your season."
+  note: "Custom packages and add-ons available — let's build something perfect for you. Proudly serving Michigan couples and beyond."
+  packages:
+    - name: "Couples Session"
+      image: "photos/pricing/matt&Jenna-couples-card.jpg"
+      image_alt: "Couples session example"
+      price: 600
+      price_prefix: "$"
+      tagline: "For the lovebirds who just want beautiful photos together"
+      cta_text: "Inquire"
+      cta_href: "#contact"
+      primary: false
+      includes:
+        - "90-minute on-location session"
+        - "50+ fully edited high-res images"
+        - "Outfit change included"
+        - "Private online gallery"
+        - "Print release"
+        - "\"What to Wear\" style guide"
+
+    - name: "Engagement Session"
+      image: "photos/pricing/jesse&sam_ring-engagement-card.jpeg"
+      image_alt: "Engagement session example"
+      price: 800
+      price_prefix: "$"
+      tagline: "Celebrate the yes that changed everything"
+      cta_text: "Inquire"
+      cta_href: "#contact"
+      primary: true
+      includes:
+        - "2-hour on-location session"
+        - "75+ fully edited high-res images"
+        - "Up to 2 outfit changes"
+        - "Multiple locations"
+        - "Private online gallery"
+        - "Print release & \"What to Wear\" guide"
+        - "Pre-session questionnaire & planning call"
+        - "Local Michigan location scouting included"
+
+    - name: "Wedding Collection"
+      image: "photos/pricing/gracie&isaiah_ring_wed_placeholder.jpeg"
+      image_alt: "Wedding collection example"
+      price: 2800
+      price_prefix: "Starting at $"
+      tagline: "Your entire love story — from getting ready to the last dance"
+      cta_text: "Inquire"
+      cta_href: "#contact"
+      primary: false
+      includes:
+        - "8 hours of wedding day coverage"
+        - "400+ fully edited high-res images"
+        - "Second photographer included"
+        - "Engagement session included"
+        - "Private online gallery"
+        - "Print release"
+        - "Detailed timeline planning"
+
+gallery:
+  section_tag: "Portfolio"
+  title: "Love in Every Frame"
+  subtitle: "A glimpse into the love stories I've had the honor of telling — every one a blessing from above."
+  cta_text: "See Your Name Here — Book a Session"
+  cta_href: "#contact"
+  # Each item appears in order. Classes control sizing in the masonry grid.
+  entries:
+    - image: "photos/gallery/portraits/matt_grad.jpeg"
+      alt: "Graduation portrait"
+      classes: "gallery-tall"
+      object_fit: "cover"
+      object_position: "center"
+    - image: "photos/gallery/couples/JennaLynnPhotography-641.jpg"
+      alt: "Couples session photo"
+      classes: ""
+      object_fit: "cover"
+      object_position: "center 35%"
+    - image: ""
+      alt: "Couple 2"
+      classes: ""
+      placeholder: true
+      placeholder_style: "background: linear-gradient(135deg, #fff3e0, #ffcc80);"
+    - image: "photos/gallery/weddings/tate&friends_running.jpg"
+      alt: "Tate and friends — wedding party"
+      classes: "gallery-wide"
+      object_fit: "cover"
+      object_position: "50% 35%"
+    - image: "photos/gallery/engagements/gracie-isaiah-engagement-1.jpeg"
+      alt: "Engagement session photo"
+      classes: ""
+      object_fit: "cover"
+      object_position: "center"
+    - image: "photos/gallery/portraits/slyvie_bear_portrait-2.jpeg"
+      alt: "Sylvie portrait"
+      classes: "gallery-tall"
+      object_fit: "cover"
+      object_position: "center"
+    - image: ""
+      alt: "Wedding 2"
+      classes: ""
+      placeholder: true
+      placeholder_style: "background: linear-gradient(135deg, #fce4ec, #ef9a9a);"
+    - image: ""
+      alt: "Couple 3"
+      classes: ""
+      placeholder: true
+      placeholder_style: "background: linear-gradient(135deg, #f1f8e9, #aed581);"
+
+process:
+  section_tag: "How It Works"
+  title: "From First Hello to Final Gallery"
+  subtitle: "I've designed every step to be easy, personal, and actually fun."
+  steps:
+    - number: "01"
+      title: "Connect"
+      text: "Fill out the inquiry form and tell me all about you two! I'll get back to you within 24 hours — usually sooner. I pray over every inquiry and can't wait to hear your story."
+    - number: "02"
+      title: "Plan"
+      text: "I'll send over my shoot guide, a fun couples questionnaire, and we'll plan out every detail — from location scouting to outfit coordination. No stress, just joyful anticipation!"
+    - number: "03"
+      title: "Party"
+      text: "Shoot day should feel like a celebration! I'll guide you through natural poses, crack jokes, hype you up, and capture the real joy that happens when you're just being yourselves — the way God made you."
+    - number: "04"
+      title: "Relive"
+      text: "Within 72 hours you'll see sneak peeks, and your full gallery arrives within 3–4 weeks. Every image hand-edited with care — because your story deserves nothing less. Ready to print, share, and treasure forever."
+
+testimonials:
+  section_tag: "Kind Words"
+  title: "Don't Just Take My Word for It"
+  entries:
+    - text: "She made us feel so comfortable and natural. Even my husband — who hates taking photos — said he had fun. We felt truly seen!"
+      author: "[Client Name]"
+    - text: "Somehow she captured the way he looks at me when I'm not looking. Every photo tells our story perfectly — what a blessing!"
+      author: "[Client Name]"
+    - text: "From the first call, we knew she was the one. The gallery made us fall in love all over again. We are so thankful — absolutely worth every penny."
+      author: "[Client Name]"
+
+faq:
+  section_tag: "Got Questions?"
+  title: "The Couple Session Q&A"
+  entries:
+    - question: "We're not models — are you sure this is for us?"
+      answer: "Absolutely! Most of my couples have never had professional photos taken before. That's my specialty — making you feel completely at ease, guiding you into flattering poses, and capturing genuine moments. God created you beautifully, and my job is simply to let that shine through!"
+      open: true
+    - question: "How many images will we receive and when?"
+      answer: "Depending on your session length, you'll receive 50–75+ fully edited high-resolution images. Sneak peeks land in your inbox within 72 hours, and the full gallery is delivered within 3–4 weeks."
+    - question: "What's your editing style?"
+      answer: "My style is bright, warm, and true-to-life with a touch of editorial polish. I focus on clean skin tones, vibrant colors, and natural light — photos that feel timeless, not trendy."
+    - question: "Do you offer payment plans?"
+      answer: "Yes! I totally understand that life gets expensive. Payment plans are available for all packages — just ask when you inquire. I never want cost to be the reason you miss out on documenting the love story God gave you."
+    - question: "What if it rains on our session day?"
+      answer: "No worries! I keep a close eye on the forecast and we'll reschedule if needed — no extra charge. Some of my favorite sessions have happened on overcast days with the most beautiful soft light. Even the weather is in His hands!"
+    - question: "Do you travel for sessions?"
+      answer: "Yes! I'm based in [City], Michigan and include travel within a 30-mile radius. For destinations further afield, I'm happy to provide a custom travel quote. Adventure sessions are my favorite!"
+
+contact:
+  section_tag: "Let's Connect"
+  title: "Ready to Have Some Fun?"
+  intro: "I'm so glad you're here! Fill out the form and tell me a little about yourselves and what you're dreaming of. I pray over every inquiry and can't wait to hear your story — I'll get back to you within 24 hours, usually sooner!"
+  form_note: "I respond to all inquiries within 24 hours. Can't wait to hear from you!"
+  location_label: "Location"
+  follow_label: "Follow Along"
+  cta_text: "Send Inquiry"
+
+instagram:
+  section_tag: "Follow Along"
+  title: "@jennalynnphotography"
+  entries:
+    - placeholder: true
+      style: "background: linear-gradient(135deg, #fce4ec, #f8bbd0);"
+      label: "IG 1"
+    - placeholder: true
+      style: "background: linear-gradient(135deg, #e8f5e9, #a5d6a7);"
+      label: "IG 2"
+    - placeholder: true
+      style: "background: linear-gradient(135deg, #fff3e0, #ffcc80);"
+      label: "IG 3"
+    - placeholder: true
+      style: "background: linear-gradient(135deg, #e3f2fd, #90caf9);"
+      label: "IG 4"
+    - placeholder: true
+      style: "background: linear-gradient(135deg, #f3e5f5, #ce93d8);"
+      label: "IG 5"
+    - placeholder: true
+      style: "background: linear-gradient(135deg, #e0f7fa, #80deea);"
+      label: "IG 6"
+
+footer:
+  verse: "Commit to the Lord whatever you do."
+  verse_ref: "Proverbs 16:3"
+  copyright: "© 2026 Jenna Lynn Photography. All Rights Reserved."
+  links:
+    - label: "Privacy Policy"
+      href: "#"
+    - label: "Terms"
+      href: "#"
+  social:
+    - label: "Instagram"
+      href: "#"
+    - label: "Pinterest"
+      href: "#"
+    - label: "Facebook"
+      href: "#"
+    - label: "Email"
+      href: "mailto:hello@photographybyjennalynn.com"
+
+# Global settings
+colors:
+  primary: "#c4758a"
+  dark: "#2c2c2c"
+  text: "#666666"
+  bg: "#ffffff"
+  hero_overlay: "rgba(0, 0, 0, 0.35)"
