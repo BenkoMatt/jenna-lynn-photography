@@ -139,8 +139,7 @@
           </div>
           {% else %}
           {% set zoom = item.object_scale | default(1.0) | float %}
-          {% set transform = 'scale(' ~ zoom ~ ')' if zoom != 1 else '' %}
-          <img src="{{ item.image }}" alt="{{ item.alt | e }}" class="gallery-ph" style="object-fit: {{ item.object_fit }}; {% if item.object_position %}object-position: {{ item.object_position }};{% endif %} width: 100%; height: 100%;{% if transform %} transform: {{ transform }}; transform-origin: {{ item.object_position | default('center') }};{% endif %}">
+          <img src="{{ item.image }}" alt="{{ item.alt | e }}" class="gallery-ph" style="object-fit: {{ item.object_fit }}; {% if item.object_position %}object-position: {{ item.object_position }};{% endif %} width: 100%; height: 100%; --base-scale: {{ zoom }}; transform-origin: {{ item.object_position | default('center') }};">
           {% endif %}
         </div>
         {% endfor %}
