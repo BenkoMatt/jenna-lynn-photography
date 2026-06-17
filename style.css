@@ -273,11 +273,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 .about-image-inner {
   position: relative;
+  overflow: hidden;
+  border-radius: 4px;
 }
 .about-image-inner img {
   width: 100%;
   border-radius: 4px;
   display: block;
+  --base-scale: 1;
+  transform: scale(var(--base-scale));
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+.about-image-inner:hover img {
+  transform: scale(calc(var(--base-scale) * 1.03));
 }
 .about-image-inner::before {
   content: '';
