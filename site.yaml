@@ -73,7 +73,7 @@ services:
     you. Proudly serving Michigan couples and beyond.
   packages:
   - name: Portraits
-    image: photos/pricing/matt&Jenna-couples-card.jpg
+    image: photos/pricing/Tate_Friend_Portrait_Service.JPG
     image_alt: Portraits example
     price: 100
     price_prefix: $
