@@ -185,6 +185,12 @@ gallery:
     object_fit: cover
     object_position: center
     object_scale: '1.00'
+  - image: photos/gallery/portraits/Tate_Friend_Portrait.JPG
+    alt: Tate and friend portrait
+    classes: gallery-tall
+    object_fit: cover
+    object_position: center
+    object_scale: '1.00'
 process:
   section_tag: How It Works
   title: From First Hello to Final Gallery
