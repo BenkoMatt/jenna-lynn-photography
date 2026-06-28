@@ -149,7 +149,7 @@ gallery:
     classes: ''
     placeholder: true
     placeholder_style: 'background: linear-gradient(135deg, #fff3e0, #ffcc80);'
-  - image: photos/gallery/weddings/tate&friends_running.jpg
+  - image: photos/gallery/portraits/tate&friends_running.jpg
     alt: 'Tate and friends '
     classes: gallery-tall
     object_fit: cover
