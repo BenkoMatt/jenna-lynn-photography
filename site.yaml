@@ -167,16 +167,24 @@ gallery:
     object_position: center
     placeholder: false
     object_scale: '1.00'
-  - image: ''
-    alt: Wedding 2
+  - image: photos/gallery/weddings/Gracie_FlowerRing.jpeg
+    alt: Wedding flower ring detail
+    classes: gallery-tall
+    object_fit: cover
+    object_position: center
+    object_scale: '1.00'
+  - image: photos/gallery/weddings/Gracie_Bridal_Outside.jpeg
+    alt: Bride outside portrait
     classes: ''
-    placeholder: true
-    placeholder_style: 'background: linear-gradient(135deg, #fce4ec, #ef9a9a);'
-  - image: ''
-    alt: Couple 3
-    classes: ''
-    placeholder: true
-    placeholder_style: 'background: linear-gradient(135deg, #f1f8e9, #aed581);'
+    object_fit: cover
+    object_position: center
+    object_scale: '1.00'
+  - image: photos/gallery/weddings/G_I_WedParty_Tunnel.jpeg
+    alt: Wedding party tunnel
+    classes: gallery-tall
+    object_fit: cover
+    object_position: center
+    object_scale: '1.00'
 process:
   section_tag: How It Works
   title: From First Hello to Final Gallery
