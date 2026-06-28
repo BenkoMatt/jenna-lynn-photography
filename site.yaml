@@ -109,6 +109,7 @@ services:
   - name: Wedding Collection
     image: photos/pricing/G_I_WedParty_Cross_Kiss.jpeg
     image_alt: Wedding collection example
+    object_position: '63% 38%'
     price: 2800
     price_prefix: Starting at $
     tagline: Your entire love story — from getting ready to the last dance

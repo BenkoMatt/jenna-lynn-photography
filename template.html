@@ -101,7 +101,7 @@
         {% for pkg in site.services.packages %}
         <div class="service-card">
           <div class="service-card-img">
-            <img src="{{ pkg.image }}" alt="{{ pkg.image_alt | e }}" />
+            <img src="{{ pkg.image }}" alt="{{ pkg.image_alt | e }}"{% if pkg.object_position %} style="object-position: {{ pkg.object_position }};"{% endif %} />
           </div>
           <div class="service-card-body">
             <h3>{{ pkg.name | e }}</h3>
