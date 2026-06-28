@@ -132,11 +132,12 @@ gallery:
   cta_text: See Your Name Here — Book a Session
   cta_href: '#contact'
   entries:
-  - image: photos/gallery/portraits/matt_grad.jpeg
-    alt: Graduation portrait
+  - image: photos/gallery/weddings/Gracie_FlowerRing.jpeg
+    alt: Wedding flower ring detail
     classes: gallery-tall
     object_fit: cover
     object_position: center
+    object_scale: '1.00'
   - image: photos/gallery/couples/JennaLynnPhotography-641.jpg
     alt: Couples session photo
     classes: ''
@@ -167,8 +168,8 @@ gallery:
     object_position: center
     placeholder: false
     object_scale: '1.00'
-  - image: photos/gallery/weddings/Gracie_FlowerRing.jpeg
-    alt: Wedding flower ring detail
+  - image: photos/gallery/portraits/matt_grad.jpeg
+    alt: Graduation portrait
     classes: gallery-tall
     object_fit: cover
     object_position: center
