@@ -72,55 +72,49 @@ services:
   note: Custom packages and add-ons available — let's build something perfect for
     you. Proudly serving Michigan couples and beyond.
   packages:
-  - name: Couples Session
+  - name: Portraits
     image: photos/pricing/matt&Jenna-couples-card.jpg
-    image_alt: Couples session example
-    price: 600
+    image_alt: Portraits example
+    price: 100
     price_prefix: $
-    tagline: For the lovebirds who just want beautiful photos together
+    tagline: Beautiful, natural portraits — just you, being you
+    cta_text: Inquire
+    cta_href: '#contact'
+    primary: false
+    includes:
+    - 45-minute on-location session
+    - 25+ fully edited high-res images
+    - Private online gallery
+    - Print release
+  - name: Couples/Engagement
+    image: photos/pricing/jesse&sam_ring-engagement-card.jpeg
+    image_alt: Couples/Engagement example
+    price: 150
+    price_prefix: $
+    tagline: Celebrate your love story — from first date to the big question
     cta_text: Inquire
     cta_href: '#contact'
     primary: false
     includes:
     - 90-minute on-location session
     - 50+ fully edited high-res images
-    - Outfit change included
+    - Up to 2 outfit changes
     - Private online gallery
     - Print release
     - '"What to Wear" style guide'
-  - name: Engagement Session
-    image: photos/pricing/jesse&sam_ring-engagement-card.jpeg
-    image_alt: Engagement session example
-    price: 800
-    price_prefix: $
-    tagline: Celebrate the yes that changed everything
-    cta_text: Inquire
-    cta_href: '#contact'
-    primary: false
-    includes:
-    - 2-hour on-location session
-    - 75+ fully edited high-res images
-    - Up to 2 outfit changes
-    - Multiple locations
-    - Private online gallery
-    - Print release & "What to Wear" guide
-    - Pre-session questionnaire & planning call
-    - Local Michigan location scouting included
-  - name: Wedding Collection
+  - name: Wedding
     image: photos/pricing/G_I_WedParty_Cross_Kiss.jpeg
-    image_alt: Wedding collection example
+    image_alt: Wedding example
     object_position: '63% 38%'
-    price: 2800
-    price_prefix: Starting at $
-    tagline: Your entire love story — from getting ready to the last dance
+    price: 650
+    price_prefix: $
+    tagline: Your wedding day, beautifully captured from start to finish
     cta_text: Inquire
     cta_href: '#contact'
     primary: false
     includes:
-    - 8 hours of wedding day coverage
-    - 400+ fully edited high-res images
-    - Second photographer included
-    - Engagement session included
+    - 6 hours of wedding day coverage
+    - 300+ fully edited high-res images
     - Private online gallery
     - Print release
     - Detailed timeline planning
