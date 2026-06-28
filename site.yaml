@@ -107,7 +107,7 @@ services:
     - Pre-session questionnaire & planning call
     - Local Michigan location scouting included
   - name: Wedding Collection
-    image: photos/pricing/gracie&isaiah_ring_wed_placeholder.jpeg
+    image: photos/pricing/G_I_WedParty_Cross_Kiss.jpeg
     image_alt: Wedding collection example
     price: 2800
     price_prefix: Starting at $
