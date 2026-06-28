@@ -21,6 +21,8 @@ nav:
   href: '#gallery'
 - label: Process
   href: '#process'
+- label: Kind Words
+  href: '#kind-words'
 - label: FAQ
   href: '#faq'
 - label: Let's Connect
@@ -157,12 +159,15 @@ gallery:
     alt: Engagement session photo
     classes: ''
     object_fit: cover
-    object_position: center
-  - image: photos/gallery/portraits/slyvie_bear_portrait-2.jpeg
+    object_position: 53.8% 17.2%
+    object_scale: '1.33'
+  - image: photos/gallery/portraits/Sylvie_Bear_Overshoulder.jpg
     alt: Sylvie portrait
     classes: gallery-tall
     object_fit: cover
     object_position: center
+    placeholder: false
+    object_scale: '1.00'
   - image: ''
     alt: Wedding 2
     classes: ''
@@ -198,6 +203,10 @@ process:
     text: Within 72 hours you'll see sneak peeks, and your full gallery arrives within
       3–4 weeks. Every image hand-edited with care — because your story deserves nothing
       less. Ready to print, share, and treasure forever.
+testimonials:
+  section_tag: Kind Words
+  title: Don't Just Take My Word for It
+  entries: []
 faq:
   section_tag: Got Questions?
   title: The Couple Session Q&A
