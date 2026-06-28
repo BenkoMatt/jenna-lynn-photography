@@ -21,8 +21,6 @@ nav:
   href: '#gallery'
 - label: Process
   href: '#process'
-- label: Kind Words
-  href: '#kind-words'
 - label: FAQ
   href: '#faq'
 - label: Let's Connect
@@ -200,19 +198,6 @@ process:
     text: Within 72 hours you'll see sneak peeks, and your full gallery arrives within
       3–4 weeks. Every image hand-edited with care — because your story deserves nothing
       less. Ready to print, share, and treasure forever.
-testimonials:
-  section_tag: Kind Words
-  title: Don't Just Take My Word for It
-  entries:
-  - text: She made us feel so comfortable and natural. Even my husband — who hates
-      taking photos — said he had fun. We felt truly seen!
-    author: '[Client Name]'
-  - text: Somehow she captured the way he looks at me when I'm not looking. Every
-      photo tells our story perfectly — what a blessing!
-    author: '[Client Name]'
-  - text: From the first call, we knew she was the one. The gallery made us fall in
-      love all over again. We are so thankful — absolutely worth every penny.
-    author: '[Client Name]'
 faq:
   section_tag: Got Questions?
   title: The Couple Session Q&A

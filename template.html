@@ -174,26 +174,6 @@
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- KIND WORDS / TESTIMONIALS -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="kind-words" id="kind-words">
-    <div class="container">
-      <p class="section-tag center">{{ site.testimonials.section_tag | e }}</p>
-      <h2 class="section-title center">{{ site.testimonials.title | e }}</h2>
-
-      <div class="testimonials-grid">
-        {% for t in site.testimonials.entries %}
-        <div class="testimonial">
-          <div class="testimonial-stars">★★★★★</div>
-          <blockquote>"{{ t.text | e }}"</blockquote>
-          <cite>— {{ t.author | e }}</cite>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
   <!-- FAQ -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="faq" id="faq">
