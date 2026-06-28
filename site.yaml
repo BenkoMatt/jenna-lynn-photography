@@ -144,11 +144,12 @@ gallery:
     object_fit: cover
     object_position: 50% 65.5%
     object_scale: '1.00'
-  - image: ''
-    alt: Couple 2
+  - image: photos/gallery/weddings/Isaiah&groomsmen.jpg
+    alt: Isaiah and groomsmen
     classes: ''
-    placeholder: true
-    placeholder_style: 'background: linear-gradient(135deg, #fff3e0, #ffcc80);'
+    object_fit: cover
+    object_position: center
+    object_scale: '1.00'
   - image: photos/gallery/portraits/tate&friends_running.jpg
     alt: 'Tate and friends '
     classes: gallery-tall
