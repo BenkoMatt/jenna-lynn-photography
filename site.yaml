@@ -148,7 +148,7 @@ gallery:
     alt: Isaiah and groomsmen
     classes: ''
     object_fit: cover
-    object_position: center
+    object_position: 50% 75%
     object_scale: '1.00'
   - image: photos/gallery/portraits/tate&friends_running.jpg
     alt: 'Tate and friends '
