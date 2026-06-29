@@ -484,7 +484,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .faq {
   padding: 120px 0;
-  background: rgba(237, 236, 230, 0.9);
+  background: #ffffff;
 }
 .faq-list {
   max-width: 720px;
