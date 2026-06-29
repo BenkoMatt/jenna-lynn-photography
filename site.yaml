@@ -77,47 +77,42 @@ services:
     image_alt: Portraits example
     price: 100
     price_prefix: $
-    tagline: Beautiful, natural portraits — just you, being you
-    cta_text: Inquire
+    tagline: ''
+    cta_text: ''
     cta_href: '#contact'
     primary: false
     includes:
-    - 45-minute on-location session
-    - 25+ fully edited high-res images
-    - Private online gallery
-    - Print release
-  - name: Couples/Engagement
+    - 1 location
+    - 1 outfit
+    - 1 hour of shooting
+    - 50+ edited online gallery
+  - name: Couples
     image: photos/pricing/jesse&sam_ring-engagement-card.jpeg
-    image_alt: Couples/Engagement example
+    image_alt: Couples example
     price: 150
     price_prefix: $
-    tagline: Celebrate your love story — from first date to the big question
-    cta_text: Inquire
+    tagline: ''
+    cta_text: ''
     cta_href: '#contact'
     primary: false
     includes:
-    - 90-minute on-location session
-    - 50+ fully edited high-res images
-    - Up to 2 outfit changes
-    - Private online gallery
-    - Print release
-    - '"What to Wear" style guide'
-  - name: Wedding
+    - 1 location
+    - 1 hour of shooting
+    - 75+ edited online gallery
+  - name: Weddings
     image: photos/pricing/G_I_WedParty_Cross_Kiss.jpeg
-    image_alt: Wedding example
+    image_alt: Weddings example
     object_position: '63% 38%'
     price: 650
     price_prefix: $
-    tagline: Your wedding day, beautifully captured from start to finish
-    cta_text: Inquire
+    tagline: ''
+    cta_text: ''
     cta_href: '#contact'
     primary: false
     includes:
-    - 6 hours of wedding day coverage
-    - 300+ fully edited high-res images
-    - Private online gallery
-    - Print release
-    - Detailed timeline planning
+    - All day coverage
+    - 40+ sneak peek 1-2 week(s) after the wedding date
+    - 300+ edited online wedding gallery
 gallery:
   section_tag: Portfolio
   title: Love in Every Frame
