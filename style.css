@@ -173,7 +173,8 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links {
     position: absolute;
     top: 72px; left: 0; right: 0;
-    background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('photos/backgrounds/flower_background.jpg') repeat;
+    background: linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.82)), url('photos/backgrounds/flower_background.jpg') repeat;
+    background-position: 0 -72px;
     flex-direction: column;
     padding: 24px;
     gap: 20px;
