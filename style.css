@@ -263,7 +263,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .about {
   padding: 120px 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
 }
 .about-grid {
   display: grid;
@@ -312,7 +312,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .services {
   padding: 120px 0;
-  background: #fafafa;
+  background: rgba(237, 236, 230, 0.9);
 }
 .services-grid {
   display: grid;
@@ -407,7 +407,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .gallery {
   padding: 120px 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
 }
 .gallery-grid {
   display: grid;
@@ -445,7 +445,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .process {
   padding: 120px 0;
-  background: linear-gradient(135deg, #edeae5 0%, #edece6 50%, #acb19f 100%);
+  background: rgba(237, 234, 229, 0.9);
 }
 .process-grid {
   display: grid;
@@ -484,7 +484,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .faq {
   padding: 120px 0;
-  background: #fafafa;
+  background: rgba(237, 236, 230, 0.9);
 }
 .faq-list {
   max-width: 720px;
@@ -531,7 +531,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .contact {
   padding: 120px 0;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.9);
 }
 .contact-grid {
   display: grid;
