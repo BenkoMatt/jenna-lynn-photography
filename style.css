@@ -9,7 +9,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: 'Montserrat', sans-serif;
   color: #2c2c2c;
-  background: #ffffff;
+  background: url('photos/backgrounds/flower_background.jpg') repeat;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
