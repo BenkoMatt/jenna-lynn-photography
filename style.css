@@ -9,7 +9,7 @@ html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: 'Montserrat', sans-serif;
   color: #2c2c2c;
-  background: url('photos/backgrounds/flower_background.jpg') repeat;
+  background: #fff;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
@@ -105,7 +105,7 @@ h1, h2, h3, h4, h5, h6 {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  background: rgba(255,255,255,0.95);
+  background: linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.82)), url('photos/backgrounds/flower_background.jpg') repeat;
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0,0,0,0.05);
   transition: box-shadow 0.3s ease;
@@ -173,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links {
     position: absolute;
     top: 72px; left: 0; right: 0;
-    background: #fff;
+    background: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('photos/backgrounds/flower_background.jpg') repeat;
     flex-direction: column;
     padding: 24px;
     gap: 20px;
@@ -531,7 +531,7 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .contact {
   padding: 120px 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('photos/backgrounds/flower_background.jpg') repeat;
 }
 .contact-grid {
   display: grid;
