@@ -121,17 +121,26 @@ h1, h2, h3, h4, h5, h6 {
   height: 72px;
 }
 .nav-logo {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: #2c2c2c;
-  letter-spacing: 0.02em;
   display: flex;
-  align-items: center;
+  align-items: baseline;
+  text-decoration: none;
+  line-height: 1;
 }
-.nav-logo-img {
-  height: 48px;
-  width: auto;
+.logo-jenna {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: #2c2c2c;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.logo-lynn {
+  font-family: 'Tangerine', cursive;
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: #2c2c2c;
+  margin-left: 0.1em;
+  line-height: 0.8;
 }
 .nav-links {
   display: flex;
@@ -176,7 +185,8 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 900px) {
   .nav-toggle { display: flex; }
-  .nav-logo-img { height: 40px; }
+  .logo-jenna { font-size: 1.2rem; }
+  .logo-lynn { font-size: 1.9rem; }
   .nav-links {
     position: absolute;
     top: 72px; left: 0; right: 0;
@@ -718,6 +728,20 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1.5rem;
   color: #fff;
   margin-bottom: 12px;
+}
+.footer-logo-wordmark {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+.footer-logo-jenna {
+  font-size: 1.6rem;
+  letter-spacing: 0.22em;
+  color: #fff;
+}
+.footer-logo-lynn {
+  font-size: 2.6rem;
+  color: #fff;
 }
 .footer-logo-img {
   height: 56px;
