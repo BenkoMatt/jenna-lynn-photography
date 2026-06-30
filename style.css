@@ -126,6 +126,12 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   color: #2c2c2c;
   letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+}
+.nav-logo-img {
+  height: 48px;
+  width: auto;
 }
 .nav-links {
   display: flex;
@@ -170,6 +176,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 900px) {
   .nav-toggle { display: flex; }
+  .nav-logo-img { height: 40px; }
   .nav-links {
     position: absolute;
     top: 72px; left: 0; right: 0;
@@ -710,6 +717,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.5rem;
   color: #fff;
+  margin-bottom: 12px;
+}
+.footer-logo-img {
+  height: 56px;
+  width: auto;
   margin-bottom: 12px;
 }
 .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
