@@ -1,15 +1,15 @@
 meta:
-  title: Jenna Lynn Photography — Wedding & Couples Photography
-  description: Wedding and couples photography in Michigan, available worldwide. Sessions
-    crafted with you in mind — couples, engagements, and full wedding collections.
+  title: Jenna Lynn Photography — Seniors, Couples, and Wedding Photography
+  description: Seniors, couples, and wedding photography in Michigan, available worldwide. Sessions
+    crafted with you in mind — seniors, couples, engagements, and full wedding collections.
   og_image: photos/about/jenna-portrait.jpg
   og_image_width: 2571
   og_image_height: 3600
 brand:
   name: Jenna Lynn Photography
-  tagline: Wedding & Couples Photographer
-  email: hello@photographybyjennalynn.com
-  instagram: jennalynnphotography
+  tagline: Seniors, Couples, and Wedding Photographer
+  email: gallerybyjennalynn@gmail.com
+  instagram: photographybyjennalynn_
   location: '[City], Michigan'
   city: '[City]'
 nav:
@@ -29,10 +29,8 @@ nav:
   href: '#contact'
   cta: true
 hero:
-  tag: Wedding & Couples Photographer
-  title: 'Your Love Story,
-
-    Beautifully Told'
+  tag: Seniors, Couples, and Wedding Photographer
+  title: 'Your session is waiting!'
   verse: Three things will last forever — faith, hope, and love — and the greatest
     of these is love.
   verse_ref: 1 Corinthians 13:13
@@ -46,7 +44,7 @@ about:
 
     I''m Your Biggest Hype Girl'
   portrait: photos/about/jenna-portrait.jpg
-  portrait_alt: Jenna Lynn — Wedding & Couples Photographer
+  portrait_alt: Jenna Lynn — Seniors, Couples, and Wedding Photographer
   paragraphs:
   - I believe God writes beautiful love stories, and your photo session should reflect
     that. No stiff poses, no awkward silences — just the two of you, being completely
@@ -68,9 +66,8 @@ about:
   cta_href: '#contact'
 services:
   section_tag: Pricing
-  title: Sessions Crafted With You in Mind
-  subtitle: Every love story is unique — your photos should be too. Choose the experience
-    that fits your season.
+  title: ''
+  subtitle: Choose the experience that fits your season.
   note: Custom packages and add-ons available — let's build something perfect for
     you. Proudly serving Michigan couples and beyond.
   packages:
@@ -209,7 +206,7 @@ testimonials:
   entries: []
 faq:
   section_tag: Got Questions?
-  title: The Couple Session Q&A
+  title: ''
   entries:
   - question: We're not models — are you sure this is for us?
     answer: Absolutely! Most of my couples have never had professional photos taken
@@ -249,7 +246,7 @@ contact:
   cta_text: Send Inquiry
 instagram:
   section_tag: Follow Along
-  title: '@jennalynnphotography'
+  title: '@photographybyjennalynn_'
   entries:
   - placeholder: true
     style: 'background: linear-gradient(135deg, #fce4ec, #f8bbd0);'
@@ -280,13 +277,9 @@ footer:
     href: '#'
   social:
   - label: Instagram
-    href: '#'
-  - label: Pinterest
-    href: '#'
-  - label: Facebook
-    href: '#'
+    href: https://instagram.com/photographybyjennalynn_
   - label: Email
-    href: mailto:hello@photographybyjennalynn.com
+    href: mailto:gallerybyjennalynn@gmail.com
 colors:
   primary: '#c4758a'
   dark: '#2c2c2c'

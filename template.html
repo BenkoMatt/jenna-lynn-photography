@@ -94,7 +94,9 @@
   <section class="services" id="services">
     <div class="container">
       <p class="section-tag center">{{ site.services.section_tag | e }}</p>
+      {% if site.services.title %}
       <h2 class="section-title center">{{ site.services.title | e }}</h2>
+      {% endif %}
       <p class="section-sub center">{{ site.services.subtitle | e }}</p>
 
       <div class="services-grid">
@@ -179,7 +181,9 @@
   <section class="faq" id="faq">
     <div class="container">
       <p class="section-tag center">{{ site.faq.section_tag | e }}</p>
+      {% if site.faq.title %}
       <h2 class="section-title center">{{ site.faq.title | e }}</h2>
+      {% endif %}
 
       <div class="faq-list">
         {% for item in site.faq.entries %}

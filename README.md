@@ -1,6 +1,6 @@
 # Jenna Lynn Photography — Website
 
-Static site for Jenna Lynn Photography (Wedding & Couples Photography), hosted
+Static site for Jenna Lynn Photography (Seniors, Couples, and Wedding Photography), hosted
 on GitHub Pages at **photographybyjennalynn.com**.
 
 ## Stack
