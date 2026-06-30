@@ -532,14 +532,15 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════════════════════ */
 .faq {
   padding: 120px 0;
-  background: #ffffff;
+  background: #8a857a;
 }
+.faq .section-tag { color: #c8ccc0; }
 .faq-list {
   max-width: 720px;
   margin: 48px auto 0;
 }
 .faq-item {
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 .faq-item summary {
   font-family: 'Cormorant Garamond', serif;
@@ -551,26 +552,27 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
   align-items: center;
   transition: color 0.2s;
+  color: #fff;
 }
 .faq-item summary::-webkit-details-marker { display: none; }
 .faq-item summary::after {
   content: '+';
   font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
-  color: #acb19f;
+  color: #c8ccc0;
   font-weight: 300;
   transition: transform 0.3s;
 }
 .faq-item[open] summary::after {
   content: '−';
 }
-.faq-item[open] summary { color: #acb19f; }
+.faq-item[open] summary { color: #c8ccc0; }
 .faq-answer {
   padding: 0 0 20px;
 }
 .faq-answer p {
   font-size: 0.95rem;
-  color: #666;
+  color: #d8d6cf;
   line-height: 1.8;
 }
 

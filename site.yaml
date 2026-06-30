@@ -19,8 +19,6 @@ nav:
   href: '#services'
 - label: Gallery
   href: '#gallery'
-- label: Process
-  href: '#process'
 - label: FAQ
   href: '#faq'
 - label: Let's Connect
@@ -113,8 +111,6 @@ services:
 gallery:
   section_tag: Portfolio
   title: Love in Every Frame
-  subtitle: A glimpse into the love stories I've had the honor of telling — every
-    one a blessing from above.
   cta_text: See Your Name Here — Book a Session
   cta_href: '#contact'
   entries:
@@ -179,31 +175,6 @@ gallery:
     object_fit: cover
     object_position: center
     object_scale: '1.00'
-process:
-  section_tag: How It Works
-  title: From First Hello to Final Gallery
-  subtitle: I've designed every step to be easy, personal, and actually fun.
-  steps:
-  - number: '01'
-    title: Connect
-    text: Fill out the inquiry form and tell me all about you two! I'll get back to
-      you within 24 hours — usually sooner. I pray over every inquiry and can't wait
-      to hear your story.
-  - number: '02'
-    title: Plan
-    text: I'll send over my shoot guide, a fun couples questionnaire, and we'll plan
-      out every detail — from location scouting to outfit coordination. No stress,
-      just joyful anticipation!
-  - number: '03'
-    title: Party
-    text: Shoot day should feel like a celebration! I'll guide you through natural
-      poses, crack jokes, hype you up, and capture the real joy that happens when
-      you're just being yourselves — the way God made you.
-  - number: '04'
-    title: Relive
-    text: Within 72 hours you'll see sneak peeks, and your full gallery arrives within
-      3–4 weeks. Every image hand-edited with care — because your story deserves nothing
-      less. Ready to print, share, and treasure forever.
 faq:
   section_tag: Got Questions?
   title: ''
@@ -238,8 +209,7 @@ contact:
   section_tag: Let's Connect
   title: Ready to Have Some Fun?
   intro: I'm so glad you're here! Fill out the form and tell me a little about yourselves
-    and what you're dreaming of. I pray over every inquiry and can't wait to hear
-    your story — I'll get back to you within 24 hours, usually sooner!
+    and what you're dreaming of. I'll get back to you within 24 hours, usually sooner!
   form_note: I respond to all inquiries within 24 hours. Can't wait to hear from you!
   location_label: Location
   follow_label: Follow Along

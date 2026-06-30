@@ -131,7 +131,7 @@
     <div class="container">
       <p class="section-tag center">{{ site.gallery.section_tag | e }}</p>
       <h2 class="section-title center">{{ site.gallery.title | e }}</h2>
-      <p class="section-sub center">{{ site.gallery.subtitle | e }}</p>
+
 
       <div class="gallery-grid">
         {% for item in site.gallery.entries %}
@@ -150,27 +150,6 @@
 
       <div class="gallery-cta">
         <a href="{{ site.gallery.cta_href }}" class="btn btn-outline">{{ site.gallery.cta_text | e }}</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <!-- PROCESS -->
-  <!-- ═══════════════════════════════════════════ -->
-  <section class="process" id="process">
-    <div class="container">
-      <p class="section-tag center">{{ site.process.section_tag | e }}</p>
-      <h2 class="section-title center">{{ site.process.title | e }}</h2>
-      <p class="section-sub center">{{ site.process.subtitle | e }}</p>
-
-      <div class="process-grid">
-        {% for step in site.process.steps %}
-        <div class="process-step">
-          <div class="process-number">{{ step.number }}</div>
-          <h3>{{ step.title | e }}</h3>
-          <p>{{ step.text | e }}</p>
-        </div>
-        {% endfor %}
       </div>
     </div>
   </section>
