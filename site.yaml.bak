@@ -1,6 +1,6 @@
 meta:
   title: Jenna Lynn Photography — Seniors, Couples, and Wedding Photography
-  description: Seniors, couples, and wedding photography in Michigan, available worldwide. Sessions
+  description: Seniors, couples, and wedding photography in Grand Rapids, MI. Sessions
     crafted with you in mind — seniors, couples, engagements, and full wedding collections.
   og_image: photos/about/jenna-portrait.jpg
   og_image_width: 2571
@@ -10,8 +10,8 @@ brand:
   tagline: Seniors, Couples, and Wedding Photographer
   email: gallerybyjennalynn@gmail.com
   instagram: photographybyjennalynn_
-  location: '[City], Michigan'
-  city: '[City]'
+  location: 'Grand Rapids, MI'
+  city: 'Grand Rapids'
 nav:
 - label: About
   href: '#about'
@@ -39,7 +39,7 @@ hero:
   cta_href: '#contact'
   scroll_text: Scroll
 about:
-  section_tag: Meet Jenna
+  section_tag: ''
   title: 'I''m Not Just Your Photographer —
 
     I''m Your Biggest Hype Girl'
@@ -61,7 +61,7 @@ about:
     in Grand Rapids — this state is part of your story, and I wouldn't have it any
     other way.
   - Every love story is a gift from above — and it's my joy to help you tell yours.
-    Based in [City], Michigan — available for travel worldwide.
+    Based in Grand Rapids, MI — available for travel.
   cta_text: Let's Get to Know Each Other
   cta_href: '#contact'
 services:
@@ -231,7 +231,7 @@ faq:
       needed — no extra charge. Some of my favorite sessions have happened on overcast
       days with the most beautiful soft light. Even the weather is in His hands!
   - question: Do you travel for sessions?
-    answer: Yes! I'm based in [City], Michigan and include travel within a 30-mile
+    answer: Yes! I'm based in Grand Rapids, MI and include travel within a 30-mile
       radius. For destinations further afield, I'm happy to provide a custom travel
       quote. Adventure sessions are my favorite!
 contact:
