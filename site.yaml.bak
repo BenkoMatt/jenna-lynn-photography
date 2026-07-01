@@ -68,8 +68,7 @@ services:
   section_tag: Pricing
   title: Choose the experience that fits your season.
   subtitle: ''
-  note: Custom packages and add-ons available — let's build something perfect for
-    you. Proudly serving Michigan couples and beyond.
+  note: ''
   packages:
   - name: Couples Session
     image: photos/pricing/matt&Jenna-couples-card.jpg
