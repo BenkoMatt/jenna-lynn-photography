@@ -97,7 +97,9 @@
       {% if site.services.title %}
       <h2 class="section-title center">{{ site.services.title | e }}</h2>
       {% endif %}
+      {% if site.services.subtitle %}
       <p class="section-sub center">{{ site.services.subtitle | e }}</p>
+      {% endif %}
 
       <div class="services-grid">
         {% for pkg in site.services.packages %}
