@@ -624,27 +624,74 @@ h1, h2, h3, h4, h5, h6 {
   gap: 64px;
   align-items: start;
 }
-.contact-text {
-  background: #fafafa;
-  padding: 40px;
-  border-radius: 4px;
-}
-.contact-text p {
+.contact-info .lead {
   font-size: 1rem;
-  color: #666;
+  color: #555;
   margin-bottom: 24px;
   line-height: 1.8;
 }
-.contact-info p {
-  margin-bottom: 8px;
-  font-size: 0.9rem;
-  color: #555;
+.contact-details {
+  margin-bottom: 2rem;
 }
-.contact-info a { color: #acb19f; }
-.contact-info a:hover { text-decoration: underline; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+}
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  background: #edeae5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #acb19f;
+  flex-shrink: 0;
+}
+.contact-item small {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.1rem;
+}
+.contact-item a, .contact-item span:not(.contact-icon) {
+  font-size: 0.95rem;
+  color: #2c2c2c;
+}
+.contact-item a:hover { color: #acb19f; }
 
-.contact-form-wrap {
-  background: #fafafa;
+.contact-verse {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #c2bdb1;
+  line-height: 1.7;
+  margin-top: 1.5rem;
+}
+.contact-verse small {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #888;
+  margin-top: 0.3rem;
+}
+.verse-mark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.6rem;
+  color: #acb19f;
+  line-height: 0;
+  position: relative;
+  top: 0.3rem;
+}
+
+.contact-form-card {
+  background: #edece6;
   padding: 40px;
   border-radius: 4px;
 }
@@ -653,21 +700,21 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: 1fr 1fr;
   gap: 16px;
 }
-.form-group {
+.form-field {
   margin-bottom: 20px;
 }
-.form-group label {
+.form-field label {
   display: block;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #888;
   margin-bottom: 6px;
 }
-.form-group input,
-.form-group select,
-.form-group textarea {
+.form-field input,
+.form-field select,
+.form-field textarea {
   width: 100%;
   padding: 12px 16px;
   border: 1px solid #ddd;
@@ -678,13 +725,13 @@ h1, h2, h3, h4, h5, h6 {
   background: #fff;
   transition: border-color 0.2s;
 }
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
   outline: none;
   border-color: #acb19f;
 }
-.form-group textarea { resize: vertical; }
+.form-field textarea { resize: vertical; }
 .form-note {
   text-align: center;
   font-size: 0.8rem;

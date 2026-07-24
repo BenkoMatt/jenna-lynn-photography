@@ -347,60 +347,91 @@
   <section class="contact" id="contact">
     <div class="container">
       <div class="contact-grid">
-        <div class="contact-text">
-          <p class="section-tag">Let&#39;s Connect</p>
+        <div class="contact-info">
+          <p class="section-label">Let's Connect</p>
           <h2 class="section-title">Ready to Have Some Fun?</h2>
-          <p>I&#39;m so glad you&#39;re here! Fill out the form and tell me a little about yourselves and what you&#39;re dreaming of. I&#39;ll get back to you within 24 hours, usually sooner!</p>
-          <div class="contact-info">
-            <p><strong>Email:</strong> <a href="mailto:gallerybyjennalynn@gmail.com">gallerybyjennalynn@gmail.com</a></p>
-            <p><strong>Location:</strong> Grand Rapids, MI</p>
-            <p><strong>Follow Along:</strong> <a href="https://instagram.com/photographybyjennalynn_">@photographybyjennalynn_</a></p>
+          <p class="lead">I'm so glad you're here! Fill out the form and tell me a little about yourselves and what you're dreaming of. I pray over every inquiry and can't wait to hear your story — I'll get back to you within 24 hours, usually sooner!</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <span class="contact-icon">✉</span>
+              <div>
+                <small>Email</small>
+                <a href="mailto:gallerybyjennalynn@gmail.com">gallerybyjennalynn@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">⚲</span>
+              <div>
+                <small>Location</small>
+                <span>Grand Rapids, MI</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">♡</span>
+              <div>
+                <small>Follow Along</small>
+                <a href="https://instagram.com/photographybyjennalynn_">@photographybyjennalynn_</a>
+              </div>
+            </div>
           </div>
+          <p class="contact-verse">
+            <span class="verse-mark">&ldquo;</span>
+            Commit to the Lord whatever you do.
+            <span class="verse-mark">&rdquo;</span>
+            <small>— Proverbs 16:3</small>
+          </p>
         </div>
-        <div class="contact-form-wrap">
-          <form class="contact-form" id="contactForm"
+        <div class="contact-form-card">
+          <form id="contactForm" class="contact-form"
               action="https://formspree.io/f/xbdnjwwq" method="POST">
             <!-- Formspree: customizable email subject line -->
             <input type="hidden" name="_subject" value="New inquiry from photographybyjennalynn.com">
             <!-- Formspree: honeypot spam trap (hidden from humans, bots fill it in) -->
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
                 style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+            <div class="form-field">
+              <label for="name">First & Last Name(s)</label>
+              <input type="text" id="name" name="name" placeholder="Your first and last name(s)" required>
+            </div>
             <div class="form-row">
-              <div class="form-group">
-                <label for="name">Your Name(s)</label>
-                <input type="text" id="name" name="name" placeholder="Both your names!" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
+              <div class="form-field">
+                <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="you@email.com" required>
               </div>
+              <div class="form-field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" maxlength="10" placeholder="5551234567" pattern="\d{10}">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="session-type">What are you looking for?</label>
-              <select id="session-type" name="session_type">
+            <div class="form-field">
+              <label for="session-type">Which session are you interested in?</label>
+              <select id="session-type" name="session_type" required>
                 <option value="">Select a session type</option>
-                <option value="couples">Couples Session</option>
-                <option value="engagement">Engagement Session</option>
-                <option value="wedding">Wedding Collection</option>
-                <option value="other">Something else!</option>
+                <option value="wedding">Wedding</option>
+                <option value="engagement">Engagement</option>
+                <option value="couples">Couples</option>
+                <option value="senior-portraits">Senior Portraits</option>
+                <option value="family">Family</option>
+                <option value="maternity">Maternity</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div class="form-row">
-              <div class="form-group">
+              <div class="form-field">
                 <label for="date">Ideal Date (if known)</label>
                 <input type="date" id="date" name="date">
               </div>
-              <div class="form-group">
+              <div class="form-field">
                 <label for="location">Session Location</label>
                 <input type="text" id="location" name="location" placeholder="City, venue, or idea">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-field">
               <label for="message">Tell me about you two!</label>
               <textarea id="message" name="message" rows="5" placeholder="How did you meet? What's your vibe? Anything you want me to know!"></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Send Inquiry</button>
-            <p class="form-note">I respond to all inquiries within 24 hours. Can&#39;t wait to hear from you!</p>
+            <p class="form-note">I respond to all inquiries within 24 hours. Can't wait to hear from you! 💕</p>
             <p class="form-loading" id="formLoading">
               ♡ Sending your inquiry…
             </p>

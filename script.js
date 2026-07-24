@@ -150,3 +150,15 @@ if (contactForm) {
     });
   });
 }
+
+// ─── PHONE FIELD — digits only, max 10 ───
+var phoneInput = document.getElementById('phone');
+if (phoneInput) {
+  phoneInput.addEventListener('input', function(e) {
+    var cleaned = e.target.value.replace(/\D/g, '');
+    if (cleaned.length > 10) {
+      cleaned = cleaned.substring(0, 10);
+    }
+    e.target.value = cleaned;
+  });
+}
