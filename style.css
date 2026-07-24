@@ -493,35 +493,6 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.9);
 }
 
-/* Portfolio filters */
-.portfolio-filters {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 48px;
-  margin-bottom: 48px;
-  flex-wrap: wrap;
-}
-.filter-btn {
-  background: transparent;
-  border: 1px solid #e8e8e8;
-  color: #555;
-  padding: 8px 20px;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 2px;
-}
-.filter-btn:hover { border-color: #acb19f; color: #acb19f; }
-.filter-btn.active {
-  background: #acb19f;
-  border-color: #acb19f;
-  color: #fff;
-}
-
 /* Portfolio grid */
 .portfolio-grid {
   display: grid;

@@ -73,25 +73,8 @@ document.querySelectorAll(
   observer.observe(section);
 });
 
-// ─── PORTFOLIO FILTERS + LIGHTBOX ───
-var filterBtns = document.querySelectorAll('.filter-btn');
+// ─── PORTFOLIO LIGHTBOX ───
 var portfolioItems = document.querySelectorAll('.portfolio-item');
-
-filterBtns.forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var filter = this.getAttribute('data-filter');
-    filterBtns.forEach(function(b) { b.classList.remove('active'); });
-    this.classList.add('active');
-    portfolioItems.forEach(function(item) {
-      var cat = item.getAttribute('data-category');
-      if (filter === 'all' || cat === filter) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
-    });
-  });
-});
 
 var lightbox = document.getElementById('lightbox');
 var lightboxImg = document.getElementById('lightboxImg');
