@@ -31,6 +31,40 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Jenna Lynn Photography",
+    "description": "Seniors, couples, and wedding photography in Grand Rapids, MI.",
+    "url": "https://photographybyjennalynn.com/",
+    "email": "gallerybyjennalynn@gmail.com",
+    "image": "https://photographybyjennalynn.com/photos/about/jenna-portrait.jpg",
+    "priceRange": "$$",
+    "areaServed": "Grand Rapids, MI",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Grand Rapids",
+      "addressRegion": "MI",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://instagram.com/photographybyjennalynn_",
+      "https://www.tiktok.com/@photographybyjennalynn"
+    ],
+    "hasOfferingCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Photography Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Portraits" }, "price": "100" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Couples" }, "price": "150" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Weddings" }, "price": "650" }
+      ]
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -102,7 +136,7 @@
       <div class="about-grid">
         <div class="about-image">
           <div class="about-image-inner">
-            <img src="photos/about/jenna-portrait.jpg" alt="Jenna Lynn — Seniors, Couples, and Wedding Photographer" />
+            <img src="photos/about/jenna-portrait.jpg" alt="Jenna Lynn — Seniors, Couples, and Wedding Photographer" loading="lazy" />
           </div>
         </div>
         <div class="about-text">
@@ -130,7 +164,7 @@
         
         <div class="service-card">
           <div class="service-card-img">
-            <img src="photos/pricing/Tate_Friend_Portrait_Service.JPG" alt="Portraits example" />
+            <img src="photos/pricing/Tate_Friend_Portrait_Service.JPG" alt="Portraits example" loading="lazy" />
           </div>
           <div class="service-card-body">
             <h3>Portraits</h3>
@@ -151,7 +185,7 @@
         
         <div class="service-card">
           <div class="service-card-img">
-            <img src="photos/pricing/jesse&sam_ring-engagement-card.jpeg" alt="Couples example" />
+            <img src="photos/pricing/jesse&sam_ring-engagement-card.jpeg" alt="Couples example" loading="lazy" />
           </div>
           <div class="service-card-body">
             <h3>Couples</h3>
@@ -170,7 +204,7 @@
         
         <div class="service-card">
           <div class="service-card-img">
-            <img src="photos/pricing/G_I_WedParty_Cross_Kiss.jpeg" alt="Weddings example" style="object-position: 63% 38%;" />
+            <img src="photos/pricing/G_I_WedParty_Cross_Kiss.jpeg" alt="Weddings example" style="object-position: 63% 38%;" loading="lazy" />
           </div>
           <div class="service-card-body">
             <h3>Weddings</h3>

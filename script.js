@@ -243,3 +243,29 @@ if (phoneInput) {
     e.target.value = cleaned;
   });
 }
+
+// ─── SCROLL-SPY NAV HIGHLIGHTING ───
+var navLinkItems = document.querySelectorAll('.nav-links a');
+var spySections = [];
+document.querySelectorAll('section[id]').forEach(function(section) {
+  spySections.push(section);
+});
+
+function updateActiveNav() {
+  var scrollPos = window.scrollY + 100;
+  var currentId = '';
+  spySections.forEach(function(section) {
+    if (section.offsetTop <= scrollPos) {
+      currentId = section.getAttribute('id');
+    }
+  });
+  navLinkItems.forEach(function(link) {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + currentId) {
+      link.classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
