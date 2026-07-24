@@ -173,6 +173,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 10px 24px;
   border-radius: 2px;
   transition: background 0.3s !important;
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  box-sizing: border-box;
 }
 .nav-cta:hover { background: #9baaa2 !important; }
 
