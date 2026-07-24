@@ -22,6 +22,8 @@ npm-debug.log*
 COMPETITIVE_ANALYSIS*.md
 JLP_AUDIT*.md
 JLP_QA*.md
+JLP_MOBILE*.md
+JLP_*.md
 
 # Don't commit real client photos until you've reviewed them
 # (uncomment to enforce)
