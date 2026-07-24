@@ -73,6 +73,104 @@ document.querySelectorAll(
   observer.observe(section);
 });
 
+// ─── PORTFOLIO FILTERS + LIGHTBOX ───
+var filterBtns = document.querySelectorAll('.filter-btn');
+var portfolioItems = document.querySelectorAll('.portfolio-item');
+
+filterBtns.forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var filter = this.getAttribute('data-filter');
+    filterBtns.forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    portfolioItems.forEach(function(item) {
+      var cat = item.getAttribute('data-category');
+      if (filter === 'all' || cat === filter) {
+        item.classList.remove('hidden');
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+  });
+});
+
+var lightbox = document.getElementById('lightbox');
+var lightboxImg = document.getElementById('lightboxImg');
+var lightboxClose = document.getElementById('lightboxClose');
+var lightboxPrev = document.getElementById('lightboxPrev');
+var lightboxNext = document.getElementById('lightboxNext');
+var currentLightboxIndex = 0;
+var visibleItems = [];
+
+function getVisibleItems() {
+  visibleItems = [];
+  portfolioItems.forEach(function(item) {
+    if (!item.classList.contains('hidden')) {
+      visibleItems.push(item);
+    }
+  });
+}
+
+function showLightboxImage() {
+  var item = visibleItems[currentLightboxIndex];
+  if (!item) return;
+  var img = item.querySelector('img');
+  if (img) {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+  }
+}
+
+function openLightbox(index) {
+  getVisibleItems();
+  currentLightboxIndex = index;
+  showLightboxImage();
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function nextLightbox() {
+  getVisibleItems();
+  currentLightboxIndex = (currentLightboxIndex + 1) % visibleItems.length;
+  showLightboxImage();
+}
+
+function prevLightbox() {
+  getVisibleItems();
+  currentLightboxIndex = (currentLightboxIndex - 1 + visibleItems.length) % visibleItems.length;
+  showLightboxImage();
+}
+
+portfolioItems.forEach(function(item) {
+  item.addEventListener('click', function() {
+    var allIndex = Array.prototype.indexOf.call(portfolioItems, item);
+    openLightbox(allIndex);
+  });
+});
+
+if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+if (lightboxNext) lightboxNext.addEventListener('click', function(e) { e.stopPropagation(); nextLightbox(); });
+if (lightboxPrev) lightboxPrev.addEventListener('click', function(e) { e.stopPropagation(); prevLightbox(); });
+
+if (lightbox) {
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!lightbox || !lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') nextLightbox();
+  if (e.key === 'ArrowLeft') prevLightbox();
+});
+
 // ─── CONTACT FORM — Formspree Integration ───
 const contactForm = document.getElementById('contactForm');
 const formSuccess = document.getElementById('formSuccess');
