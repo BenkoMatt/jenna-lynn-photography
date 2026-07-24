@@ -692,6 +692,69 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 16px;
 }
 
+/* Formspree success state */
+.form-success {
+  display: none;
+  text-align: center;
+  margin-top: 1.5rem;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(135deg, #f0ebe2 0%, #e8e0d4 100%);
+  border: 2px solid #b8a896;
+  border-radius: 0;
+  color: #5a4e42;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.form-success.show {
+  display: block;
+  animation: successPop 0.4s ease-out;
+}
+
+@keyframes successPop {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Formspree loading state */
+.form-loading {
+  display: none;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f0ebe2;
+  border: 1px solid #b8a896;
+  border-radius: 0;
+  color: #5a4e42;
+  font-size: 0.9rem;
+}
+
+.form-loading.show { display: block; }
+
+/* Formspree error state */
+.form-error {
+  display: none;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fef2f2;
+  border: 1px solid #e8a0a0;
+  border-radius: 0;
+  color: #a04040;
+  font-size: 0.9rem;
+}
+
+.form-error.show { display: block; }
+.form-error a { color: #a04040; text-decoration: underline; }
+
+/* Disabled submit button state */
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }

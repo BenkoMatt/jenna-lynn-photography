@@ -73,22 +73,80 @@ document.querySelectorAll(
   observer.observe(section);
 });
 
-// ─── CONTACT FORM (prevent default, show success) ───
+// ─── CONTACT FORM — Formspree Integration ───
 const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
+const formError = document.getElementById('formError');
+const formLoading = document.getElementById('formLoading');
+const submitBtn = document.getElementById('submitBtn');
+const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Inquiry';
+
+function resetFormStates() {
+  if (formSuccess) formSuccess.classList.remove('show');
+  if (formError) formError.classList.remove('show');
+  if (formLoading) formLoading.classList.remove('show');
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalBtnText;
+  }
+}
+
 if (contactForm) {
   contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    
-    // Replace form with success message
-    const wrap = this.parentElement;
-    wrap.innerHTML = `
-      <div style="text-align:center; padding:60px 20px;">
-        <p style="font-family:'Cormorant Garamond',serif; font-size:2rem; color:#2c2c2c; margin-bottom:12px;">Yay!</p>
-        <p style="font-size:1rem; color:#666; line-height:1.8;">
-          Your inquiry is on its way! I'll get back to you within 24 hours.<br>
-          Can't wait to hear more about you two! 💕
-        </p>
-      </div>
-    `;
+
+    resetFormStates();
+
+    if (formLoading) formLoading.classList.add('show');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+    }
+
+    var formData = new FormData(contactForm);
+
+    fetch(contactForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        if (formLoading) formLoading.classList.remove('show');
+        if (formSuccess) formSuccess.classList.add('show');
+        contactForm.reset();
+
+        if (formSuccess) {
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        setTimeout(function() {
+          if (formSuccess) formSuccess.classList.remove('show');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+          }
+        }, 8000);
+      } else {
+        throw new Error('Formspree returned ' + response.status);
+      }
+    })
+    .catch(function(error) {
+      if (formLoading) formLoading.classList.remove('show');
+      if (formError) formError.classList.add('show');
+
+      if (formError) {
+        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+
+      setTimeout(function() {
+        if (formError) formError.classList.remove('show');
+      }, 10000);
+    });
   });
 }
