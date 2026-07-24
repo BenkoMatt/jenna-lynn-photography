@@ -5,7 +5,7 @@
 
 /* ─── RESET & BASE ─── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; font-size: 16px; }
 body {
   font-family: 'Montserrat', sans-serif;
   color: #2c2c2c;
@@ -222,7 +222,14 @@ h1, h2, h3, h4, h5, h6 {
     max-height: 500px;
     opacity: 1;
     padding: 24px;
-    gap: 20px;
+    gap: 0;
+  }
+  .nav-links.open a {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-links.open a:last-child {
+    border-bottom: none;
   }
 }
 
@@ -522,6 +529,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.5s ease;
 }
 .portfolio-item:hover img { transform: scale(1.03); }
+.portfolio-item:hover .portfolio-overlay,
+.portfolio-item:focus-within .portfolio-overlay { opacity: 1; }
 .portfolio-overlay {
   position: absolute;
   inset: 0;
@@ -532,7 +541,9 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0;
   transition: all 0.3s ease;
 }
-.portfolio-item:hover .portfolio-overlay { opacity: 1; }
+@media (max-width: 768px) {
+  .portfolio-overlay { opacity: 0.6; }
+}
 .portfolio-cat {
   font-size: 0.65rem;
   font-weight: 600;
@@ -572,6 +583,7 @@ h1, h2, h3, h4, h5, h6 {
   max-height: 85vh;
   border-radius: 4px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  transition: opacity 0.2s ease;
 }
 .lightbox-close {
   position: absolute;
@@ -812,7 +824,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #ddd;
   border-radius: 2px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.9rem;
+  font-size: 16px;
   color: #333;
   background: #fff;
   transition: border-color 0.2s;
@@ -1013,6 +1025,12 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* Mobile section padding reduction */
+@media (max-width: 768px) {
+  .about, .services, .gallery, .faq, .contact { padding: 64px 0; }
+  .contact-form-card { padding: 24px; }
 }
 
 /* ═══════════════════════════════════════════════════════════

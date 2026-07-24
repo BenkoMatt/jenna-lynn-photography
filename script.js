@@ -98,8 +98,12 @@ function showLightboxImage() {
   if (!item) return;
   var img = item.querySelector('img');
   if (img) {
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
+    lightboxImg.style.opacity = '0';
+    setTimeout(function() {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightboxImg.style.opacity = '1';
+    }, 200);
   }
 }
 
@@ -153,6 +157,23 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowRight') nextLightbox();
   if (e.key === 'ArrowLeft') prevLightbox();
 });
+
+// Touch swipe support for lightbox
+if (lightbox) {
+  var touchStartX = 0;
+  var touchEndX = 0;
+  lightbox.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+  lightbox.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    var diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) { nextLightbox(); }
+      else { prevLightbox(); }
+    }
+  }, { passive: true });
+}
 
 // ─── CONTACT FORM — Formspree Integration ───
 const contactForm = document.getElementById('contactForm');
