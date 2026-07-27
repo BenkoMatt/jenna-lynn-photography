@@ -231,6 +231,12 @@ h1, h2, h3, h4, h5, h6 {
   .nav-links.open a:last-child {
     border-bottom: none;
   }
+  .nav-links.open a.nav-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 10px 24px;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
