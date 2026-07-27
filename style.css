@@ -836,6 +836,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #333;
   background: #fff;
   transition: border-color 0.2s;
+  box-sizing: border-box;
 }
 .form-field input:focus,
 .form-field select:focus,
