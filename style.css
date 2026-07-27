@@ -166,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .nav-links a:hover { color: #acb19f; }
 .nav-links a.active { color: #acb19f; border-bottom: 2px solid #acb19f; padding-bottom: 2px; }
-.nav-links a.nav-cta.active { border-bottom: none; padding-bottom: 0; }
+.nav-links a.nav-cta.active { border-bottom: none; padding-bottom: 10px; }
 .nav-cta {
   background: #acb19f;
   color: #fff !important;
