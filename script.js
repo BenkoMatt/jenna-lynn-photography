@@ -41,6 +41,8 @@ navLinks.querySelectorAll('a').forEach(link => {
 // ─── SMOOTH SCROLL (for older browsers) ───
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href === '#' || href === '/') return;
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
