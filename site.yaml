@@ -88,14 +88,13 @@ services:
     image: photos/pricing/G_I_WedParty_Cross_Kiss.jpeg
     image_alt: Weddings example
     object_position: '63% 38%'
-    price: 650
+    price: 850
     price_prefix: $
     tagline: ''
     cta_text: ''
     cta_href: '#contact'
     primary: false
     includes:
-    - All-Day Coverage
     - 40+ Sneak Peeks 1–2 Weeks After Wedding Date
     - 300+ Edited Online Wedding Gallery
 gallery:
