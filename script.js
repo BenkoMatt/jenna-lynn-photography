@@ -307,3 +307,28 @@ function updateActiveNav() {
 
 window.addEventListener('scroll', updateActiveNav);
 updateActiveNav();
+
+/* ═══ JLP PRICING v2 — Learn More animated dropdown (winner "grid-rows")
+   Progressive enhancement for the v2 pricing cards: adds html.js-gate so
+   .ec-panel dropdowns default to their closed 0fr state ONLY when JS is
+   present (no-JS: panels stay open and visible), then wires each boxed
+   .services .ec-toggle (aria-expanded / aria-controls) to its panel.
+   Source: winner_v2/section.html inline <script> — verbatim IIFE below. */
+(function () {
+  'use strict';
+  var doc = document;
+  /* gate: page-level class switches panels to their closed 0fr state;
+     without JS this never lands and panels stay open + visible */
+  doc.documentElement.classList.add('js-gate');
+  function setOpen(toggle, open) {
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    var panel = doc.getElementById(toggle.getAttribute('aria-controls'));
+    if (panel) { panel.classList.toggle('is-open', open); }
+  }
+  Array.prototype.forEach.call(doc.querySelectorAll('.services .ec-toggle'), function (toggle) {
+    setOpen(toggle, false); /* enforce closed default */
+    toggle.addEventListener('click', function () {
+      setOpen(toggle, toggle.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+})();

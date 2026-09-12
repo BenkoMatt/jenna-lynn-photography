@@ -1318,3 +1318,288 @@ h1, h2, h3, h4, h5, h6 {
      meeting 4.5:1 at 0.8rem. Hover fills with the same compliant token. */
   .services .btn-outline { color: #5f6755; border: 1px solid #5f6755; }
   .services .btn-outline:hover { background: #5f6755; color: #fff; }
+
+/* ═══════════════════════════════════════════════════════════════════
+   JLP PRICING v2 — winner "grid-rows" + ruling R-V2-1 (boxed toggle)
+   Appended AFTER the v1 winner block on purpose: the v2 section markup
+   (template.html) reuses the .services .ec-* names, so identical
+   selectors resolve to THESE v2 values by cascade order (later wins at
+   equal specificity). v1-only rules above (.ec-tiers/.ec-tier/
+   .ec-rows/.ec-row/.ec-price--tier/--row/.ec-incl) are dead under the
+   v2 markup and kept harmlessly. New in v2: .ec-toggle = boxed "Learn
+   More" button (btn-outline idiom at reduced prominence), .ec-panel =
+   grid-rows 0fr->1fr dropdown with html.js-gate closed default and
+   delayed visibility, .ec-eyebrow = "Starting at" teaser, placeholder
+   gradient modifier classes.
+   Source: winner_v2/section.html <style> — appended verbatim below.
+   ═══════════════════════════════════════════════════════════════════ */
+
+  /* ── editorial-classic scoped styles (inherited from v1 winner) ─────
+     Cormorant Garamond display, Montserrat UI, white cards, 4px radii,
+     0 2px 20px rgba(0,0,0,.04) shadow, 32px gutters, hairline ornaments.
+     Deep sage #5f6755 for prices/micro-labels: 5.9:1 on white.        */
+
+  /* section-tag contrast fix (R7/R-eyebrow): darker than live sage,
+     sibling size 0.75rem kept */
+  .services .section-tag {
+    color: #5f6755;
+    font-size: 0.75rem;
+  }
+
+  /* decorative hairline under the title (magazine rate-card motif) */
+  .services .ec-rule {
+    width: 64px;
+    height: 1px;
+    margin: 22px auto 0;
+    background: #acb19f; /* decorative, not text */
+  }
+
+  .services .ec-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 480px;
+    margin: 48px auto 0;
+  }
+
+  .services .ec-card {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .services .ec-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+
+  .services .ec-media {
+    position: relative;
+    height: 440px;
+    overflow: hidden;
+  }
+  /* explicit percentage fill + object-fit (R-inset), robust for
+     arbitrary source ratios */
+  .services .ec-media img,
+  .services .ec-media .placeholder-img {
+    width: 100%;
+    height: 100%;
+  }
+  .services .ec-media img {
+    object-fit: cover;
+    display: block;
+  }
+
+  /* placeholder slots (R-P1): the site's own yaml gradient vocabulary —
+     pink for Maternity, lavender for Senior Photos. Label #2c2c2c
+     passes 4.5:1 on every gradient stop; label font 1.5rem. */
+  .services .ec-media .placeholder-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c2c2c;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    border-radius: 0;
+  }
+  .services .ec-media .placeholder-img--maternity {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  }
+  .services .ec-media .placeholder-img--senior {
+    background: linear-gradient(135deg, #f3e5f5, #ce93d8);
+  }
+
+  .services .ec-body {
+    padding: 32px;
+  }
+
+  .services .ec-name {
+    font-size: 1.6rem;
+    color: #2c2c2c;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(44,44,44,0.12);
+    margin: 0 0 20px;
+  }
+
+  /* ── card face: Starting-at eyebrow + big serif price ─────────────── */
+  .services .ec-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5f6755;
+    margin: 0 0 6px;
+  }
+
+  .services .ec-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: #5f6755;
+    line-height: 1;
+    margin: 0;
+  }
+  .services .ec-cur {
+    font-size: 0.55em;
+    font-weight: 400;
+    vertical-align: 0.58em;
+    margin-right: 0.08em;
+  }
+  .services .ec-price--hero { font-size: clamp(3.25rem, 5vw, 4.5rem); }
+
+  /* ── Learn More toggle (the only interactive reveal) ────────────────
+     R-V2-1 (Agent 4 review, binding): boxed interactive idiom — the
+     .btn-outline vocabulary at reduced prominence vs Inquire Now.
+     Rest: 1px solid sage frame at 45% alpha (decorative frame, not
+     text; text stays #5f6755 = 5.9:1 on the untouched white card),
+     transparent fill, 4px radius, Montserrat uppercase 0.18em label.
+     Hover/focus: border darkens to the full sage token + subtle
+     sage-tinted fill (renders AND reverts); text token unchanged, so
+     label contrast is 5.9:1 on white in BOTH states. Reads clearly
+     secondary to the solid-action Inquire Now. #acb19f is never used
+     as text (2.2:1); the 45% frame is border-only, no contrast duty. */
+  .services .ec-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: auto;
+    max-width: 100%;
+    min-height: 48px; /* ≥44px tap target */
+    padding: 10px 20px;
+    margin-top: 20px;
+    background: transparent;
+    border: 1px solid rgba(95, 103, 85, 0.45); /* reduced sage vs CTA */
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5f6755; /* text 5.9:1 on card white — rest and hover */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .services .ec-toggle:hover {
+    border-color: #5f6755;
+    background: rgba(95, 103, 85, 0.08); /* subtle fill; card stays white */
+  }
+  .services .ec-toggle:focus-visible {
+    outline: 2px solid #5f6755;
+    outline-offset: 3px;
+  }
+  .services .ec-toggle-label { flex: 1 1 auto; text-align: left; }
+  .services .ec-chevron {
+    flex: 0 0 auto;
+    transition: transform 0.3s ease;
+  }
+  .services .ec-toggle[aria-expanded="true"] .ec-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* ── dropdown panel: grid-template-rows 0fr -> 1fr animation ────────
+     No-JS default is OPEN (1fr): the js-gate class is added by this
+     section's inline script, so content is never lost without JS.     */
+  .services .ec-panel {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.3s ease;
+  }
+  html.js-gate .services .ec-panel:not(.is-open) {
+    grid-template-rows: 0fr; /* closed default once JS is present */
+  }
+  .services .ec-panel-inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+  /* keep collapsed content out of the a11y tree/tab order, delayed so
+     it stays visible for the duration of the closing animation */
+  html.js-gate .services .ec-panel:not(.is-open) .ec-panel-inner {
+    visibility: hidden;
+    transition: visibility 0s linear 0.3s;
+  }
+
+  .services .ec-panel-list {
+    padding: 2px 0 8px;
+  }
+  .services .ec-panel-row {
+    padding: 14px 2px;
+    font-size: 0.9rem;
+    color: #555; /* 7.5:1 on white */
+  }
+  .services .ec-panel-row + .ec-panel-row {
+    border-top: 1px solid rgba(44,44,44,0.12);
+  }
+  .services .ec-row-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    color: #5f6755;
+    white-space: nowrap;
+    margin-left: 6px;
+  }
+
+  /* Inquire Now sits after the panel, unchanged vocabulary */
+  .services .ec-body .btn { margin-top: 24px; }
+
+  /* R20: live .btn-outline is 2.2:1; scoped override keeps the live
+     button vocabulary at 4.5:1+ (5.9:1). Hover fills same token. */
+  .services .btn-outline { color: #5f6755; border: 1px solid #5f6755; }
+  .services .btn-outline:hover { background: #5f6755; color: #fff; }
+
+  /* ── wedding: full-width spread, image left / face+panel right ────── */
+  .services .ec-card--spread {
+    display: flex;
+    flex-direction: column;
+  }
+  .services .ec-media--fill {
+    position: relative;
+    height: 320px;
+    flex: 0 0 auto;
+  }
+
+  @media (min-width: 901px) {
+    .services .ec-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: none;
+    }
+    .services .ec-card--spread {
+      grid-column: 1 / -1;
+      flex-direction: row;
+    }
+    .services .ec-media--fill {
+      height: auto;
+      min-height: 460px;
+      flex: 0 0 42%;
+    }
+    .services .ec-body { padding: 32px; }
+    .services .ec-card--spread .ec-body { padding: 40px 48px; }
+  }
+
+  @media (max-width: 480px) {
+    .services .ec-body { padding: 24px; }
+    .services .ec-media { height: 360px; }
+    .services .ec-media--fill { height: 300px; }
+  }
+
+  /* R-land: landscape phones — pair the four non-wedding cards */
+  @media (min-width: 700px) and (max-height: 520px) {
+    .services .ec-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: none;
+    }
+    .services .ec-card--spread { grid-column: 1 / -1; }
+  }
+
+  /* reduced motion: no height animation, no chevron spin, no toggle
+     hover transition, no delayed visibility — content still opens
+     (instantly) */
+  @media (prefers-reduced-motion: reduce) {
+    .services .ec-panel { transition: none; }
+    .services .ec-chevron { transition: none; }
+    .services .ec-toggle { transition: none; }
+    html.js-gate .services .ec-panel:not(.is-open) .ec-panel-inner {
+      transition: none;
+    }
+  }

@@ -163,7 +163,19 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- SERVICES -->
   <!-- ═══════════════════════════════════════════ -->
-  <!-- JLP pricing section v2.0 - winner stance editorial-classic + rulings R1-R19 applied 2026-09-12. Applied: R2/R9 currency verified (dollar-prefix before digits 9 of 9, no change needed), R6 single dark-sage token (no stray accent tokens present), R7 section-tag size reverted to sibling value 0.75rem, R8 wedding eyebrow register deleted so coverage line shows once per row, R-P1 site yaml gradient placeholders verbatim (pink for maternity, lavender for senior photos; label ink #2c2c2c at 1.5rem), R-alt image mapping per live convention (friend-photos portrait file, couple ring file, wedding party file with object-position kept; maternity plus senior as placeholders), R12 inquire CTA via live btn-outline vocabulary on all five cards, R-eyebrow raised to 0.75rem minimum, R-inset explicit percentage fill with object-fit cover replacing absolute positioning, R-land landscape-phone two-column adaptation for the four non-wedding cards, R17 stale contrast comment removed with the gradient rewrite (true ratio 4.67:1 now stated in the R-P1 comment), R18 hairline ornaments kept. Rejected: R3 - the invented planning sentence never existed in this draft (it was the airy-minimal draft's copy); nothing to delete. -->
+  <!-- JLP PRICING v2 — winner "grid-rows" + ruling R-V2-1 (boxed Learn More toggle).
+       Assembled from /root/projects/sites/jlp-pricing-redesign/winner_v2/section.html.
+       Self-contained per SPEC_v2: prices/tiers/wording are hardcoded in the card markup —
+       card face shows ONLY category name + "Starting at" eyebrow + lowest tier price;
+       ALL tier rows live in the .ec-panel dropdown (grid-template-rows 0fr->1fr, 0.3s;
+       html.js-gate closed default added by script.js, so no-JS panels stay open + visible).
+       site.yaml services.categories still drives images/gradients/names/spread only.
+       Styles -> style.css (v2 block at end); behavior -> script.js (v2 IIFE at end).
+       JSON-LD OfferCatalog (9 offers) intentionally unchanged: teaser prices are not new
+       offers. Card anatomy, identical for all five categories: media (yaml image or yaml
+       gradient placeholder), face, boxed Learn More toggle -> panel of tier rows, then
+       Inquire Now. Single-rate categories carry label: '' so their panel row shows the
+       price only. -->
   <section class="services" id="services">
     <div class="container">
       <p class="section-tag center">Pricing</p>
@@ -176,126 +188,133 @@
         
         <article class="ec-card" data-category="maternity">
           <div class="ec-media">
-            
-            <div class="placeholder-img" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);" role="img" aria-label="Maternity session photo placeholder">Maternity</div>
-            
+            <div class="placeholder-img placeholder-img--maternity" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);" role="img" aria-label="Maternity session photo placeholder">Maternity</div>
           </div>
           <div class="ec-body">
-            <h3 class="ec-name">Maternity</h3>
-            
+            <h3 class="ec-name" id="ec-name-maternity">Maternity</h3>
+            <p class="ec-eyebrow">Starting at</p>
             <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">175</span></p>
-            
+            <button type="button" class="ec-toggle" aria-expanded="false" aria-controls="ec-panel-maternity">
+              <span class="ec-toggle-label">Learn More</span>
+              <svg class="ec-chevron" width="14" height="9" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="ec-panel" id="ec-panel-maternity" role="region" aria-labelledby="ec-name-maternity">
+              <div class="ec-panel-inner">
+                <div class="ec-panel-list">
+                  
+                  <div class="ec-panel-row"><span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">175</span></span></div>
+                  
+                </div>
+              </div>
+            </div>
             <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
         </article>
         
         <article class="ec-card" data-category="friend-photos">
           <div class="ec-media">
-            
             <img src="photos/pricing/portrait-service-01.JPG" alt="Friend photos example" loading="lazy">
-            
           </div>
           <div class="ec-body">
-            <h3 class="ec-name">Friend Photos</h3>
-            
+            <h3 class="ec-name" id="ec-name-friend-photos">Friend Photos</h3>
+            <p class="ec-eyebrow">Starting at</p>
             <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">200</span></p>
-            
+            <button type="button" class="ec-toggle" aria-expanded="false" aria-controls="ec-panel-friend-photos">
+              <span class="ec-toggle-label">Learn More</span>
+              <svg class="ec-chevron" width="14" height="9" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="ec-panel" id="ec-panel-friend-photos" role="region" aria-labelledby="ec-name-friend-photos">
+              <div class="ec-panel-inner">
+                <div class="ec-panel-list">
+                  
+                  <div class="ec-panel-row"><span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">200</span></span></div>
+                  
+                </div>
+              </div>
+            </div>
             <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
         </article>
         
         <article class="ec-card" data-category="senior">
           <div class="ec-media">
-            
-            <div class="placeholder-img" style="background: linear-gradient(135deg, #f3e5f5, #ce93d8);" role="img" aria-label="Senior Photos session photo placeholder">Senior Photos</div>
-            
+            <div class="placeholder-img placeholder-img--senior" style="background: linear-gradient(135deg, #f3e5f5, #ce93d8);" role="img" aria-label="Senior Photos session photo placeholder">Senior Photos</div>
           </div>
           <div class="ec-body">
-            <h3 class="ec-name">Senior Photos</h3>
-            
-            <div class="ec-tiers">
-              
-              <div class="ec-tier">
-                <p class="ec-eyebrow">Tier 1</p>
-                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">175</span></p>
-                <p class="ec-incl">1 outfit, 1 location</p>
+            <h3 class="ec-name" id="ec-name-senior">Senior Photos</h3>
+            <p class="ec-eyebrow">Starting at</p>
+            <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">175</span></p>
+            <button type="button" class="ec-toggle" aria-expanded="false" aria-controls="ec-panel-senior">
+              <span class="ec-toggle-label">Learn More</span>
+              <svg class="ec-chevron" width="14" height="9" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="ec-panel" id="ec-panel-senior" role="region" aria-labelledby="ec-name-senior">
+              <div class="ec-panel-inner">
+                <div class="ec-panel-list">
+                  
+                  <div class="ec-panel-row">1 outfit, 1 location — <span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">175</span></span></div>
+                  
+                  <div class="ec-panel-row">up to 2 outfits and 2 locations — <span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">250</span></span></div>
+                  
+                </div>
               </div>
-              
-              <div class="ec-tier">
-                <p class="ec-eyebrow">Tier 2</p>
-                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">250</span></p>
-                <p class="ec-incl">up to 2 outfits and 2 locations</p>
-              </div>
-              
             </div>
-            
             <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
         </article>
         
         <article class="ec-card" data-category="couple">
           <div class="ec-media">
-            
             <img src="photos/pricing/engagement-ring-02.jpeg" alt="Couples example" loading="lazy">
-            
           </div>
           <div class="ec-body">
-            <h3 class="ec-name">Couple</h3>
-            
-            <div class="ec-tiers">
-              
-              <div class="ec-tier">
-                <p class="ec-eyebrow">Tier 1</p>
-                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">175</span></p>
-                <p class="ec-incl">1 outfit, 1 location</p>
+            <h3 class="ec-name" id="ec-name-couple">Couple</h3>
+            <p class="ec-eyebrow">Starting at</p>
+            <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">175</span></p>
+            <button type="button" class="ec-toggle" aria-expanded="false" aria-controls="ec-panel-couple">
+              <span class="ec-toggle-label">Learn More</span>
+              <svg class="ec-chevron" width="14" height="9" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="ec-panel" id="ec-panel-couple" role="region" aria-labelledby="ec-name-couple">
+              <div class="ec-panel-inner">
+                <div class="ec-panel-list">
+                  
+                  <div class="ec-panel-row">1 outfit, 1 location — <span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">175</span></span></div>
+                  
+                  <div class="ec-panel-row">up to 2 outfits and 2 locations — <span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">250</span></span></div>
+                  
+                </div>
               </div>
-              
-              <div class="ec-tier">
-                <p class="ec-eyebrow">Tier 2</p>
-                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">250</span></p>
-                <p class="ec-incl">up to 2 outfits and 2 locations</p>
-              </div>
-              
             </div>
-            
             <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
         </article>
         
         <article class="ec-card ec-card--spread" data-category="wedding">
           <div class="ec-media ec-media--fill">
-            
             <img src="photos/pricing/wedding-party-kiss-01.jpeg" alt="Weddings example" style="object-position: 63% 38%;" loading="lazy">
-            
           </div>
           <div class="ec-body">
-            <h3 class="ec-name">Wedding</h3>
-            
-            <div class="ec-rows">
-              
-              <div class="ec-row">
-                <div class="ec-row-info">
-                  <p class="ec-incl">4 hour coverage</p>
+            <h3 class="ec-name" id="ec-name-wedding">Wedding</h3>
+            <p class="ec-eyebrow">Starting at</p>
+            <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">550</span></p>
+            <button type="button" class="ec-toggle" aria-expanded="false" aria-controls="ec-panel-wedding">
+              <span class="ec-toggle-label">Learn More</span>
+              <svg class="ec-chevron" width="14" height="9" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="ec-panel" id="ec-panel-wedding" role="region" aria-labelledby="ec-name-wedding">
+              <div class="ec-panel-inner">
+                <div class="ec-panel-list">
+                  
+                  <div class="ec-panel-row">4 hour coverage — <span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">550</span></span></div>
+                  
+                  <div class="ec-panel-row">6 hour coverage — <span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">750</span></span></div>
+                  
+                  <div class="ec-panel-row">8 hour coverage — <span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">950</span></span></div>
+                  
                 </div>
-                <p class="ec-price ec-price--row"><span class="ec-cur">$</span><span class="price-amount">550</span></p>
               </div>
-              
-              <div class="ec-row">
-                <div class="ec-row-info">
-                  <p class="ec-incl">6 hour coverage</p>
-                </div>
-                <p class="ec-price ec-price--row"><span class="ec-cur">$</span><span class="price-amount">750</span></p>
-              </div>
-              
-              <div class="ec-row">
-                <div class="ec-row-info">
-                  <p class="ec-incl">8 hour coverage</p>
-                </div>
-                <p class="ec-price ec-price--row"><span class="ec-cur">$</span><span class="price-amount">950</span></p>
-              </div>
-              
             </div>
-            
             <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
         </article>

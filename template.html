@@ -150,7 +150,19 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- SERVICES -->
   <!-- ═══════════════════════════════════════════ -->
-  <!-- JLP pricing section v2.0 - winner stance editorial-classic + rulings R1-R19 applied 2026-09-12. Applied: R2/R9 currency verified (dollar-prefix before digits 9 of 9, no change needed), R6 single dark-sage token (no stray accent tokens present), R7 section-tag size reverted to sibling value 0.75rem, R8 wedding eyebrow register deleted so coverage line shows once per row, R-P1 site yaml gradient placeholders verbatim (pink for maternity, lavender for senior photos; label ink #2c2c2c at 1.5rem), R-alt image mapping per live convention (friend-photos portrait file, couple ring file, wedding party file with object-position kept; maternity plus senior as placeholders), R12 inquire CTA via live btn-outline vocabulary on all five cards, R-eyebrow raised to 0.75rem minimum, R-inset explicit percentage fill with object-fit cover replacing absolute positioning, R-land landscape-phone two-column adaptation for the four non-wedding cards, R17 stale contrast comment removed with the gradient rewrite (true ratio 4.67:1 now stated in the R-P1 comment), R18 hairline ornaments kept. Rejected: R3 - the invented planning sentence never existed in this draft (it was the airy-minimal draft's copy); nothing to delete. -->
+  <!-- JLP PRICING v2 — winner "grid-rows" + ruling R-V2-1 (boxed Learn More toggle).
+       Assembled from /root/projects/sites/jlp-pricing-redesign/winner_v2/section.html.
+       Self-contained per SPEC_v2: prices/tiers/wording are hardcoded in the card markup —
+       card face shows ONLY category name + "Starting at" eyebrow + lowest tier price;
+       ALL tier rows live in the .ec-panel dropdown (grid-template-rows 0fr->1fr, 0.3s;
+       html.js-gate closed default added by script.js, so no-JS panels stay open + visible).
+       site.yaml services.categories still drives images/gradients/names/spread only.
+       Styles -> style.css (v2 block at end); behavior -> script.js (v2 IIFE at end).
+       JSON-LD OfferCatalog (9 offers) intentionally unchanged: teaser prices are not new
+       offers. Card anatomy, identical for all five categories: media (yaml image or yaml
+       gradient placeholder), face, boxed Learn More toggle -> panel of tier rows, then
+       Inquire Now. Single-rate categories carry label: '' so their panel row shows the
+       price only. -->
   <section class="services" id="services">
     <div class="container">
       <p class="section-tag center">{{ site.services.section_tag | e }}</p>
@@ -167,38 +179,25 @@
         {% for cat in site.services.categories %}
         <article class="ec-card{% if cat.spread %} ec-card--spread{% endif %}" data-category="{{ cat.category }}">
           <div class="ec-media{% if cat.spread %} ec-media--fill{% endif %}">
-            {% if cat.image %}
-            <img src="{{ cat.image }}" alt="{{ cat.image_alt | e }}"{% if cat.object_position %} style="object-position: {{ cat.object_position }};"{% endif %} loading="lazy">
-            {% else %}
-            <div class="placeholder-img" style="{{ cat.placeholder_style }}" role="img" aria-label="{{ cat.name }} session photo placeholder">{{ cat.name | e }}</div>
-            {% endif %}
+            {% if cat.image %}<img src="{{ cat.image }}" alt="{{ cat.image_alt | e }}"{% if cat.object_position %} style="object-position: {{ cat.object_position }};"{% endif %} loading="lazy">{% else %}<div class="placeholder-img placeholder-img--{{ cat.category }}" style="{{ cat.placeholder_style }}" role="img" aria-label="{{ cat.name }} session photo placeholder">{{ cat.name | e }}</div>{% endif %}
           </div>
           <div class="ec-body">
-            <h3 class="ec-name">{{ cat.name | e }}</h3>
-            {% if cat.tiers | length == 1 and not cat.tiers[0].label %}
+            <h3 class="ec-name" id="ec-name-{{ cat.category }}">{{ cat.name | e }}</h3>
+            <p class="ec-eyebrow">Starting at</p>
             <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">{{ cat.tiers[0].price }}</span></p>
-            {% elif cat.spread %}
-            <div class="ec-rows">
-              {% for tier in cat.tiers %}
-              <div class="ec-row">
-                <div class="ec-row-info">
-                  <p class="ec-incl">{{ tier.label | e }}</p>
+            <button type="button" class="ec-toggle" aria-expanded="false" aria-controls="ec-panel-{{ cat.category }}">
+              <span class="ec-toggle-label">Learn More</span>
+              <svg class="ec-chevron" width="14" height="9" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="ec-panel" id="ec-panel-{{ cat.category }}" role="region" aria-labelledby="ec-name-{{ cat.category }}">
+              <div class="ec-panel-inner">
+                <div class="ec-panel-list">
+                  {% for tier in cat.tiers %}
+                  <div class="ec-panel-row">{% if tier.label %}{{ tier.label | e }} — {% endif %}<span class="ec-row-price"><span class="ec-cur">$</span><span class="price-amount">{{ tier.price }}</span></span></div>
+                  {% endfor %}
                 </div>
-                <p class="ec-price ec-price--row"><span class="ec-cur">$</span><span class="price-amount">{{ tier.price }}</span></p>
               </div>
-              {% endfor %}
             </div>
-            {% else %}
-            <div class="ec-tiers">
-              {% for tier in cat.tiers %}
-              <div class="ec-tier">
-                <p class="ec-eyebrow">Tier {{ loop.index }}</p>
-                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">{{ tier.price }}</span></p>
-                <p class="ec-incl">{{ tier.label | e }}</p>
-              </div>
-              {% endfor %}
-            </div>
-            {% endif %}
             <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
         </article>
