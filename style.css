@@ -1091,3 +1091,230 @@ h1, h2, h3, h4, h5, h6 {
 .hero-scripture::after {
   content: ' ✦';
 }
+
+  /* ── editorial-classic scoped styles ─────────────────────────────
+     Palette/type mirror the live pattern (style.css 413-506):
+     Cormorant Garamond display, Montserrat UI, white cards,
+     4px radii, 0 2px 20px rgba(0,0,0,.04) shadow, 32px gutters.
+     Prices + micro-labels use deep sage #5f6755 (a darkened site
+     sage): 5.9:1 on white, ≥4.5:1 on every surface used here.      */
+
+  /* section-tag contrast fix: darker than live sage; size kept at the
+     sibling-tag value 0.75rem (R7 — no size deviation) */
+  .services .section-tag {
+    color: #5f6755;
+    font-size: 0.75rem;
+  }
+
+  /* decorative hairline under the title (magazine rate-card motif) */
+  .services .ec-rule {
+    width: 64px;
+    height: 1px;
+    margin: 22px auto 0;
+    background: #acb19f; /* decorative, not text */
+  }
+
+  .services .ec-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 480px;
+    margin: 48px auto 0;
+  }
+
+  .services .ec-card {
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .services .ec-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+
+  .services .ec-media {
+    position: relative;
+    height: 440px;
+    overflow: hidden;
+  }
+  /* explicit fill (R-inset rule): percentage width/height plus
+     object-fit on the img — robust for arbitrary source ratios,
+     unlike the earlier absolute-fill pattern. Values below are
+     layout percentages, not prices. */
+  .services .ec-media img,
+  .services .ec-media .placeholder-img {
+    width: 100%;
+    height: 100%;
+  }
+  .services .ec-media img {
+    object-fit: cover;
+    display: block;
+  }
+
+  /* placeholder slots (R-P1): the site's own yaml gradient vocabulary,
+     copied verbatim from site.yaml instagram entries — pink for
+     Maternity, lavender for Senior Photos. Label #2c2c2c passes 4.5:1
+     on every yaml gradient dark stop (parent-computed); label font
+     1.5rem clears the ≥1rem floor. */
+  .services .ec-media .placeholder-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c2c2c;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    border-radius: 0;
+  }
+  .services .ec-media .placeholder-img--maternity {
+    background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+  }
+  .services .ec-media .placeholder-img--senior {
+    background: linear-gradient(135deg, #f3e5f5, #ce93d8);
+  }
+
+  .services .ec-body {
+    padding: 32px;
+  }
+
+  .services .ec-name {
+    font-size: 1.6rem;
+    color: #2c2c2c;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(44,44,44,0.12);
+    margin-bottom: 20px;
+  }
+
+  /* ── price typography: the stance signature (large serif numerals) ── */
+  .services .ec-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: #5f6755;
+    line-height: 1;
+    margin: 0;
+  }
+  .services .ec-cur {
+    font-size: 0.55em;
+    font-weight: 400;
+    vertical-align: 0.58em;
+    margin-right: 0.08em;
+  }
+  .services .ec-price--hero { font-size: clamp(3.25rem, 5vw, 4.5rem); }
+  .services .ec-price--tier { font-size: clamp(2.5rem, 3.2vw, 3.25rem); }
+  .services .ec-price--row {
+    font-size: clamp(2.75rem, 3.6vw, 3.75rem);
+    white-space: nowrap;
+    margin-left: auto;
+  }
+
+  .services .ec-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5f6755;
+    margin: 0 0 8px;
+  }
+
+  .services .ec-incl {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+  }
+
+  /* ── two-tier editorial split (Senior Photos, Couple) ── */
+  .services .ec-tiers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .services .ec-tier { min-width: 0; }
+  .services .ec-tier + .ec-tier {
+    border-top: 1px solid rgba(44,44,44,0.12);
+    padding-top: 20px;
+  }
+
+  /* ── wedding: full-width spread, image left / tier table right ── */
+  .services .ec-card--spread {
+    display: flex;
+    flex-direction: column;
+  }
+  .services .ec-media--fill {
+    position: relative;
+    height: 320px;
+    flex: 0 0 auto;
+  }
+  .services .ec-rows { margin-top: 4px; }
+  .services .ec-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 4px 16px;
+    padding: 16px 0;
+  }
+  .services .ec-row + .ec-row {
+    border-top: 1px solid rgba(44,44,44,0.12);
+  }
+  .services .ec-row-info {
+    flex: 1 1 160px;
+    min-width: 0;
+  }
+
+  @media (min-width: 901px) {
+    .services .ec-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: none;
+    }
+    .services .ec-card--spread {
+      grid-column: 1 / -1;
+      flex-direction: row;
+    }
+    .services .ec-media--fill {
+      height: auto;
+      min-height: 460px;
+      flex: 0 0 42%;
+    }
+    .services .ec-tiers { grid-template-columns: 1fr 1fr; gap: 0; }
+    .services .ec-tier { padding-right: 24px; }
+    .services .ec-tier + .ec-tier {
+      border-top: 0;
+      padding-top: 0;
+      border-left: 1px solid rgba(44,44,44,0.12);
+      padding-left: 24px;
+    }
+    .services .ec-body { padding: 32px; }
+    .services .ec-card--spread .ec-body { padding: 40px 48px; }
+    .services .ec-row { padding: 20px 0; }
+  }
+
+  @media (max-width: 480px) {
+    .services .ec-body { padding: 24px; }
+    .services .ec-media { height: 360px; }
+    .services .ec-media--fill { height: 300px; }
+  }
+
+  /* R-land: landscape phones — pair the four single/two-tier category
+     cards; wedding spread stays full-width. Minimal adaptation only. */
+  @media (min-width: 700px) and (max-height: 520px) {
+    .services .ec-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: none;
+    }
+    .services .ec-card--spread { grid-column: 1 / -1; }
+    .services .ec-tiers { grid-template-columns: 1fr 1fr; gap: 0; }
+    .services .ec-tier { padding-right: 24px; }
+    .services .ec-tier + .ec-tier {
+      border-top: 0;
+      padding-top: 0;
+      border-left: 1px solid rgba(44,44,44,0.12);
+      padding-left: 24px;
+    }
+  }
+  /* R20 (second-round refutation): CTAs must pass WCAG — live .btn-outline is
+     sage-on-white 2.2:1; scoped override keeps live button vocabulary while
+     meeting 4.5:1 at 0.8rem. Hover fills with the same compliant token. */
+  .services .btn-outline { color: #5f6755; border: 1px solid #5f6755; }
+  .services .btn-outline:hover { background: #5f6755; color: #fff; }

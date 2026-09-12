@@ -58,9 +58,15 @@
       "@type": "OfferCatalog",
       "name": "Photography Services",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Portraits" }, "price": "100" },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Couples" }, "price": "150" },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Weddings" }, "price": "850" }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maternity" }, "price": "175" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Friend Photos" }, "price": "200" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Senior Photos" }, "price": "175" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Senior Photos" }, "price": "250" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Couple" }, "price": "175" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Couple" }, "price": "250" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wedding" }, "price": "550" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wedding" }, "price": "750" },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wedding" }, "price": "950" }
       ]
     }
   }
@@ -157,6 +163,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- SERVICES -->
   <!-- ═══════════════════════════════════════════ -->
+  <!-- JLP pricing section v2.0 - winner stance editorial-classic + rulings R1-R19 applied 2026-09-12. Applied: R2/R9 currency verified (dollar-prefix before digits 9 of 9, no change needed), R6 single dark-sage token (no stray accent tokens present), R7 section-tag size reverted to sibling value 0.75rem, R8 wedding eyebrow register deleted so coverage line shows once per row, R-P1 site yaml gradient placeholders verbatim (pink for maternity, lavender for senior photos; label ink #2c2c2c at 1.5rem), R-alt image mapping per live convention (friend-photos portrait file, couple ring file, wedding party file with object-position kept; maternity plus senior as placeholders), R12 inquire CTA via live btn-outline vocabulary on all five cards, R-eyebrow raised to 0.75rem minimum, R-inset explicit percentage fill with object-fit cover replacing absolute positioning, R-land landscape-phone two-column adaptation for the four non-wedding cards, R17 stale contrast comment removed with the gradient rewrite (true ratio 4.67:1 now stated in the R-P1 comment), R18 hairline ornaments kept. Rejected: R3 - the invented planning sentence never existed in this draft (it was the airy-minimal draft's copy); nothing to delete. -->
   <section class="services" id="services">
     <div class="container">
       <p class="section-tag center">Pricing</p>
@@ -165,64 +172,135 @@
       
       
 
-      <div class="services-grid">
+      <div class="ec-rule" aria-hidden="true"></div>
+
+      <div class="ec-grid">
         
-        <div class="service-card">
-          <div class="service-card-img">
-            <img src="photos/pricing/portrait-service-01.JPG" alt="Portraits example" loading="lazy" />
+        <article class="ec-card" data-category="maternity">
+          <div class="ec-media">
+            
+            <div class="placeholder-img" style="background: linear-gradient(135deg, #fce4ec, #f8bbd0);" role="img" aria-label="Maternity session photo placeholder">Maternity</div>
+            
           </div>
-          <div class="service-card-body">
-            <h3>Portraits</h3>
-            <p class="service-price">$<span class="price-amount">100</span></p>
-            <ul class="service-includes">
-              
-              <li>1 Location</li>
-              
-              <li>1 Outfit</li>
-              
-              <li>1 Hour of Shooting</li>
-              
-              <li>50+ Edited Online Gallery</li>
-              
-            </ul>
+          <div class="ec-body">
+            <h3 class="ec-name">Maternity</h3>
+            
+            <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">175</span></p>
+            
+            <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
-        </div>
+        </article>
         
-        <div class="service-card">
-          <div class="service-card-img">
-            <img src="photos/pricing/engagement-ring-02.jpeg" alt="Couples example" loading="lazy" />
+        <article class="ec-card" data-category="friend-photos">
+          <div class="ec-media">
+            
+            <img src="photos/pricing/portrait-service-01.JPG" alt="Friend photos example" loading="lazy">
+            
           </div>
-          <div class="service-card-body">
-            <h3>Couples</h3>
-            <p class="service-price">$<span class="price-amount">150</span></p>
-            <ul class="service-includes">
-              
-              <li>1 Location</li>
-              
-              <li>1 Hour of Shooting</li>
-              
-              <li>75+ Edited Online Gallery</li>
-              
-            </ul>
+          <div class="ec-body">
+            <h3 class="ec-name">Friend Photos</h3>
+            
+            <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">200</span></p>
+            
+            <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
-        </div>
+        </article>
         
-        <div class="service-card">
-          <div class="service-card-img">
-            <img src="photos/pricing/wedding-party-kiss-01.jpeg" alt="Weddings example" style="object-position: 63% 38%;" loading="lazy" />
+        <article class="ec-card" data-category="senior">
+          <div class="ec-media">
+            
+            <div class="placeholder-img" style="background: linear-gradient(135deg, #f3e5f5, #ce93d8);" role="img" aria-label="Senior Photos session photo placeholder">Senior Photos</div>
+            
           </div>
-          <div class="service-card-body">
-            <h3>Weddings</h3>
-            <p class="service-price">$<span class="price-amount">850</span></p>
-            <ul class="service-includes">
+          <div class="ec-body">
+            <h3 class="ec-name">Senior Photos</h3>
+            
+            <div class="ec-tiers">
               
-              <li>40+ Sneak Peeks 1–2 Weeks After Wedding Date</li>
+              <div class="ec-tier">
+                <p class="ec-eyebrow">Tier 1</p>
+                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">175</span></p>
+                <p class="ec-incl">1 outfit, 1 location</p>
+              </div>
               
-              <li>300+ Edited Online Wedding Gallery</li>
+              <div class="ec-tier">
+                <p class="ec-eyebrow">Tier 2</p>
+                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">250</span></p>
+                <p class="ec-incl">up to 2 outfits and 2 locations</p>
+              </div>
               
-            </ul>
+            </div>
+            
+            <a href="#contact" class="btn btn-outline">Inquire Now</a>
           </div>
-        </div>
+        </article>
+        
+        <article class="ec-card" data-category="couple">
+          <div class="ec-media">
+            
+            <img src="photos/pricing/engagement-ring-02.jpeg" alt="Couples example" loading="lazy">
+            
+          </div>
+          <div class="ec-body">
+            <h3 class="ec-name">Couple</h3>
+            
+            <div class="ec-tiers">
+              
+              <div class="ec-tier">
+                <p class="ec-eyebrow">Tier 1</p>
+                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">175</span></p>
+                <p class="ec-incl">1 outfit, 1 location</p>
+              </div>
+              
+              <div class="ec-tier">
+                <p class="ec-eyebrow">Tier 2</p>
+                <p class="ec-price ec-price--tier"><span class="ec-cur">$</span><span class="price-amount">250</span></p>
+                <p class="ec-incl">up to 2 outfits and 2 locations</p>
+              </div>
+              
+            </div>
+            
+            <a href="#contact" class="btn btn-outline">Inquire Now</a>
+          </div>
+        </article>
+        
+        <article class="ec-card ec-card--spread" data-category="wedding">
+          <div class="ec-media ec-media--fill">
+            
+            <img src="photos/pricing/wedding-party-kiss-01.jpeg" alt="Weddings example" style="object-position: 63% 38%;" loading="lazy">
+            
+          </div>
+          <div class="ec-body">
+            <h3 class="ec-name">Wedding</h3>
+            
+            <div class="ec-rows">
+              
+              <div class="ec-row">
+                <div class="ec-row-info">
+                  <p class="ec-incl">4 hour coverage</p>
+                </div>
+                <p class="ec-price ec-price--row"><span class="ec-cur">$</span><span class="price-amount">550</span></p>
+              </div>
+              
+              <div class="ec-row">
+                <div class="ec-row-info">
+                  <p class="ec-incl">6 hour coverage</p>
+                </div>
+                <p class="ec-price ec-price--row"><span class="ec-cur">$</span><span class="price-amount">750</span></p>
+              </div>
+              
+              <div class="ec-row">
+                <div class="ec-row-info">
+                  <p class="ec-incl">8 hour coverage</p>
+                </div>
+                <p class="ec-price ec-price--row"><span class="ec-cur">$</span><span class="price-amount">950</span></p>
+              </div>
+              
+            </div>
+            
+            <a href="#contact" class="btn btn-outline">Inquire Now</a>
+          </div>
+        </article>
         
       </div>
 

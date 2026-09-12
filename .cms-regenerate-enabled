@@ -1,0 +1,5 @@
+# Opt-in created 2026-09-11 during P-A reconciliation.
+# template.html was backported to reproduce the committed page byte-exactly:
+# pre-change render == committed index.html (whitespace-equivalence proven, zero non-ws diff lines).
+# Now every future CMS publish regenerates index.html without silently reverting
+# CSP/canonical/JSON-LD/hero-scroller/Formspree/lightbox hand-edits (they live in the template).
