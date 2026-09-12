@@ -6,6 +6,7 @@
   <title>{{ site.meta.title | e }}</title>
   <meta name="description" content="{{ site.meta.description | e }}">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📸</text></svg>">
+  <link rel="canonical" href="https://photographybyjennalynn.com/">
 
   <!-- Open Graph (Facebook, LinkedIn, iMessage, Slack, Discord) -->
   <meta property="og:type" content="website" />
@@ -30,6 +31,40 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "{{ site.brand.name | e }}",
+    "description": "Seniors, couples, and wedding photography in Grand Rapids, MI.",
+    "url": "https://photographybyjennalynn.com/",
+    "email": "{{ site.brand.email | e }}",
+    "image": "https://photographybyjennalynn.com/{{ site.meta.og_image }}",
+    "priceRange": "$$",
+    "areaServed": "Grand Rapids, MI",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Grand Rapids",
+      "addressRegion": "MI",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://instagram.com/photographybyjennalynn_",
+      "https://www.tiktok.com/@photographybyjennalynn"
+    ],
+    "hasOfferingCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Photography Services",
+      "itemListElement": [{% for pkg in site.services.packages %}
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ pkg.name | e }}" }, "price": "{{ pkg.price }}" }{{ "," if not loop.last }}{% endfor %}
+      ]
+    }
+  }
+  </script>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://formspree.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; form-action 'self' https://formspree.io; connect-src 'self' https://formspree.io;">
+  <meta name="referrer" content="same-origin">
 </head>
 <body>
 
@@ -38,7 +73,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo"><span class="logo-jenna">JENNA</span> <span class="logo-lynn">Lynn</span> <span class="logo-photo">Photography</span></a>
+      <a href="/" class="nav-logo"><span class="logo-jenna">JENNA</span> <span class="logo-lynn">Lynn</span> <span class="logo-photo">Photography</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -52,6 +87,30 @@
   <!-- HERO -->
   <!-- ═══════════════════════════════════════════ -->
   <header class="hero" id="hero">
+    <div class="hero-scroller">
+        <div class="hero-scroller-track">
+            <img src="photos/hero/wedding-flower-ring-01.jpeg" alt="" loading="eager">
+            <img src="photos/hero/couples-session-01.jpg" alt="" loading="eager">
+            <img src="photos/hero/wedding-groomsmen-01.jpg" alt="" loading="lazy">
+            <img src="photos/hero/portrait-friends-01.jpg" alt="" loading="lazy">
+            <img src="photos/hero/engagement-session-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/portrait-bear-01.jpg" alt="" loading="lazy">
+            <img src="photos/hero/portrait-grad-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/wedding-bridal-outside-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/wedding-party-tunnel-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/portrait-friends-02.JPG" alt="" loading="lazy">
+            <img src="photos/hero/wedding-flower-ring-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/couples-session-01.jpg" alt="" loading="lazy">
+            <img src="photos/hero/wedding-groomsmen-01.jpg" alt="" loading="lazy">
+            <img src="photos/hero/portrait-friends-01.jpg" alt="" loading="lazy">
+            <img src="photos/hero/engagement-session-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/portrait-bear-01.jpg" alt="" loading="lazy">
+            <img src="photos/hero/portrait-grad-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/wedding-bridal-outside-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/wedding-party-tunnel-01.jpeg" alt="" loading="lazy">
+            <img src="photos/hero/portrait-friends-02.JPG" alt="" loading="lazy">
+        </div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="hero-tag">{{ site.hero.tag | e }}</p>
@@ -73,12 +132,12 @@
       <div class="about-grid">
         <div class="about-image">
           <div class="about-image-inner">
-            <img src="{{ site.about.portrait }}" alt="{{ site.about.portrait_alt | e }}" />
+            <img src="{{ site.about.portrait }}" alt="{{ site.about.portrait_alt | e }}" loading="lazy" />
           </div>
         </div>
         <div class="about-text">
-          <p class="section-tag">{{ site.about.section_tag | e }}</p>
-          <h2 class="section-title">{{ site.about.title | replace('\n', '<br>') | safe }}</h2>
+          {% if site.about.section_tag %}<p class="section-tag">{{ site.about.section_tag | e }}</p>
+          {% endif %}<h2 class="section-title">{{ site.about.title | replace('\n', '<br>') | safe }}</h2>
           {% for para in site.about.paragraphs %}
           <p>{{ para | replace('[City]', site.brand.city) | e }}</p>
           {% endfor %}
@@ -105,25 +164,25 @@
         {% for pkg in site.services.packages %}
         <div class="service-card">
           <div class="service-card-img">
-            <img src="{{ pkg.image }}" alt="{{ pkg.image_alt | e }}"{% if pkg.object_position %} style="object-position: {{ pkg.object_position }};"{% endif %} />
+            <img src="{{ pkg.image }}" alt="{{ pkg.image_alt | e }}"{% if pkg.object_position %} style="object-position: {{ pkg.object_position }};"{% endif %} loading="lazy" />
           </div>
           <div class="service-card-body">
             <h3>{{ pkg.name | e }}</h3>
             <p class="service-price">{{ pkg.price_prefix | e }}<span class="price-amount">{{ pkg.price }}</span></p>
-            <p class="service-tagline">{{ pkg.tagline | e }}</p>
-            <ul class="service-includes">
+            {% if pkg.tagline %}<p class="service-tagline">{{ pkg.tagline | e }}</p>
+            {% endif %}<ul class="service-includes">
               {% for item in pkg.includes %}
               <li>{{ item | e }}</li>
               {% endfor %}
             </ul>
-            <a href="{{ pkg.cta_href }}" class="btn {% if pkg.primary %}btn-primary{% else %}btn-outline{% endif %}">{{ pkg.cta_text | e }}</a>
-          </div>
+          {% if pkg.cta_text %}<a href="{{ pkg.cta_href }}" class="btn {% if pkg.primary %}btn-primary{% else %}btn-outline{% endif %}">{{ pkg.cta_text | e }}</a>
+          {% endif %}</div>
         </div>
         {% endfor %}
       </div>
 
-      <p class="services-note">{{ site.services.note | e }}</p>
-    </div>
+    {% if site.services.note %}<p class="services-note">{{ site.services.note | e }}</p>
+    {% endif %}</div>
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
@@ -134,25 +193,16 @@
       <p class="section-tag center">{{ site.gallery.section_tag | e }}</p>
       <h2 class="section-title center">{{ site.gallery.title | e }}</h2>
 
-
-      <div class="gallery-grid">
+      <div class="portfolio-grid" id="portfolioGrid">
         {% for item in site.gallery.entries %}
-        <div class="gallery-item {{ item.classes }}">
-          {% if item.placeholder %}
-          <div class="placeholder-img gallery-ph" style="{{ item.placeholder_style }}">
-            <span>{{ item.alt | e }}</span>
-          </div>
-          {% else %}
-          {% set zoom = item.object_scale | default(1.0) | float %}
-          <img src="{{ item.image }}" alt="{{ item.alt | e }}" class="gallery-ph" style="object-fit: {{ item.object_fit }}; {% if item.object_position %}object-position: {{ item.object_position }};{% endif %} width: 100%; height: 100%; --base-scale: {{ zoom }}; transform-origin: {{ item.object_position | default('center') }};">
-          {% endif %}
+        <div class="portfolio-item{% if item.classes %} {{ item.classes }}{% endif %}" data-category="{{ item.category }}">
+          <img src="{{ item.image }}" alt="{{ item.alt | e }}" loading="lazy"{% if item.object_position %} style="object-position: {{ item.object_position }};"{% endif %}>
+          <div class="portfolio-overlay"><span class="portfolio-cat">{{ item.cat_label | e }}</span></div>
         </div>
         {% endfor %}
+
       </div>
 
-      <div class="gallery-cta">
-        <a href="{{ site.gallery.cta_href }}" class="btn btn-outline">{{ site.gallery.cta_text | e }}</a>
-      </div>
     </div>
   </section>
 
@@ -185,60 +235,125 @@
   <section class="contact" id="contact">
     <div class="container">
       <div class="contact-grid">
-        <div class="contact-text">
-          <p class="section-tag">{{ site.contact.section_tag | e }}</p>
+        <div class="contact-info">
+          <p class="section-label">{{ site.contact.section_tag }}</p>
           <h2 class="section-title">{{ site.contact.title | e }}</h2>
-          <p>{{ site.contact.intro | e }}</p>
-          <div class="contact-info">
-            <p><strong>Email:</strong> {{ site.brand.email | e }}</p>
-            <p><strong>{{ site.contact.location_label | e }}:</strong> {{ site.brand.location | e }}</p>
-            <p><strong>{{ site.contact.follow_label | e }}:</strong> <a href="#">@{{ site.brand.instagram | e }}</a></p>
-          </div>
-        </div>
-        <div class="contact-form-wrap">
-          <form class="contact-form" id="contactForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Your Name(s)</label>
-                <input type="text" id="name" name="name" placeholder="Both your names!" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="you@email.com" required>
+          <p class="lead">{{ site.contact.intro }}</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <span class="contact-icon">✉</span>
+              <div>
+                <small>Email</small>
+                <a href="mailto:{{ site.brand.email }}">{{ site.brand.email }}</a>
               </div>
             </div>
-            <div class="form-group">
-              <label for="session-type">What are you looking for?</label>
-              <select id="session-type" name="session_type">
+            <div class="contact-item">
+              <span class="contact-icon">⚲</span>
+              <div>
+                <small>Location</small>
+                <span>{{ site.brand.location }}</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                </svg>
+              </span>
+              <div>
+                <small>Instagram</small>
+                <a href="https://instagram.com/{{ site.brand.instagram }}">@{{ site.brand.instagram }}</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 7l-7 5 7 5V7z"/>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+                </svg>
+              </span>
+              <div>
+                <small>TikTok</small>
+                <a href="https://www.tiktok.com/@photographybyjennalynn">@photographybyjennalynn</a>
+              </div>
+            </div>
+          </div>
+          <p class="contact-verse">
+            <span class="verse-mark">&ldquo;</span>
+            {{ site.footer.verse | e }}
+            <span class="verse-mark">&rdquo;</span>
+            <small>— {{ site.footer.verse_ref | e }}</small>
+          </p>
+        </div>
+        <div class="contact-form-card">
+          <form id="contactForm" class="contact-form"
+              action="https://formspree.io/f/xbdnjwwq" method="POST">
+            <!-- Formspree: customizable email subject line -->
+            <input type="hidden" name="_subject" value="New Inquiry - JLP">
+            <!-- Formspree: honeypot spam trap (hidden from humans, bots fill it in) -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+                style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+            <div class="form-field">
+              <label for="name">First & Last Name(s)</label>
+              <input type="text" id="name" name="name" placeholder="Your first and last name(s)" required autocomplete="name">
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email">
+              </div>
+              <div class="form-field">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" maxlength="10" placeholder="5551234567" pattern="\d{10}" autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="session-type">Which session are you interested in?</label>
+              <select id="session-type" name="session_type" required>
                 <option value="">Select a session type</option>
-                <option value="couples">Couples Session</option>
-                <option value="engagement">Engagement Session</option>
-                <option value="wedding">Wedding Collection</option>
-                <option value="other">Something else!</option>
+                <option value="wedding">Wedding</option>
+                <option value="engagement">Engagement</option>
+                <option value="couples">Couples</option>
+                <option value="senior-portraits">Senior Portraits</option>
+                <option value="family">Family</option>
+                <option value="maternity">Maternity</option>
+                <option value="other">Other</option>
               </select>
             </div>
             <div class="form-row">
-              <div class="form-group">
+              <div class="form-field">
                 <label for="date">Ideal Date (if known)</label>
-                <input type="date" id="date" name="date">
+                <input type="date" id="date" name="date" autocomplete="off">
               </div>
-              <div class="form-group">
+              <div class="form-field">
                 <label for="location">Session Location</label>
                 <input type="text" id="location" name="location" placeholder="City, venue, or idea">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-field">
               <label for="message">Tell me about you two!</label>
               <textarea id="message" name="message" rows="5" placeholder="How did you meet? What's your vibe? Anything you want me to know!"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-full">{{ site.contact.cta_text | e }}</button>
-            <p class="form-note">{{ site.contact.form_note | e }}</p>
+            <button type="submit" class="btn btn-primary btn-full" id="submitBtn">{{ site.contact.cta_text | e }}</button>
+            <p class="form-note">{{ site.contact.form_note }} 💕</p>
+            <p class="form-loading" id="formLoading">
+              ♡ Sending your inquiry…
+            </p>
+            <p class="form-success" id="formSuccess">
+              ♡ Yay! Your inquiry is on its way! I'll get back to you within 24 hours. Can't wait to hear more about you two! 💕
+            </p>
+            <p class="form-error" id="formError">
+              ♡ Oops! Something went wrong. Please try again, or email me directly at
+              <a href="mailto:{{ site.brand.email }}">{{ site.brand.email }}</a>.
+            </p>
           </form>
         </div>
       </div>
     </div>
   </section>
 
+  {% if site.instagram and site.instagram.show %}
   <!-- ═══════════════════════════════════════════ -->
   <!-- INSTAGRAM -->
   <!-- ═══════════════════════════════════════════ -->
@@ -257,6 +372,7 @@
       </div>
     </div>
   </section>
+  {% endif %}
 
   <!-- ═══════════════════════════════════════════ -->
   <!-- FOOTER -->
@@ -296,6 +412,15 @@
       </div>
     </div>
   </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+    <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous">&#8249;</button>
+    <button class="lightbox-next" id="lightboxNext" aria-label="Next">&#8250;</button>
+    <div class="lightbox-content" id="lightboxContent">
+      <img id="lightboxImg" src="" alt="">
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
