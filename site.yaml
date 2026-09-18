@@ -65,14 +65,14 @@ services:
     tiers:
     - label: ''
       price: 175
-  - name: Friend Photos
+  - name: Friends
     category: friend-photos
     image: photos/pricing/friends-beach-01.jpeg
     image_alt: Group of friends walking a beach path at golden hour
     tiers:
     - label: ''
       price: 200
-  - name: Senior Photos
+  - name: Seniors
     category: senior
     image: photos/pricing/seniors-bridge-01.jpeg
     image_alt: Graduating senior nurses in white dresses on a bridge
@@ -82,7 +82,7 @@ services:
       price: 175
     - label: up to 2 outfits and 2 locations
       price: 250
-  - name: Couple
+  - name: Couples
     category: couple
     image: photos/pricing/engagement-ring-02.jpeg
     image_alt: Couples example
@@ -91,7 +91,7 @@ services:
       price: 175
     - label: up to 2 outfits and 2 locations
       price: 250
-  - name: Wedding
+  - name: Weddings
     category: wedding
     image: photos/pricing/wedding-party-kiss-01.jpeg
     image_alt: Weddings example
