@@ -46,7 +46,7 @@ about:
     a senior year, growing your family, getting engaged, or saying "I do," I'd love
     to capture timeless photos for you. When I'm not behind the camera I'm probably
     at a coffee shop somewhere, teaching dance, Bible studying with friends, or
-    golfing with my boyfriend Matt!
+    golfing with my fiancé Matt!
   - I'd love the opportunity to get to know you and take some photos you love! Let's
     get in touch! Please fill out my connect form to get the ball rolling!
   cta_text: Let's Get to Know Each Other
@@ -59,16 +59,16 @@ services:
   categories:
   - name: Maternity
     category: maternity
-    image: ''
-    image_alt: ''
-    placeholder_style: 'background: linear-gradient(135deg, #fce4ec, #f8bbd0);'
+    image: photos/pricing/maternity-session-01.jpeg
+    image_alt: Expecting mother and partner on the beach at golden hour
+    placeholder_style: ''
     tiers:
     - label: ''
       price: 175
   - name: Friend Photos
     category: friend-photos
-    image: photos/pricing/portrait-service-01.JPG
-    image_alt: Friend photos example
+    image: photos/pricing/friends-beach-01.jpeg
+    image_alt: Group of friends walking a beach path at golden hour
     tiers:
     - label: ''
       price: 200
