@@ -74,9 +74,9 @@ services:
       price: 200
   - name: Senior Photos
     category: senior
-    image: ''
-    image_alt: ''
-    placeholder_style: 'background: linear-gradient(135deg, #f3e5f5, #ce93d8);'
+    image: photos/pricing/seniors-bridge-01.jpeg
+    image_alt: Graduating senior nurses in white dresses on a bridge
+    placeholder_style: ''
     tiers:
     - label: 1 outfit, 1 location
       price: 175
