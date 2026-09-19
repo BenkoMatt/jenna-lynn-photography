@@ -89,6 +89,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#services">Pricing</a></li>
         <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#kindwords">Kind Words</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contact" class="nav-cta">Let&#39;s Connect</a></li>
       </ul>
@@ -292,7 +293,7 @@
         
         <article class="ec-card ec-card--spread" data-category="wedding">
           <div class="ec-media ec-media--fill">
-            <img src="photos/pricing/wedding-party-kiss-01.jpeg" alt="Weddings example" style="object-position: 63% 38%;" loading="lazy">
+            <img src="photos/pricing/wedding-party-celebrate-01.jpg" alt="Bride and groom celebrating with their wedding party under an oak tree" style="object-position: 50% 20%;" loading="lazy">
           </div>
           <div class="ec-body">
             <h3 class="ec-name" id="ec-name-wedding">Weddings</h3>
@@ -389,6 +390,88 @@
 
     </div>
   </section>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- KIND WORDS (testimonials) -->
+  <!-- ═══════════════════════════════════════════ -->
+  
+  <section class="kindwords" id="kindwords">
+    <div class="container">
+      <p class="section-tag center">Kind Words</p>
+      
+      
+      <p class="section-sub center">Real words from real clients — the moments, the laughter, and the photos they&#39;ll treasure forever.</p>
+      
+
+      
+
+      
+      <div class="kw-form-wrap">
+        <div class="kw-form-card">
+          <form id="kwForm" class="contact-form kw-form"
+              action="https://formspree.io/f/xbdnjwwq" method="POST">
+            <!-- Formspree: distinct email subject so Jenna can filter kind words from inquiries -->
+            <input type="hidden" name="_subject" value="Kind Words - JLP">
+            <!-- Formspree: honeypot spam trap (hidden from humans, bots fill it in) -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+                style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="kw-name">Your Name</label>
+                <input type="text" id="kw-name" name="name" placeholder="Your name" required autocomplete="name">
+              </div>
+              <div class="form-field">
+                <label for="kw-email">Email Address</label>
+                <input type="email" id="kw-email" name="email" placeholder="you@email.com" required autocomplete="email">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="kw-session">Session Type</label>
+                <select id="kw-session" name="session_type" required>
+                  <option value="">Select a session type</option>
+                  <option value="wedding">Wedding</option>
+                  <option value="engagement">Engagement</option>
+                  <option value="couples">Couples</option>
+                  <option value="senior-portraits">Senior Portraits</option>
+                  <option value="family">Family</option>
+                  <option value="maternity">Maternity</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="kw-permission">May I share your words on my site?</label>
+                <select id="kw-permission" name="permission_to_share" required>
+                  <option value="">Select one</option>
+                  <option value="yes-with-first-name">Yes — first name and session type are okay</option>
+                  <option value="yes-anonymously">Yes — but keep me anonymous</option>
+                  <option value="no-private">No — please keep it private</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="kw-message">Your Kind Words</label>
+              <textarea id="kw-message" name="message" rows="5" placeholder="What was your session like? What do your photos mean to you?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="kwSubmitBtn">Share Your Experience</button>
+            <p class="form-note">Worked with Jenna? Share your experience — your kind words mean the world! 💕</p>
+            <p class="form-loading" id="kwFormLoading">
+              ♡ Sending your kind words…
+            </p>
+            <p class="form-success" id="kwFormSuccess">
+              ♡ Thank you! Your kind words are on their way — they truly mean the world to me! 💕
+            </p>
+            <p class="form-error" id="kwFormError">
+              ♡ Oops! Something went wrong. Please try again, or email me directly at
+              <a href="mailto:gallerybyjennalynn@gmail.com">gallerybyjennalynn@gmail.com</a>.
+            </p>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  
 
   <!-- ═══════════════════════════════════════════ -->
   <!-- FAQ -->

@@ -11,8 +11,8 @@ brand:
   tagline: Seniors, Couples, and Wedding Photographer
   email: gallerybyjennalynn@gmail.com
   instagram: photographybyjennalynn_
-  location: 'Grand Rapids, MI'
-  city: 'Grand Rapids'
+  location: Grand Rapids, MI
+  city: Grand Rapids
 nav:
 - label: About
   href: '#about'
@@ -20,6 +20,8 @@ nav:
   href: '#services'
 - label: Gallery
   href: '#gallery'
+- label: Kind Words
+  href: '#kindwords'
 - label: FAQ
   href: '#faq'
 - label: Let's Connect
@@ -27,7 +29,7 @@ nav:
   cta: true
 hero:
   tag: Seniors, Couples, and Wedding Photographer
-  title: 'Your Session Is Waiting!'
+  title: Your Session Is Waiting!
   verse: Three things will last forever — faith, hope, and love — and the greatest
     of these is love.
   verse_ref: 1 Corinthians 13:13
@@ -37,7 +39,7 @@ hero:
   scroll_text: Scroll
 about:
   section_tag: ''
-  title: 'Hi friend, I''m Jenna!'
+  title: Hi friend, I'm Jenna!
   portrait: photos/about/jenna-portrait.jpg
   portrait_alt: Jenna Lynn — Seniors, Couples, and Wedding Photographer
   paragraphs:
@@ -45,8 +47,8 @@ about:
     sweetest moments deserve to be remembered forever. Whether you're celebrating
     a senior year, growing your family, getting engaged, or saying "I do," I'd love
     to capture timeless photos for you. When I'm not behind the camera I'm probably
-    at a coffee shop somewhere, teaching dance, Bible studying with friends, or
-    golfing with my fiancé Matt!
+    at a coffee shop somewhere, teaching dance, Bible studying with friends, or golfing
+    with my fiancé Matt!
   - I'd love the opportunity to get to know you and take some photos you love! Let's
     get in touch! Please fill out my connect form to get the ball rolling!
   cta_text: Let's Get to Know Each Other
@@ -93,9 +95,9 @@ services:
       price: 250
   - name: Weddings
     category: wedding
-    image: photos/pricing/wedding-party-kiss-01.jpeg
-    image_alt: Weddings example
-    object_position: '63% 38%'
+    image: photos/pricing/wedding-party-celebrate-01.jpg
+    image_alt: Bride and groom celebrating with their wedding party under an oak tree
+    object_position: 50% 20%
     spread: true
     tiers:
     - label: 4 hour coverage
@@ -191,6 +193,16 @@ gallery:
     object_fit: cover
     object_position: ''
     object_scale: '1.00'
+testimonials:
+  section_tag: Kind Words
+  title: ''
+  intro: Real words from real clients — the moments, the laughter, and the photos
+    they'll treasure forever.
+  show_form: true
+  cta_text: Share Your Experience
+  form_note: Worked with Jenna? Share your experience — your kind words mean the world!
+  entries: []
+process: {}
 faq:
   section_tag: Got Questions?
   title: ''
