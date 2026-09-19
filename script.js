@@ -192,26 +192,26 @@ if (lightbox) {
   }, { passive: true });
 }
 
-// ─── CONTACT FORM — Formspree Integration ───
-const contactForm = document.getElementById('contactForm');
-const formSuccess = document.getElementById('formSuccess');
-const formError = document.getElementById('formError');
-const formLoading = document.getElementById('formLoading');
-const submitBtn = document.getElementById('submitBtn');
-const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Inquiry';
+// ─── FORMSPREE FORMS — shared submit handler (contact + kind words) ───
+function initFormspreeForm(form, opts) {
+  if (!form) return;
+  var formSuccess = document.getElementById(opts.successId);
+  var formError = document.getElementById(opts.errorId);
+  var formLoading = document.getElementById(opts.loadingId);
+  var submitBtn = document.getElementById(opts.submitId);
+  var originalBtnText = submitBtn ? submitBtn.textContent : '';
 
-function resetFormStates() {
-  if (formSuccess) formSuccess.classList.remove('show');
-  if (formError) formError.classList.remove('show');
-  if (formLoading) formLoading.classList.remove('show');
-  if (submitBtn) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = originalBtnText;
+  function resetFormStates() {
+    if (formSuccess) formSuccess.classList.remove('show');
+    if (formError) formError.classList.remove('show');
+    if (formLoading) formLoading.classList.remove('show');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalBtnText;
+    }
   }
-}
 
-if (contactForm) {
-  contactForm.addEventListener('submit', function(e) {
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     resetFormStates();
@@ -219,12 +219,12 @@ if (contactForm) {
     if (formLoading) formLoading.classList.add('show');
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
+      submitBtn.textContent = opts.sendingText;
     }
 
-    var formData = new FormData(contactForm);
+    var formData = new FormData(form);
 
-    fetch(contactForm.action, {
+    fetch(form.action, {
       method: 'POST',
       body: formData,
       headers: { 'Accept': 'application/json' }
@@ -233,7 +233,7 @@ if (contactForm) {
       if (response.ok) {
         if (formLoading) formLoading.classList.remove('show');
         if (formSuccess) formSuccess.classList.add('show');
-        contactForm.reset();
+        form.reset();
 
         if (formSuccess) {
           formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -269,6 +269,22 @@ if (contactForm) {
     });
   });
 }
+
+initFormspreeForm(document.getElementById('contactForm'), {
+  successId: 'formSuccess',
+  errorId: 'formError',
+  loadingId: 'formLoading',
+  submitId: 'submitBtn',
+  sendingText: 'Sending…'
+});
+
+initFormspreeForm(document.getElementById('kwForm'), {
+  successId: 'kwFormSuccess',
+  errorId: 'kwFormError',
+  loadingId: 'kwFormLoading',
+  submitId: 'kwSubmitBtn',
+  sendingText: 'Sending…'
+});
 
 // ─── PHONE FIELD — digits only, max 10 ───
 var phoneInput = document.getElementById('phone');
