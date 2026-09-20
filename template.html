@@ -230,6 +230,41 @@
   </section>
 
   <!-- ═══════════════════════════════════════════ -->
+  <!-- CLIENT GALLERIES -->
+  <!-- ═══════════════════════════════════════════ -->
+  {% if site.client_galleries and site.client_galleries.entries %}
+  <section class="client-galleries" id="client-galleries">
+    <div class="container">
+      {% if site.client_galleries.section_tag %}<p class="section-tag center">{{ site.client_galleries.section_tag | e }}</p>{% endif %}
+      {% if site.client_galleries.title %}<h2 class="section-title center">{{ site.client_galleries.title | e }}</h2>{% endif %}
+      {% if site.client_galleries.intro %}<p class="cg-intro">{{ site.client_galleries.intro | e }}</p>{% endif %}
+
+      <div class="cg-grid">
+        {% for g in site.client_galleries.entries %}
+        <a class="cg-card" href="{{ g.href }}" data-gallery-url="{{ g.href }}" data-couple="{{ g.couple | e }}"
+           {% if g.external != false %}target="_blank" rel="noopener"{% endif %}
+           aria-label="Open the {{ g.couple | e }} gallery{% if g.count %} ({{ g.count }} photos){% endif %}">
+          <div class="cg-media">
+            {% if g.badge %}<span class="cg-badge">{{ g.badge | e }}</span>{% endif %}
+            <img src="{{ g.image }}" alt="{{ g.image_alt | e }}" loading="lazy"{% if g.object_position %} style="object-position: {{ g.object_position }};"{% endif %}>
+            <div class="cg-overlay">
+              <span><span class="cg-couple">{{ g.couple | e }}</span>{% if g.date %}<span class="cg-date">{{ g.date | e }}</span>{% endif %}</span>
+            </div>
+          </div>
+          <div class="cg-meta">
+            <span class="cg-count">{% if g.count %}{{ g.count }} photos{% endif %}<span class="cg-pin">PIN in your delivery email</span></span>
+            <span class="cg-cta">View Gallery</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+
+      <p class="cg-note">Galleries stay online for one year. Your download PIN is in your delivery email from Jenna.</p>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- ═══════════════════════════════════════════ -->
   <!-- KIND WORDS (testimonials) -->
   <!-- ═══════════════════════════════════════════ -->
   {% if site.testimonials and site.testimonials.show %}
