@@ -570,6 +570,8 @@ h1, h2, h3, h4, h5, h6 {
   padding: 120px 0;
   background: #fff;
 }
+/* AA: the live-site sage tag is 2.20:1; the gauntlet's approved darkened variant */
+.client-galleries .section-tag { color: #5e654e; }
 .client-galleries .cg-intro {
   max-width: 600px;
   margin: 0 auto 48px;
