@@ -232,7 +232,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- KIND WORDS (testimonials) -->
   <!-- ═══════════════════════════════════════════ -->
-  {% if site.testimonials %}
+  {% if site.testimonials and site.testimonials.show %}
   <section class="kindwords" id="kindwords">
     <div class="container">
       <p class="section-tag center">{{ site.testimonials.section_tag | e }}</p>

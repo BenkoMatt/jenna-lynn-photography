@@ -20,8 +20,6 @@ nav:
   href: '#services'
 - label: Gallery
   href: '#gallery'
-- label: Kind Words
-  href: '#kindwords'
 - label: FAQ
   href: '#faq'
 - label: Let's Connect
@@ -194,6 +192,7 @@ gallery:
     object_position: ''
     object_scale: '1.00'
 testimonials:
+  show: false
   section_tag: Kind Words
   title: ''
   intro: Real words from real clients — the moments, the laughter, and the photos
