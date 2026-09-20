@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Share Your Kind Words — Jenna Lynn Photography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #acb19f;
+            --sage-deep: #9baaa2;
+            --sage-dark: #5f6755;
+            --sage-darker: #4d5445;
+            --cream: #edece6;
+            --charcoal: #2c2c2c;
+            --gray: #555;
+            --label-gray: #686868;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Montserrat', -apple-system, sans-serif;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #ffffff;
+            color: var(--charcoal);
+            font-family: var(--font-sans);
+            line-height: 1.7;
+            padding: 60px 20px;
+        }
+        .kw-container { max-width: 700px; margin: 0 auto; }
+        .kw-brand {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.05rem;
+            letter-spacing: 0.05em;
+        }
+        .kw-brand .logo-jenna { font-weight: 600; color: var(--charcoal); }
+        .kw-brand .logo-lynn { font-family: var(--font-serif); font-style: italic; color: var(--sage-dark); }
+        .kw-brand a { text-decoration: none; }
+        h1 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .kw-intro {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--gray);
+            text-align: center;
+            max-width: 540px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+        .kw-card {
+            background: var(--cream);
+            padding: 40px;
+            border-radius: 4px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-field { margin-bottom: 20px; }
+        .form-field label {
+            display: block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--label-gray);
+            margin-bottom: 6px;
+        }
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 2px;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            color: #333;
+            background: #fff;
+            transition: border-color 0.2s;
+        }
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            outline: 2px solid var(--sage);
+            outline-offset: -1px;
+            border-color: var(--sage);
+        }
+        .form-field textarea { resize: vertical; }
+        .btn {
+            display: inline-block;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 16px 36px;
+            border-radius: 0;
+            border: 2px solid var(--sage-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: var(--sage-dark);
+            color: #fff;
+            border-color: var(--sage-dark);
+            width: 100%;
+            text-align: center;
+        }
+        .btn-primary:hover { background: var(--sage-darker); border-color: var(--sage-darker); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+        .form-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--label-gray);
+            margin-top: 16px;
+        }
+        .form-success {
+            display: none;
+            text-align: center;
+            margin-top: 1.5rem;
+            padding: 2.5rem 2rem;
+            background: linear-gradient(135deg, #f0ebe2 0%, #e8e0d4 100%);
+            border: 2px solid #b8a896;
+            color: #5a4e42;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            font-family: var(--font-serif);
+        }
+        .form-success.show { display: block; animation: successPop 0.4s ease-out; }
+        @keyframes successPop {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .form-loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0ebe2;
+            border: 1px solid #b8a896;
+            color: #5a4e42;
+            font-size: 0.9rem;
+        }
+        .form-loading.show { display: block; }
+        .form-error {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #fef2f2;
+            border: 1px solid #e8a0a0;
+            color: #a04040;
+            font-size: 0.9rem;
+        }
+        .form-error.show { display: block; }
+        .form-error a { color: #a04040; text-decoration: underline; }
+        .kw-back {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .kw-back a {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            text-decoration: none;
+            color: var(--charcoal);
+        }
+        .kw-back a:hover { color: var(--sage-dark); }
+        .kw-verse {
+            margin-top: 24px;
+            text-align: center;
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #c2bdb1;
+        }
+        .kw-verse small {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--label-gray);
+            margin-top: 0.3rem;
+            font-style: normal;
+            font-family: var(--font-sans);
+        }
+        @media (max-width: 600px) {
+            body { padding: 40px 16px; }
+            .kw-card { padding: 24px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; form-action 'self' https://formspree.io; connect-src 'self' https://formspree.io;">
+    <meta name="referrer" content="same-origin">
+</head>
+<body>
+    <div class="kw-container">
+        <p class="kw-brand"><a href="/"><span class="logo-jenna">JENNA</span> <span class="logo-lynn">Lynn</span> <span class="logo-jenna">&nbsp;Photography</span></a></p>
+        <h1>Kind Words</h1>
+        <p class="kw-intro">Worked with Jenna? She'd love to hear about your experience — your words mean the world and help other couples find their photographer.</p>
+
+        <div class="kw-card">
+            <form id="kwForm" action="https://formspree.io/f/xbdnjwwq" method="POST">
+                <!-- Formspree: distinct email subject so Jenna can filter kind words from inquiries -->
+                <input type="hidden" name="_subject" value="Kind Words - JLP">
+                <!-- Formspree: honeypot spam trap (hidden from humans, bots fill it in) -->
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"
+                    style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="kw-name">Your Name</label>
+                        <input type="text" id="kw-name" name="name" placeholder="Your name" required autocomplete="name">
+                    </div>
+                    <div class="form-field">
+                        <label for="kw-email">Email Address</label>
+                        <input type="email" id="kw-email" name="email" placeholder="you@email.com" required autocomplete="email">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="kw-session">Session Type</label>
+                        <select id="kw-session" name="session_type" required>
+                            <option value="">Select a session type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="engagement">Engagement</option>
+                            <option value="couples">Couples</option>
+                            <option value="senior-portraits">Senior Portraits</option>
+                            <option value="family">Family</option>
+                            <option value="maternity">Maternity</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="kw-permission">May I share your words on my site?</label>
+                        <select id="kw-permission" name="permission_to_share" required>
+                            <option value="">Select one</option>
+                            <option value="yes-with-first-name">Yes — first name and session type are okay</option>
+                            <option value="yes-anonymously">Yes — but keep me anonymous</option>
+                            <option value="no-private">No — please keep it private</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="kw-message">Your Kind Words</label>
+                    <textarea id="kw-message" name="message" rows="6" placeholder="What was your session like? What do your photos mean to you?" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" id="kwSubmitBtn">Send Your Kind Words</button>
+                <p class="form-note">Thank you for taking the time — it truly means a lot! 💕</p>
+                <p class="form-loading" id="kwFormLoading" aria-hidden="true">
+                    ♡ Sending your kind words…
+                </p>
+                <p class="form-success" id="kwFormSuccess" aria-hidden="true">
+                    ♡ Thank you! Your kind words are on their way — they truly mean the world to me! 💕
+                </p>
+                <p class="form-error" id="kwFormError" aria-hidden="true">
+                    ♡ Oops! Something went wrong. Please try again, or email me directly at
+                    <a href="mailto:gallerybyjennalynn@gmail.com">gallerybyjennalynn@gmail.com</a>.
+                </p>
+            </form>
+        </div>
+
+        <p class="kw-back"><a href="/">← Back to Jenna Lynn Photography</a></p>
+        <p class="kw-verse"><em>"Commit to the Lord whatever you do."</em><small>— Proverbs 16:3</small></p>
+    </div>
+
+    <script>
+    (function () {
+      'use strict';
+      var form = document.getElementById('kwForm');
+      if (!form) return;
+      var formSuccess = document.getElementById('kwFormSuccess');
+      var formError = document.getElementById('kwFormError');
+      var formLoading = document.getElementById('kwFormLoading');
+      var submitBtn = document.getElementById('kwSubmitBtn');
+      var originalBtnText = submitBtn ? submitBtn.textContent : '';
+
+      function resetFormStates() {
+        formSuccess.classList.remove('show');
+        formError.classList.remove('show');
+        formLoading.classList.remove('show');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        resetFormStates();
+        formLoading.classList.add('show');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(function (response) {
+          if (response.ok) {
+            formLoading.classList.remove('show');
+            formSuccess.classList.add('show');
+            form.reset();
+            formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(function () {
+              formSuccess.classList.remove('show');
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalBtnText;
+            }, 8000);
+          } else {
+            throw new Error('Formspree returned ' + response.status);
+          }
+        })
+        .catch(function () {
+          formLoading.classList.remove('show');
+          formError.classList.add('show');
+          formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+          setTimeout(function () { formError.classList.remove('show'); }, 10000);
+        });
+      });
+    })();
+    </script>
+</body>
+</html>
