@@ -277,14 +277,9 @@ initFormspreeForm(document.getElementById('contactForm'), {
   submitId: 'submitBtn',
   sendingText: 'Sending…'
 });
-
-initFormspreeForm(document.getElementById('kwForm'), {
-  successId: 'kwFormSuccess',
-  errorId: 'kwFormError',
-  loadingId: 'kwFormLoading',
-  submitId: 'kwSubmitBtn',
-  sendingText: 'Sending…'
-});
+/* Kind Words form lives on its own standalone page (kind-words.html) with an
+   identical inline handler — submissions land in the same Formspree inbox
+   with subject 'Kind Words - JLP'. */
 
 // ─── PHONE FIELD — digits only, max 10 ───
 var phoneInput = document.getElementById('phone');

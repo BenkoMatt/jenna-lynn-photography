@@ -1654,14 +1654,14 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: uppercase;
   color: #666;
 }
-.kw-form-wrap {
-  max-width: 720px;
-  margin: 56px auto 0;
+.kw-cta-wrap {
+  margin-top: 56px;
+  text-align: center;
 }
-.kw-form-card {
-  background: #edece6;
-  padding: 40px;
-  border-radius: 4px;
+.kw-cta-note {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: #686868;
 }
 /* R20 idiom (mirrors .services .btn-outline): sage submit button must pass
    WCAG 1.4.3 — white on #5f6755 is 5.9:1 (white on live sage #acb19f is 2.2:1) */
@@ -1679,5 +1679,4 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .kindwords { padding: 80px 0; }
   .kw-grid { grid-template-columns: 1fr; }
-  .kw-form-card { padding: 24px; }
 }

@@ -198,7 +198,7 @@ testimonials:
   title: ''
   intro: Real words from real clients — the moments, the laughter, and the photos
     they'll treasure forever.
-  show_form: true
+  form_page: kind-words.html
   cta_text: Share Your Experience
   form_note: Worked with Jenna? Share your experience — your kind words mean the world!
   entries: []
