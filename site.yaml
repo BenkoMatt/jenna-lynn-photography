@@ -287,18 +287,3 @@ colors:
   text: '#666666'
   bg: '#ffffff'
   hero_overlay: rgba(0, 0, 0, 0.35)
-client_galleries:
-  section_tag: Client Galleries
-  title: Your Photos, Ready When You Are
-  intro: Every finished gallery lives here. Browse your photos, mark your favorites,
-    and download with the PIN from your delivery email.
-  entries:
-  - couple: Ava & Liam
-    date: September 12, 2026
-    count: 10
-    badge: New
-    href: https://vmi3233088.tail66a84c.ts.net/jenna-photos/ava-liam/
-    image: photos/client-galleries/ava-liam-cover.jpg
-    image_alt: Ava and Liam wedding gallery cover - bride portrait outside in golden
-      light
-    object_position: center 30%
