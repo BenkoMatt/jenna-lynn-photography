@@ -74,8 +74,8 @@ services:
       price: 200
   - name: Seniors
     category: senior
-    image: photos/pricing/seniors-heart-stethoscope-01.jpg
-    image_alt: Graduating senior in a white lace dress holding a heart-shaped stethoscope on a sunny bridge
+    image: photos/pricing/seniors-heart-stethoscope-02.jpg
+    image_alt: Full-length portrait of a graduating senior in a white lace dress holding a heart-shaped stethoscope on a sunny bridge
     fit: contain
     tiers:
     - label: 1 outfit, 1 location
