@@ -74,9 +74,9 @@ services:
       price: 200
   - name: Seniors
     category: senior
-    image: photos/pricing/seniors-bridge-01.jpeg
-    image_alt: Graduating senior nurses in white dresses on a bridge
-    placeholder_style: ''
+    image: photos/pricing/seniors-heart-stethoscope-01.jpg
+    image_alt: Graduating senior in a white lace dress holding a heart-shaped stethoscope on a sunny bridge
+    object_position: 50% 35%
     tiers:
     - label: 1 outfit, 1 location
       price: 175
