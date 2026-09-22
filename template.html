@@ -178,8 +178,8 @@
       <div class="ec-grid">
         {% for cat in site.services.categories %}
         <article class="ec-card{% if cat.spread %} ec-card--spread{% endif %}" data-category="{{ cat.category }}">
-          <div class="ec-media{% if cat.spread %} ec-media--fill{% endif %}">
-            {% if cat.image %}{% if cat.fit == 'contain' %}<div class="ec-media-blur" style="background-image: url('{{ cat.image }}');" aria-hidden="true"></div>{% endif %}<img src="{{ cat.image }}" alt="{{ cat.image_alt | e }}" style="{% if cat.fit == 'contain' %}object-fit: contain;{% elif cat.object_position %}object-position: {{ cat.object_position }};{% endif %}" loading="lazy">{% else %}<div class="placeholder-img placeholder-img--{{ cat.category }}" style="{{ cat.placeholder_style }}" role="img" aria-label="{{ cat.name }} session photo placeholder">{{ cat.name | e }}</div>{% endif %}
+          <div class="ec-media{% if cat.spread %} ec-media--fill{% endif %}"{% if cat.ratio %} style="aspect-ratio: {{ cat.ratio }}; height: auto; min-height: 0;"{% endif %}>
+            {% if cat.image %}<img src="{{ cat.image }}" alt="{{ cat.image_alt | e }}"{% if cat.object_position %} style="object-position: {{ cat.object_position }};"{% endif %} loading="lazy">{% else %}<div class="placeholder-img placeholder-img--{{ cat.category }}" style="{{ cat.placeholder_style }}" role="img" aria-label="{{ cat.name }} session photo placeholder">{{ cat.name | e }}</div>{% endif %}
           </div>
           <div class="ec-body">
             <h3 class="ec-name" id="ec-name-{{ cat.category }}">{{ cat.name | e }}</h3>

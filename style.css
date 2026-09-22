@@ -1805,49 +1805,14 @@ h1, h2, h3, h4, h5, h6 {
   .kw-grid { grid-template-columns: 1fr; }
 }
 
-/* Contain-fit cards (yaml cat.fit: contain — Seniors): the whole photo
-   shows, no crop; the inline object-fit on the img (template) wins over
-   the cover rules above, and this warm off-white backing fills the
-   leftover space on the ec-media box. */
-.services .ec-media {
-  background: #f5f4f0;
-}
-
-/* Blur-fill backdrop for contain cards: a scaled, blurred copy of the
-   photo fills the letterbox bars so the contain treatment reads as a
-   deliberate design (Pixieset-style), not empty padding. */
-.services .ec-media-blur {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  filter: blur(18px) saturate(1.05);
-  transform: scale(1.08);
-  overflow: hidden;
-}
-.services .ec-media img[style*="object-fit: contain"] {
-  position: relative; /* paints above the absolute blur backdrop (DOM order) */
-}
-
-/* Wedding spread card on narrow screens: match the photo's own 3:2
-   ratio so the contain+blur treatment shows the full group full-bleed
-   (no letterbox bars) on mobile. No effect at 661-900px (box is
-   already exactly 3:2 via the 480px cap + 320px height). */
-@media (max-width: 900px) {
-  .services .ec-media--fill {
-    height: auto;
-    aspect-ratio: 3 / 2;
-  }
-}
-
-/* Wide-desktop spread card: give the media column the photo's own 3:2
-   ratio (photo is 3:2 landscape) so contain shows it full-bleed with
-   zero letterbox bars; the block centers beside the text column. */
+/* Wide-desktop spread card (yaml cat.ratio set): let the media column
+   keep its photo-matched ratio and center beside the taller text
+   column, instead of stretching to the text height. */
 @media (min-width: 901px) {
   .services .ec-card--spread .ec-media--fill {
     min-height: 0;
-    height: auto;
-    aspect-ratio: 3 / 2;
     align-self: center;
+    flex: 0 0 auto;
+    width: 42%;
   }
 }
