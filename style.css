@@ -1804,3 +1804,27 @@ h1, h2, h3, h4, h5, h6 {
   .kindwords { padding: 80px 0; }
   .kw-grid { grid-template-columns: 1fr; }
 }
+
+/* Contain-fit cards (yaml cat.fit: contain — Seniors): the whole photo
+   shows, no crop; the inline object-fit on the img (template) wins over
+   the cover rules above, and this warm off-white backing fills the
+   leftover space on the ec-media box. */
+.services .ec-media {
+  background: #f5f4f0;
+}
+
+/* Blur-fill backdrop for contain cards: a scaled, blurred copy of the
+   photo fills the letterbox bars so the contain treatment reads as a
+   deliberate design (Pixieset-style), not empty padding. */
+.services .ec-media-blur {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(18px) saturate(1.05);
+  transform: scale(1.08);
+  overflow: hidden;
+}
+.services .ec-media img[style*="object-fit: contain"] {
+  position: relative; /* paints above the absolute blur backdrop (DOM order) */
+}
