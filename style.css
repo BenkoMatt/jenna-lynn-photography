@@ -1828,3 +1828,26 @@ h1, h2, h3, h4, h5, h6 {
 .services .ec-media img[style*="object-fit: contain"] {
   position: relative; /* paints above the absolute blur backdrop (DOM order) */
 }
+
+/* Wedding spread card on narrow screens: match the photo's own 3:2
+   ratio so the contain+blur treatment shows the full group full-bleed
+   (no letterbox bars) on mobile. No effect at 661-900px (box is
+   already exactly 3:2 via the 480px cap + 320px height). */
+@media (max-width: 900px) {
+  .services .ec-media--fill {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* Wide-desktop spread card: give the media column the photo's own 3:2
+   ratio (photo is 3:2 landscape) so contain shows it full-bleed with
+   zero letterbox bars; the block centers beside the text column. */
+@media (min-width: 901px) {
+  .services .ec-card--spread .ec-media--fill {
+    min-height: 0;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    align-self: center;
+  }
+}

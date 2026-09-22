@@ -95,7 +95,7 @@ services:
     category: wedding
     image: photos/pricing/wedding-party-celebrate-01.jpg
     image_alt: Bride and groom celebrating with their wedding party under an oak tree
-    object_position: 50% 20%
+    fit: contain
     spread: true
     tiers:
     - label: 4 hour coverage
