@@ -80,7 +80,7 @@ services:
     tiers:
     - label: 1 outfit, 1 location
       price: 175
-    - label: up to 2 outfits and 2 locations
+    - label: up to 2 outfits, 2 locations
       price: 250
   - name: Couples
     category: couple
@@ -89,7 +89,7 @@ services:
     tiers:
     - label: 1 outfit, 1 location
       price: 175
-    - label: up to 2 outfits and 2 locations
+    - label: up to 2 outfits, 2 locations
       price: 250
   - name: Weddings
     category: wedding

@@ -1652,7 +1652,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .services .ec-panel-row {
     padding: 14px 2px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #555; /* 7.5:1 on white */
   }
   .services .ec-panel-row + .ec-panel-row {
@@ -1661,10 +1661,10 @@ h1, h2, h3, h4, h5, h6 {
   .services .ec-row-price {
     font-family: 'Cormorant Garamond', serif;
     font-weight: 500;
-    font-size: 1.6rem;
+    font-size: 1.35rem;
     color: #5f6755;
     white-space: nowrap;
-    margin-left: 6px;
+    margin-left: 4px;
   }
 
   /* Inquire Now sits after the panel, unchanged vocabulary */
@@ -1850,12 +1850,21 @@ h1, h2, h3, h4, h5, h6 {
   .services .ec-card--spread .ec-body { flex: 1 1 0%; }
   .services .ec-card .ec-body > *:not(.ec-panel):not(a) { max-width: 58%; }
   .services .ec-card:not(.ec-card--spread) .ec-panel {
-    position: absolute; top: 56px; right: 32px; width: 40%;
+    position: absolute; top: 56px; right: 24px; width: 56%;
     max-height: calc(100% - 88px);
   }
   .services .ec-card--spread .ec-panel {
-    position: absolute; top: 56px; right: 40px; width: 40%;
+    position: absolute; top: 56px; right: 28px; width: 56%;
     max-height: calc(100% - 88px);
+  }
+  /* narrow band 901-1000px: the spread text body is only ~290-400px wide — too narrow for a
+     side panel without colliding with the name/price/button. The wedding falls back to the
+     in-flow downward reveal (same accordion as every other card), pushing Inquire Now down. */
+  @media (min-width: 901px) and (max-width: 1000px) {
+    .services .ec-card--spread .ec-panel {
+      position: static; width: 100%;
+    }
+    .services .ec-card--spread .ec-body > *:not(.ec-panel):not(a) { max-width: none; }
   }
   .services .ec-card .ec-panel-list { display: flex; flex-direction: column; gap: 0; padding: 6px 0 0; }
   .services .ec-card .ec-panel-row { padding: 14px 2px; }
