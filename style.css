@@ -1695,7 +1695,7 @@ h1, h2, h3, h4, h5, h6 {
     .services .ec-media--fill {
       height: auto;
       min-height: 460px;
-      flex: 0 0 42%;
+      flex: 0 0 50%;
     }
     .services .ec-body { padding: 32px; }
     .services .ec-card--spread .ec-body { padding: 40px 48px; }
@@ -1812,7 +1812,6 @@ h1, h2, h3, h4, h5, h6 {
   .services .ec-card--spread .ec-media--fill {
     min-height: 0;
     align-self: center;
-    flex: 0 0 auto;
-    width: 42%;
+    flex: 0 0 50%;
   }
 }

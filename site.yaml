@@ -74,9 +74,9 @@ services:
       price: 200
   - name: Seniors
     category: senior
-    image: photos/pricing/seniors-kneeling-stethoscope-01.jpg
-    image_alt: Kneeling graduating senior in a white lace dress holding a heart-shaped stethoscope on a sunny bridge
-    ratio: '3 / 4'
+    image: photos/pricing/seniors-steps-seated-01.jpg
+    image_alt: Graduating senior in a white lace dress and navy RN stole seated on limestone steps between carved columns
+    object_position: 50% 65%
     tiers:
     - label: 1 outfit, 1 location
       price: 175
