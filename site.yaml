@@ -63,14 +63,14 @@ services:
     image_alt: Expecting mother and partner on the beach at golden hour
     placeholder_style: ''
     tiers:
-    - label: ''
+    - label: 1 outfit, 1 location
       price: 175
   - name: Friends
     category: friend-photos
     image: photos/pricing/friends-beach-01.jpeg
     image_alt: Group of friends walking a beach path at golden hour
     tiers:
-    - label: ''
+    - label: 1 outfit, 1 location
       price: 200
   - name: Seniors
     category: senior
