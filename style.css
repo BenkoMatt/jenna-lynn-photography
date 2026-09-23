@@ -1698,7 +1698,7 @@ h1, h2, h3, h4, h5, h6 {
       flex: 0 0 50%;
     }
     .services .ec-body { padding: 32px; }
-    .services .ec-card--spread .ec-body { padding: 40px 48px; }
+    .services .ec-card--spread .ec-body { padding: 32px 48px 24px; }
   }
 
   @media (max-width: 480px) {
@@ -1805,13 +1805,27 @@ h1, h2, h3, h4, h5, h6 {
   .kw-grid { grid-template-columns: 1fr; }
 }
 
-/* Wide-desktop spread card (yaml cat.ratio set): let the media column
-   keep its photo-matched ratio and center beside the taller text
-   column, instead of stretching to the text height. */
+/* Wide-desktop spread card (yaml cat.ratio set): media column pinned to
+   the card top. The photo keeps its native 3:2 (no crop, whole group) and
+   the resting card height is driven by whichever column is taller — so the
+   photo column is sized to meet or exceed the text column's collapsed
+   height (content ~310px + padding) at every width: 58% in the 901–1099
+   band, 50% at ≥1100. Learn More growth extends the CARD downward below
+   the photo only. */
 @media (min-width: 901px) {
   .services .ec-card--spread .ec-media--fill {
     min-height: 0;
-    align-self: center;
+    align-self: flex-start;
+    flex: 0 0 58%;
+  }
+}
+@media (min-width: 901px) and (max-width: 970px) {
+  .services .ec-card--spread .ec-media--fill {
+    flex: 0 0 66%;
+  }
+}
+@media (min-width: 1100px) {
+  .services .ec-card--spread .ec-media--fill {
     flex: 0 0 50%;
   }
 }
