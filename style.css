@@ -1829,3 +1829,25 @@ h1, h2, h3, h4, h5, h6 {
     flex: 0 0 50%;
   }
 }
+
+/* ═══ Wedding spread card: side-reveal coverage list (2026-09-23) ═══
+   Learn More's chevron points RIGHT (template: ec-chevron--right on spread cards);
+   on open it rotates 180°. The coverage list reveals INSIDE the card footprint as a
+   vertical top-to-bottom column in the whitespace right of the text, so the card
+   height never changes and the photo stays flush top+bottom (0px gap, always).
+   Desktop >=901px only; below 901px the standard stacked dropdown remains. */
+@media (min-width: 901px) {
+  .services .ec-card--spread .ec-toggle[aria-expanded="true"] .ec-chevron--right { transform: rotate(180deg); }
+  .services .ec-card--spread .ec-body { position: relative; flex: 1 1 0%; }
+  .services .ec-card--spread .ec-body > *:not(.ec-panel):not(a) { max-width: 58%; }
+  .services .ec-card--spread .ec-panel {
+    position: absolute; top: 40px; right: 40px; width: 40%;
+    max-height: calc(100% - 72px);
+  }
+  .services .ec-card--spread .ec-panel-list { display: flex; flex-direction: column; gap: 8px; padding: 0; }
+  .services .ec-card--spread .ec-panel-row {
+    border-top: none; padding: 10px 12px;
+    border: 1px solid rgba(44,44,44,0.12); border-radius: 8px; background: #faf9f6;
+  }
+  .services .ec-card--spread .ec-panel-row + .ec-panel-row { border-top: none; }
+}
