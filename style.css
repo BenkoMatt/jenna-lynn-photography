@@ -1844,10 +1844,8 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute; top: 40px; right: 40px; width: 40%;
     max-height: calc(100% - 72px);
   }
-  .services .ec-card--spread .ec-panel-list { display: flex; flex-direction: column; gap: 8px; padding: 0; }
-  .services .ec-card--spread .ec-panel-row {
-    border-top: none; padding: 10px 12px;
-    border: 1px solid rgba(44,44,44,0.12); border-radius: 8px; background: #faf9f6;
-  }
-  .services .ec-card--spread .ec-panel-row + .ec-panel-row { border-top: none; }
+  .services .ec-card--spread .ec-panel-list { display: flex; flex-direction: column; gap: 0; padding: 0; }
+  /* match the standard cards' editorial tier-row style: hairline dividers, no boxes */
+  .services .ec-card--spread .ec-panel-row { padding: 14px 2px; }
+  .services .ec-card--spread .ec-panel-row + .ec-panel-row { border-top: 1px solid rgba(44,44,44,0.12); }
 }
