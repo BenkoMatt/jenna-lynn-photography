@@ -1618,7 +1618,10 @@ h1, h2, h3, h4, h5, h6 {
     flex: 0 0 auto;
     transition: transform 0.3s ease;
   }
-  .services .ec-toggle[aria-expanded="true"] .ec-chevron {
+  /* Mobile-first (primary customer base): DOWN arrow, expands downward.
+     The desktop right-arrow is hidden below 901px. */
+  .services .ec-chevron--right { display: none; }
+  .services .ec-toggle[aria-expanded="true"] .ec-chevron--down {
     transform: rotate(180deg);
   }
 
@@ -1837,15 +1840,24 @@ h1, h2, h3, h4, h5, h6 {
    height never changes and the photo stays flush top+bottom (0px gap, always).
    Desktop >=901px only; below 901px the standard stacked dropdown remains. */
 @media (min-width: 901px) {
-  .services .ec-card--spread .ec-toggle[aria-expanded="true"] .ec-chevron--right { transform: rotate(180deg); }
-  .services .ec-card--spread .ec-body { position: relative; flex: 1 1 0%; }
-  .services .ec-card--spread .ec-body > *:not(.ec-panel):not(a) { max-width: 58%; }
+  /* Desktop >=901px: EVERY pricing card mirrors the wedding package — right-pointing
+     chevron + side-reveal vertical coverage list inside the card's right whitespace.
+     Mobile <901px keeps the vertical down-arrow dropdown (base rules above). */
+  .services .ec-chevron--down { display: none; }
+  .services .ec-chevron--right { display: block; }
+  .services .ec-toggle[aria-expanded="true"] .ec-chevron--right { transform: rotate(180deg); }
+  .services .ec-card .ec-body { position: relative; }
+  .services .ec-card--spread .ec-body { flex: 1 1 0%; }
+  .services .ec-card .ec-body > *:not(.ec-panel):not(a) { max-width: 58%; }
+  .services .ec-card:not(.ec-card--spread) .ec-panel {
+    position: absolute; top: 56px; right: 32px; width: 40%;
+    max-height: calc(100% - 88px);
+  }
   .services .ec-card--spread .ec-panel {
     position: absolute; top: 56px; right: 40px; width: 40%;
     max-height: calc(100% - 88px);
   }
-  .services .ec-card--spread .ec-panel-list { display: flex; flex-direction: column; gap: 0; padding: 6px 0 0; }
-  /* match the standard cards' editorial tier-row style: hairline dividers, no boxes */
-  .services .ec-card--spread .ec-panel-row { padding: 14px 2px; }
-  .services .ec-card--spread .ec-panel-row + .ec-panel-row { border-top: 1px solid rgba(44,44,44,0.12); }
+  .services .ec-card .ec-panel-list { display: flex; flex-direction: column; gap: 0; padding: 6px 0 0; }
+  .services .ec-card .ec-panel-row { padding: 14px 2px; }
+  .services .ec-card .ec-panel-row + .ec-panel-row { border-top: 1px solid rgba(44,44,44,0.12); }
 }

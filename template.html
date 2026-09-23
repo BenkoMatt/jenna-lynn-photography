@@ -187,7 +187,7 @@
             <p class="ec-price ec-price--hero"><span class="ec-cur">$</span><span class="price-amount">{{ cat.tiers[0].price }}</span></p>
             <button type="button" class="ec-toggle" aria-expanded="false" aria-controls="ec-panel-{{ cat.category }}">
               <span class="ec-toggle-label">Learn More</span>
-              {% if cat.spread %}<svg class="ec-chevron ec-chevron--right" width="9" height="14" viewBox="0 0 9 14" aria-hidden="true" focusable="false"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>{% else %}<svg class="ec-chevron" width="14" height="9" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}
+              <svg class="ec-chevron ec-chevron--down" width="14" height="9" viewBox="0 0 14 9" aria-hidden="true" focusable="false"><path d="M1 1l6 6 6-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="ec-chevron ec-chevron--right" width="9" height="14" viewBox="0 0 9 14" aria-hidden="true" focusable="false"><path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="ec-panel" id="ec-panel-{{ cat.category }}" role="region" aria-labelledby="ec-name-{{ cat.category }}">
               <div class="ec-panel-inner">
