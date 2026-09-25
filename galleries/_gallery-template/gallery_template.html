@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- V4.4-M FIX ROUND — binding rulings applied in place:
+     R1 (B1) APPLIED: place() fallback chain dims[i]||manifestDims(i)||[2,3] —
+       watchdog-settled tiles use real 6-element manifest w/h (no 2/3-frozen phantom slots).
+     R2 (M1+n1) APPLIED: #lbFav click toggles favs[String(cur)], persists to
+       localStorage (KEY), drawHearts() sync, own aria-pressed + dynamic
+       aria-label, favorites-filter re-eval; openLb's existing sync kept.
+     R3 (M2) APPLIED: at settle time (batch path AND reduced-motion path) any
+       appended fig with an undecoded img is resolved — data-loaded pre-marked
+       (F8 error treatment applied on later failure); no permanent invisible holes.
+     R4 (m1) APPLIED: .ph.ph-error min-height clamped to its pinned slot via
+       min(140px, var(--slot-h,140px)); --slot-h set in place() alongside slotH.
+     R5 (m2) APPLIED as comment only: lightbox open defers appends (V4.3.1 law) —
+       documented above #lightbox; no behavior change.
+     Verified: node --check after every edit; P8=0/P9=0 re-probed at 390/320;
+     B1 + M1 reproduced with playwright (evidence: scratch/v44m-fix-verify.json). -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>__COUPLE__ — Your __SESSION_LABEL__ Gallery | Jenna Lynn Photography</title>
+<meta name="description" content="Your __SESSION_LABEL_LOW__ photo gallery from Jenna Lynn Photography — Grand Rapids, MI.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 110'><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='80'>📸</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* JLP Photo Delivery — v4 draft D2 "jlp-editorial" (generated __GENERATED__)
+   v4.4-M DRAFT "deterministic-masonry-mobile" (SPEC-v4.4M): CSS-multicol is
+   replaced by JS-computed column assignment (shortest-column-first from
+   manifest w/h; 4-element galleries fall back to a one-time Image() preload
+   probe). Appends only ADD tiles - rendered tiles are never re-placed (P8
+   zero movement at 390/320; C9 reserved slots via aspect-ratio). Batch-unit
+   loading, ring, prefetch, watchdog, favorites, PIN/zip/lightbox preserved.
+   v4.3 D2 "RING-AND-SHIMMER" (2026-09-24, SPEC-v4.3): in-flow SVG circle ring
+   loader at the seam (40px rose arc on cream halo, 0.8s spin), background
+   pre-fetch of next-batch thumbs, 60ms-staggered batch fade-in; batch window
+   EXACTLY 15 at first paint. Grid/favorites/lightbox/PIN unchanged.
+   v4.1 GRID REVISION (2026-09-24, SPEC-v4.1 showcase recipe): 5 equal columns
+   @>=1200px, hairline 4px gutters both axes, native 2:3/3:2 aspect mix kept,
+   NO spanning tiles. Cover/lightbox/PIN/favorites/pill/BACK TO TOP unchanged.
+   Pixieset grammar (full-bleed cover + hairline frame, masonry, white lightbox,
+   BACK TO TOP) dressed in JLP warmth: rose/cream chrome, Cormorant names,
+   verse footer. Tokens: measured AA set from the JLP Visual Innovation gauntlet. */
+:root{
+  --rose-text:#a85a70; --rose-cream-text:#a05365; --rose-fill:#a85a70;
+  --rose-deco:#c4758a; --taupe:#8a857a; --taupe-text:#6e6961;
+  --head:#2c2c2c; --body:#666666;
+  --cream:#fdf2f4; --cream-2:#fef9f0; --paper:#ffffff;
+  --err:#a04343;
+  --charcoal:#1c1c1c; --charcoal-2:#414141;
+  --gutter:3px; /* v4.1: 8px -> 4px hairline (showcase photo-wall gutters) */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Montserrat',sans-serif;color:var(--body);background:var(--paper);line-height:1.6}
+img{display:block;max-width:100%}
+a{color:var(--rose-text)}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--rose-text);outline-offset:3px;border-radius:2px}
+.nowrap{white-space:nowrap}
+
+/* ---------- COVER — full-bleed hero (Pixieset grammar) ----------
+   One photograph fills the viewport edge-to-edge; a hairline white frame
+   overlays it (the "matted print" feel). Text sits on a warm dark scrim so
+   white ink clears AA on the rendered composite — nothing overlays the
+   subject: the scrim + stack are geometry-fixed to the lower third. */
+.cover{position:relative;height:100vh;height:100dvh;background:var(--head);overflow:hidden}
+.cover>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center __COVER_POS__}
+.cover-scrim{position:absolute;left:0;right:0;bottom:0;height:56%;pointer-events:none;
+  background:linear-gradient(to top,rgba(26,13,17,.60) 0%,rgba(26,13,17,.50) 42%,rgba(26,13,17,.30) 78%,rgba(26,13,17,0) 100%)}
+.cover-scrim.top{top:0;bottom:auto;height:150px;
+  background:linear-gradient(to bottom,rgba(26,13,17,.48) 0%,rgba(26,13,17,.24) 60%,rgba(26,13,17,0) 100%)}
+.cover-frame{position:absolute;inset:16px;border:1px solid rgba(255,255,255,.72);pointer-events:none;z-index:2}
+.cover-brand{position:absolute;top:54px;left:0;right:0;z-index:3;text-align:center;color:#fff;
+  font-size:13px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  text-shadow:0 1px 10px rgba(0,0,0,.45)}
+.cover-stack{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;flex-direction:column;
+  align-items:center;text-align:center;padding:0 24px calc(9vh + 8px)}
+.cover-meta{color:#fff;font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:14px;text-shadow:0 1px 8px rgba(0,0,0,.45)}
+.cover h1{font-family:'Cormorant Garamond',serif;font-weight:500;color:#fff;
+  font-size:clamp(2.7rem,6.5vw,4.4rem);line-height:1.06;letter-spacing:.05em;text-transform:uppercase;
+  overflow-wrap:anywhere;max-width:100%; /* R10b: single-word long names wrap inside the frame */
+  margin-bottom:clamp(26px,5vh,44px);text-shadow:0 2px 18px rgba(0,0,0,.4)}
+.cover-cta{color:#fff;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.26em;
+  text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.45);padding:10px 6px}
+.cta-rule{display:block;width:26px;height:1px;background:rgba(255,255,255,.85);margin:9px auto 0;transition:width .25s ease}
+.cover-cta:hover .cta-rule,.cover-cta:focus-visible .cta-rule{width:44px}
+@media(max-width:520px){
+  .cover-frame{inset:10px}
+  .cover-brand{top:42px}
+  .cover-stack{padding-bottom:calc(10vh + 6px)}
+}
+
+/* ---------- SVG ICONS ---------- */
+.ic{width:18px;height:18px;flex:none;display:block;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.ic-f{display:none}
+[aria-pressed="true"] .ic-o{display:none}
+[aria-pressed="true"] .ic-f{display:block;fill:currentColor;stroke:none}
+
+/* ---------- GRID — deterministic masonry, hairline gutters, native aspect (v4.4-M)
+   Column count mirrors the old multicol breakpoints exactly (colCountFor):
+   5 equal cols @>=1200, 3 @>=900, 2-col mobile floor down to 320 (R1).
+   Tiles are absolutely positioned by JS (frozen inline left/top/width);
+   appends only ADD tiles below their column's fold line - CSS can no longer
+   reflow the wall. Gutters via --gutter in the JS math; outer padding keeps
+   the edges reading as a frame. Native aspects preserved (no crops). */
+.gallery-main{max-width:1490px;margin:0 auto;padding:0 16px 24px}
+.fav-filter-bar{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:30px 2px 20px}
+.gb-title .t{display:block;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.7rem;
+  color:var(--head);line-height:1.15}
+.gb-title .s{display:block;font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--taupe-text);margin-top:4px}
+.fav-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.fav-filter-bar .count{font-size:13px;color:var(--taupe-text)}
+.fav-filter-bar .count b{color:var(--rose-text)}
+button.text-btn{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;min-height:44px;
+  border:1px solid var(--rose-text);border-radius:3px;background:#fff;color:var(--rose-text);
+  font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:background .2s,color .2s}
+button.text-btn:hover,button.text-btn:focus-visible{background:var(--rose-fill);color:#fff;border-color:var(--rose-fill)}
+button.text-btn[aria-pressed="true"]{background:var(--rose-fill);color:#fff;border-color:var(--rose-fill)}
+.grid{position:relative;width:100%}
+.fav-empty{font-size:14px;color:var(--taupe-text);text-align:center; /* R8 empty state */
+  padding:44px 16px;margin:0;letter-spacing:.02em}
+/* v4.3 draft D2 "ring-and-shimmer" — EDITORIAL-POLISHED circle loader.
+   In-flow SVG ring AT THE SEAM, below the last rendered tile (v4.2's fixed
+   bottom breathing line is retired): a rose-deco 270° arc spins on a brand
+   track inside a soft cream halo, the arc trailing a faint rose glow. The
+   ring never intercepts pointers; tiles stay scrollable/tappable. */
+.load-more{position:fixed;left:0;right:0;bottom:calc(88px + env(safe-area-inset-bottom));z-index:45;
+  height:64px;display:flex;align-items:center;justify-content:center;pointer-events:none;
+  opacity:0;transition:opacity .3s ease}
+.load-more.is-on{opacity:1}
+.load-more[hidden]{display:none}
+/* F7: visually-hidden live-region text (screen readers announce it; sighted users see only the ring) */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.load-more .ring-wrap{position:relative;display:block;width:40px;height:40px}
+/* soft cream halo: warm bloom behind the ring (cream-2 core, whisper of rose) */
+.load-more .ring-wrap::before{content:"";position:absolute;inset:-16px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(253,242,244,.95) 0%,rgba(253,242,244,.60) 42%,
+  rgba(196,117,138,.10) 68%,rgba(253,242,244,0) 100%)}
+.load-more svg.ring{position:relative;display:block;width:40px;height:40px;
+  animation:jlp-spin .8s linear infinite}
+.load-more .ring-track{fill:none;stroke:rgba(168,90,112,.15);stroke-width:3}
+.load-more .ring-arc{fill:none;stroke:var(--rose-deco);stroke-width:3;stroke-linecap:round;
+  stroke-dasharray:82.47 27.49; /* 270° arc of r=17.5 (C=109.96) */
+  filter:drop-shadow(0 0 4px rgba(196,117,138,.30))}
+@keyframes jlp-spin{to{transform:rotate(360deg)}}
+/* tile-level shimmer: warm pulse only while the thumb is still decoding */
+.ph:not([data-loaded="true"]) img{animation:jlp-shimmer 1.4s ease-in-out infinite}
+@keyframes jlp-shimmer{0%,100%{opacity:1}50%{opacity:.72}}
+/* D2 staggered batch fade: scroll-appended tiles arrive at opacity 0 and fade
+   to 1 in 60ms steps once their thumbs decode (transition-delay set inline).
+   The 60ms stagger is added on top of the 0ms base delay by JS via
+   transitionDelay; the class pair (b-in -> b-go) starts the fade. */
+.ph.b-in{transition:none} /* arm: hold invisible (b-in overrides opacity:1 rule) */
+.ph.b-in[data-loaded="true"]{opacity:0}
+.ph.b-go{transition:opacity .55s ease} /* land: run the staggered fade */
+.ph.b-go[data-loaded="true"]{opacity:1}
+@media (prefers-reduced-motion: reduce){
+  .load-more svg.ring{animation:none;opacity:.4}
+  .ph:not([data-loaded="true"]) img{animation:none}
+}
+.ph{position:absolute;top:0;left:0;margin:0;opacity:0;transition:opacity .55s ease}
+.ph[data-loaded="true"]{opacity:1}
+.ph img{width:100%;height:auto;border-radius:0;background:var(--cream-2);cursor:pointer}
+.ph::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .2s ease;pointer-events:none}
+.ph .heart{position:absolute;top:8px;right:8px;z-index:2;width:44px;height:44px;border:1px solid rgba(168,90,112,.28);
+  border-radius:50%;background:rgba(255,255,255,.94);color:var(--rose-text);padding:0;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 1px 6px rgba(44,44,44,.22);
+  transition:opacity .2s ease,background .2s ease,color .2s ease}
+.ph .heart[aria-pressed="true"]{background:var(--rose-fill);color:#fff;border-color:var(--rose-fill)}
+@media (hover:hover) and (pointer:fine){
+  .ph:hover::after,.ph:focus-within::after{background:rgba(0,0,0,.3)}
+  .ph .heart{opacity:0}
+  .ph:hover .heart,.ph:focus-within .heart{opacity:1}
+}
+.ph.hidden{display:none}
+/* F8: broken thumb - keep the tile: hide the img (no broken-image icon, no
+   raw alt text), paint the cream tile with a small muted caption */
+.ph.ph-error{background:var(--cream-2);min-height:min(140px,var(--slot-h,140px))} /* R4: pinned-slot clamp (slotH from place()) */
+.ph.ph-error img{display:none}
+.ph.ph-error::before{content:"Photo unavailable";position:absolute;inset:0;display:flex;
+  align-items:center;justify-content:center;color:var(--taupe);
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+/* v4.4-M: 3-col band is computed in JS (colCountFor) - breakpoints mirrored exactly */
+@media(max-width:899px){
+  /* v4.4-M: 2-col mobile band computed in JS (colCountFor) */
+  .gallery-main{padding:0 4px 24px}
+  :root{--gutter:3px}
+  .fav-filter-bar{padding:24px 3px 16px}
+}
+/* v4.4-M: 2-col floor to 320 is computed in JS (colCountFor; R1 capture ruling kept) */
+
+/* ---------- LIGHTBOX — white chrome (Pixieset signature) ---------- */
+#lightbox{position:fixed;inset:0;z-index:60;display:none;background:#fff;flex-direction:column}
+#lightbox.open{display:flex}
+.lb-top{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;padding:8px 16px 8px 8px}
+.lb-back,.lb-ic{width:44px;height:44px;border:none;background:transparent;color:#757575;padding:0;
+  display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s,color .2s}
+.lb-ic:hover,.lb-ic:focus-visible{background:var(--cream);color:var(--head)}
+.lb-back:hover,.lb-back:focus-visible{color:var(--head)}
+.lb-back .ic{width:22px;height:22px}
+.lb-ic .ic{width:20px;height:20px}
+.lb-cluster{display:flex;align-items:center;gap:8px}
+#lbFav[aria-pressed="true"]{color:var(--rose-fill)}
+#lbDl{display:inline-flex;align-items:center;gap:9px;height:40px;min-height:44px;padding:0 20px;margin-left:6px;
+  border:none;border-radius:3px;background:var(--charcoal);color:#fff;
+  font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;transition:background .2s}
+#lbDl:hover,#lbDl:focus-visible{background:#000}
+.lb-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px 64px}
+#lbImg{max-width:100%;max-height:100%;width:auto;height:auto;border-radius:0;box-shadow:none}
+.lb-caption{color:var(--taupe-text);font-size:13px;text-align:center;min-height:44px;
+  display:flex;align-items:center;justify-content:center;padding:10px 16px 16px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:48px;height:48px;border:none;
+  background:transparent;color:#9a9a9a;padding:0;display:flex;align-items:center;justify-content:center;
+  transition:color .2s,background .2s}
+.lb-nav:hover,.lb-nav:focus-visible{color:var(--head);background:var(--cream);border-radius:50%}
+.lb-nav .ic{width:26px;height:26px}
+#lbPrev{left:10px}
+#lbNext{right:10px}
+@media(max-width:560px){
+  .lb-stage{padding:6px 10px}
+  /* R10a: chevrons sit on a white rail (blurred backdrop) inset clear of the
+     photo edge — the photo edge starts at 10px; 6px inset keeps clearance. */
+  .lb-nav{background:rgba(255,255,255,.92);border-radius:50%;
+    box-shadow:0 0 0 4px rgba(255,255,255,.92);color:#6e6961}
+  .lb-nav:hover,.lb-nav:focus-visible{color:var(--head);background:#fff;border-radius:50%}
+  .lb-top{padding:6px 10px 6px 6px}
+  #lbDl{padding:0 14px;letter-spacing:.14em}
+}
+
+/* ---------- DOWNLOAD BAR (floating pill) ---------- */
+/* Scroll-reveal contract: hidden at load, reveals near the grid, hides in the
+   footer zone — never occludes footer text or the load view. */
+.dl-bar{position:fixed;left:50%;transform:translateX(-50%) translateY(24px);bottom:calc(20px + env(safe-area-inset-bottom));z-index:50;
+  width:calc(100% - 32px);max-width:560px;background:rgba(255,255,255,.97);
+  border:1px solid rgba(168,90,112,.25);border-radius:12px;box-shadow:0 8px 28px rgba(44,44,44,.18);
+  display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 14px;
+  opacity:0;pointer-events:none;visibility:hidden;transition:opacity .3s ease,transform .3s ease}
+.dl-bar.show{opacity:1;pointer-events:auto;visibility:visible;transform:translateX(-50%) translateY(0)}
+.dl-bar .primary{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;min-height:48px;
+  border:none;border-radius:4px;background:var(--rose-fill);color:#fff;font-size:14px;font-weight:600;letter-spacing:.08em}
+.dl-bar .primary:hover,.dl-bar .primary:focus-visible{background:#94485e}
+.dl-bar .hint{font-size:13px;color:var(--taupe-text)}
+@media(max-width:560px){.dl-bar .hint{display:none}}
+
+/* ---------- PIN MODAL — rose/cream warmth ---------- */
+#pinModal{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;
+  background:rgba(44,20,26,.55);padding:20px}
+#pinModal.open{display:flex}
+.pin-card{background:var(--cream);border:1px solid rgba(168,90,112,.18);border-radius:8px;
+  box-shadow:0 12px 60px rgba(44,20,26,.35);max-width:380px;width:100%;padding:34px 30px;text-align:center}
+.pin-card::before{content:"";display:block;width:44px;height:2px;background:var(--rose-deco);margin:0 auto 18px}
+.pin-card h2{font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--head);font-size:1.9rem;margin-bottom:16px}
+.pin-input{display:block;width:160px;margin:0 auto 16px;font-family:inherit;font-weight:600;font-size:26px;
+  letter-spacing:.35em;text-indent:.35em;text-align:center;
+  padding:12px;border:1.5px solid var(--taupe);border-radius:4px;color:var(--head);background:#fff}
+.pin-input:focus{outline:none;border-color:var(--rose-text);box-shadow:0 0 0 3px rgba(168,90,112,.18)}
+.pin-msg{min-height:22px;font-size:13px;font-weight:600;margin-bottom:10px}
+.pin-msg.err{color:var(--err)}
+.pin-msg.ok{color:var(--rose-cream-text)}
+.pin-unlock{width:160px;padding:14px;min-height:48px;border:none;border-radius:4px;
+  background:var(--rose-fill);color:#fff;font-size:14px;font-weight:600;letter-spacing:.06em}
+.pin-unlock:hover,.pin-unlock:focus-visible{background:#94485e}
+.pin-cancel{display:block;margin:14px auto 0;background:none;border:none;color:var(--taupe-text);
+  font-size:13px;text-decoration:underline;min-height:44px;padding:10px}
+
+/* ---------- PAGE END — BACK TO TOP ---------- */
+.page-end{padding:64px 0 8px;text-align:center}
+.back-top{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 32px;
+  background:var(--charcoal-2);color:#fff;border:none;border-radius:2px;
+  font-size:13px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;transition:background .2s}
+.back-top:hover,.back-top:focus-visible{background:#2f2f2f}
+
+/* ---------- FOOTER — JLP warmth: cream + Cormorant verse ---------- */
+footer{background:var(--cream);text-align:center;padding:56px 24px calc(120px + env(safe-area-inset-bottom))}
+.f-orn{width:1px;height:34px;background:rgba(168,90,112,.45);margin:0 auto 22px}
+footer .brand{font-size:13px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe-text)}
+footer .verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;color:#56504b;
+  font-size:clamp(1.3rem,2.6vw,1.6rem);line-height:1.4;margin-top:18px}
+footer .ref{font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--rose-cream-text);margin-top:10px}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important;animation:none!important}
+  .dl-bar{opacity:1;visibility:visible;pointer-events:auto}
+  .ph{opacity:1!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="i-heart-o"><path d="M12 20.3l-1.2-1.1C6 14.9 3 12.2 3 8.9 3 6.2 5.1 4 7.8 4c1.6 0 3.1.8 4.2 2.1C13.1 4.8 14.6 4 16.2 4 18.9 4 21 6.2 21 8.9c0 3.3-3 6-7.8 10.3l-1.2 1.1z"/></g>
+    <g id="i-dl"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></g>
+    <g id="i-back"><path d="M19.5 12H5"/><path d="M11.5 5.5L5 12l6.5 6.5"/></g>
+    <g id="i-prev"><path d="M14.5 5.5L8 12l6.5 6.5"/></g>
+    <g id="i-next"><path d="M9.5 5.5L16 12l-6.5 6.5"/></g>
+  </defs>
+</svg>
+
+<header class="cover">
+  <img src="__COVER__" alt="__COVER_ALT__" style="object-position:center __COVER_POS__">
+  <div class="cover-scrim top" aria-hidden="true"></div>
+  <div class="cover-scrim" aria-hidden="true"></div>
+  <div class="cover-frame" aria-hidden="true"></div>
+  <p class="cover-brand">Jenna Lynn Photography</p>
+  <div class="cover-stack">
+    <p class="cover-meta"><span class="nowrap">__DATE__</span> &nbsp;·&nbsp; <span class="nowrap">__COUNT__ photos</span></p>
+    <h1>__COUPLE_HTML__</h1>
+    <a class="cover-cta cta" href="#grid">View Gallery<span class="cta-rule" aria-hidden="true"></span></a>
+  </div>
+</header>
+
+<main class="gallery-main" id="grid">
+  <div class="fav-filter-bar" id="gallery-bar">
+    <div class="gb-title">
+      <span class="t">__COUPLE_HTML__</span>
+      <span class="s">Jenna Lynn Photography</span>
+    </div>
+    <div class="fav-right">
+      <p class="count">__COUNT__ photos &nbsp;·&nbsp; <b id="favCount">0</b> favorited</p>
+      <button class="text-btn" id="favFilter" aria-pressed="false" aria-label="Show only favorites"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart-o"/></svg><span>Show favorites</span></button>
+    </div>
+  </div>
+  <div class="grid" id="theGrid"></div>
+  <div class="load-more" id="loadMore" role="status" aria-label="Loading more photos" hidden><div class="ring-wrap"><svg class="ring" viewBox="0 0 40 40" aria-hidden="true" focusable="false"><circle class="ring-track" cx="20" cy="20" r="17.5"></circle><circle class="ring-arc" cx="20" cy="20" r="17.5"></circle></svg></div><span class="sr-only" id="lmStatus">Loading more photos</span></div>
+  <p class="fav-empty" id="favEmpty" hidden>No favorites yet — tap the heart on any photo.</p>
+  <div class="page-end">
+    <button class="back-top" id="backTop" type="button">BACK TO TOP</button>
+  </div>
+</main>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <!-- R5 (V4.3.1 law): lightbox open defers appends — no batch may land while
+       the viewer is open (a mid-view append would jump the wall and yank the
+       open tile; appends resume on close). Documented in V4.3.1. -->
+  <div class="lb-top">
+    <button class="lb-back" id="lbClose" aria-label="Back to gallery"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-back"/></svg></button>
+    <div class="lb-cluster">
+      <button class="lb-ic" id="lbFav" aria-pressed="false" aria-label="Favorite this photo"><svg class="ic ic-o" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart-o"/></svg><svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart-o"/></svg></button>
+      <button id="lbDl" aria-label="Download this photo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-dl"/></svg>Download</button>
+    </div>
+  </div>
+  <div class="lb-stage">
+    <img id="lbImg" src="" alt="">
+  </div>
+  <p class="lb-caption" id="lbCap"></p>
+  <button class="lb-nav" id="lbPrev" aria-label="Previous photo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-prev"/></svg></button>
+  <button class="lb-nav" id="lbNext" aria-label="Next photo"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-next"/></svg></button>
+</div>
+
+<div class="dl-bar">
+  <button class="primary" id="downloadBtn" aria-label="Download all photos as a zip file"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-dl"/></svg>Download All Photos</button>
+  <span class="hint">Your PIN is in your delivery email</span>
+</div>
+
+<div id="pinModal" role="dialog" aria-modal="true" aria-label="Enter download PIN">
+  <div class="pin-card">
+    <h2>Enter your PIN</h2>
+    <input class="pin-input" id="pinInput" inputmode="numeric" autocomplete="one-time-code"
+           maxlength="8" pattern="[0-9]*" aria-label="Download PIN (4 to 8 digits)">
+    <p class="pin-msg" id="pinMsg" role="alert" aria-live="polite"></p>
+    <button class="pin-unlock" id="pinSubmit">Unlock Downloads</button>
+    <button class="pin-cancel" id="pinCancel">Not right now</button>
+  </div>
+</div>
+
+<footer>
+  <div class="f-orn" aria-hidden="true"></div>
+  <p class="brand">Jenna Lynn Photography</p>
+  <p class="verse">“Commit to the Lord whatever you do.”</p>
+  <p class="ref"><span class="nowrap">— Proverbs 16:3</span></p>
+</footer>
+
+<script>
+(function(){
+'use strict';
+var PIN='__PIN__', ZIP='__ZIP__', KEY='jlp-fav-__SLUG__';
+var PHOTOS=__PHOTOS_JSON__;
+var SRCSET=__SRCSET_JSON__;
+var SRCSET_AVIF=__SRCSET_AVIF_JSON__;
+var SRCSET_WEBP=__SRCSET_WEBP_JSON__;
+var REDUCE=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var unlocked=false, favs={}, cur=0, filterFavs=false, lbOpen=false, lastFocus=null;
+try{ favs=JSON.parse(localStorage.getItem(KEY)||'{}'); }catch(e){ favs={}; }
+
+var grid=document.getElementById('theGrid');
+var loadMore=document.getElementById('loadMore');
+/* v4.3 draft D2 "ring-and-shimmer" progressive loading v2 (Pixieset cadence):
+   EXACTLY 15 tiles render at first paint - no double-batch pre-fill, no
+   exceptions. When the user nears the seam (or is pinned at the bottom), the
+   NEXT batch's images are fetched in the background while the cream-halo ring
+   loader plays at the seam; the user keeps scrolling existing tiles. The
+   appended batch fades in staggered (60ms per tile) so the wall "breathes"
+   when it lands, honoring the data-loaded fade contract. After every append,
+   next-batch photos-md images are pre-fetched via new Image() so the next
+   seam is usually warm before you reach it (md tier: what 3x phones render). Reduced motion renders everything at
+   once. Lightbox + favorites always operate on the full PHOTOS manifest
+   regardless of what is rendered. */
+var BATCH=15, REACH='120% 0px 120% 0px', rendered=0, inflight=false; /* F2: 120% still prefetches ~1 viewport early but the sentinel reliably EXITS the reach zone after each append, so IO re-fires per batch */
+/* ---------- v4.4-M DETERMINISTIC MASONRY (SPEC-v4.4M C8/C9) ----------
+   CSS-multicol REBALANCES on every batch append (tiles 7-14 measured MOVING
+   columns; 158 tile moves across a 100-photo walk at 390px). Replaced by
+   computed column assignment: w/h from the manifest (elements [4]/[5];
+   4-element galleries learn w/h via a one-time new Image() preload probe),
+   tiles placed shortest-column-first and FROZEN as absolute inline
+   left/top/width inside position:relative #theGrid (inline grid height keeps
+   the document growing). place() runs on NEW figs only - an append can never
+   re-place an earlier tile, so P8 movement is structurally impossible.
+   Re-layout (breakpoint cross, favorites-filter enter/exit) re-runs the SAME
+   pure function over manifest order and reproduces the canonical wall. */
+var GUT=3, cols=0, tileW=0, colX=[], colH=[], figBy={}, dims={};
+function colCountFor(w){ return w>=1200?5:(w>=900?3:2); } /* old multicol breakpoints, mirrored exactly */
+function measureCols(){
+  GUT=parseFloat(getComputedStyle(grid).getPropertyValue('--gutter'))||3;
+  var w=grid.clientWidth||grid.getBoundingClientRect().width;
+  var c=colCountFor(window.innerWidth);
+  if(c!==cols){ cols=c; colH=[]; for(var i=0;i<c;i++)colH.push(0); }
+  tileW=(w-GUT*(cols-1))/cols;
+  colX=[]; for(var j=0;j<cols;j++)colX.push(j*(tileW+GUT));
+}
+/* place(): shortest-column-first by known w/h, then FREEZE the slot. Pure
+   function of (dims order, cols, tileW) - idempotent across re-layouts. */
+function place(fig,i){
+  var d=dims[i]||manifestDims(i)||[2,3]; /* R1: watchdog-settled tiles resolve real 6-element manifest w/h before the 2/3 fallback */
+  var h=tileW*d[1]/d[0];
+  var best=0;
+  for(var c2=1;c2<cols;c2++){ if(colH[c2]<colH[best])best=c2; }
+  fig.style.left=colX[best]+'px';
+  fig.style.top=colH[best]+'px';
+  fig.style.width=tileW+'px';
+  fig.setAttribute('data-col',best);
+  fig.dataset.slotH=String(h); /* ph-error pins this slot: no hole, no shift */
+  fig.style.setProperty('--slot-h',h+'px'); /* R4: CSS-side clamp floor for .ph-error */
+  var im=fig.querySelector('img');
+  if(im)im.style.aspectRatio=d[0]+' / '+d[1]; /* C9: final box height before decode */
+  colH[best]+=h+GUT;
+}
+function applyHeight(){
+  var m=0; for(var c3=0;c3<cols;c3++){ if(colH[c3]>m)m=colH[c3]; }
+  grid.style.height=Math.max(0,m-GUT)+'px';
+}
+function relayoutAll(){ /* breakpoint cross / filter exit ONLY - never from appends */
+  for(var c4=0;c4<cols;c4++)colH[c4]=0;
+  for(var i2=0;i2<rendered;i2++){ var f=figBy[i2]; if(f&&f.parentNode)place(f,i2); }
+  applyHeight();
+}
+function compactVisible(){ /* favorites-filter view: tighten visible tiles only */
+  for(var c5=0;c5<cols;c5++)colH[c5]=0;
+  for(var i3=0;i3<rendered;i3++){
+    var f3=figBy[i3];
+    if(!f3||!f3.parentNode||f3.classList.contains('hidden'))continue;
+    place(f3,i3);
+  }
+  applyHeight();
+}
+/* manifest w/h at [4]/[5] (6-element entries). 4-element entries return null
+   and are filled by the batch probe (naturalWidth/Height) - the batch-unit
+   timing contract is untouched either way: place() only runs in settle(). */
+function manifestDims(i){
+  var p=PHOTOS[i]||[];
+  return (p.length>=6&&typeof p[4]==='number'&&typeof p[5]==='number'&&p[4]>0&&p[5]>0)?[p[4],p[5]]:null;
+}
+function recordDims(i,im){
+  if(dims[i])return;
+  dims[i]=manifestDims(i)||(im&&im.naturalWidth>0?[im.naturalWidth,im.naturalHeight]:[2,3]);
+}
+/* F9: escape untrusted caption text for attribute context (alt, aria-labels) */
+function escA(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function tileHTML(p,i,stagger){
+  /* v4.4-M: 6-element manifests carry w/h NUMBERS at [4]/[5]; only a legacy
+     4-element entry may carry the string srcset fallback in p[4].
+     v4.4-M.2: 10-element manifests add modern-format srcs at [6..9]; the img
+     markup becomes a <picture> chain AVIF > WebP > JPEG (sizes preserved). */
+  var ssFallback=(p.length<6&&typeof p[4]==='string')?p[4]:'';
+  var ss=(ssFallback||(SRCSET&&SRCSET[p[2]]))?(' srcset="'+(SRCSET[p[2]]||ssFallback)+'" sizes="(max-width:519px) 48vw, (max-width:899px) 48vw, (max-width:1199px) 32vw, 20vw"'):'';
+  var avifSrc='', webpSrc='';
+  if(p.length>=10){
+    if(SRCSET_AVIF&&SRCSET_AVIF[p[6]])avifSrc='<source type="image/avif" srcset="'+SRCSET_AVIF[p[6]]+'" sizes="(max-width:519px) 48vw, (max-width:899px) 48vw, (max-width:1199px) 32vw, 20vw">';
+    if(SRCSET_WEBP&&SRCSET_WEBP[p[7]])webpSrc='<source type="image/webp" srcset="'+SRCSET_WEBP[p[7]]+'" sizes="(max-width:519px) 48vw, (max-width:899px) 48vw, (max-width:1199px) 32vw, 20vw">';
+  }
+  var fig=document.createElement('figure'); fig.className='ph'; fig.setAttribute('data-idx',i);
+  /* D2: appended-batch tiles get .b-in; the fade starts when the stagger
+     class lands (transition-delay set inline). Scroll-driven appends only. */
+  if(stagger)fig.classList.add('b-in');
+  /* F1: seed aria-pressed + filled/outline icon from persisted favs so a
+     reloaded favorite renders FILLED and its first tap is a true toggle,
+     never a silent delete. F9: caption is attribute-escaped. */
+  var lab=escA(p[1]), on=!!favs[String(i)];
+  fig.innerHTML='<picture>'+avifSrc+webpSrc+'<img src="'+p[2]+'"'+ss+' alt="'+lab+'" tabindex="0" role="button" loading="lazy" decoding="async" aria-label="Open photo: '+lab+'"></picture>'+
+    '<button class="heart" data-fav="'+i+'" aria-pressed="'+(on?'true':'false')+'" aria-label="Favorite: '+lab+'">'+heartSVG(on)+'</button>';
+  return fig;
+}
+function markLoaded(fig){
+  var im=fig.querySelector('img');
+  var mark=function(){ fig.setAttribute('data-loaded','true'); };
+  /* F8: a failed thumb keeps its tile - .ph-error hides the img (no broken
+     icon, no raw alt text) and paints the cream caption via CSS. Also
+     settles an already-failed image (complete && naturalWidth==0) that the
+     old load/error listeners would have waited on forever. v4.4-M: the fail
+     path pins the tile's reserved slot height so the column below never
+     shifts (P8/P9 safe). */
+  var fail=function(){ fig.classList.add('ph-error'); if(fig.dataset.slotH)fig.style.height=fig.dataset.slotH+'px'; mark(); };
+  if(im.complete){ if(im.naturalWidth>0){ mark(); } else { fail(); } }
+  else{ im.addEventListener('load',mark); im.addEventListener('error',fail); }
+}
+function pinnedAtBottom(){
+  /* dead-end detector: user has scrolled to the page's absolute bottom but
+     batches remain - append so the wall never dead-ends while pinned */
+  return (window.innerHeight + window.scrollY) >= (document.body.scrollHeight - 2);
+}
+/* v4.3 D2: one ring serves the whole progressive pipeline. Shown from the
+   moment the seam is within reach (user approaching or pinned) until the
+   batch is appended AND its first tiles have decoded; hidden when all done.
+   v4.4-M.3: on the mobile band (<=899px) the ring is in-flow at the gallery
+   seam, so it only shows when the seam is actually near the viewport —
+   proximity-gated (seamGap < 1.3 viewports); on desktop the fixed
+   bottom-center band shows unconditionally as before. */
+function seamNear(){
+  if(!sentinel)return true;
+  var r=sentinel.getBoundingClientRect();
+  return r.top < window.innerHeight*1.05;
+}
+function showRing(){
+  if(rendered>=PHOTOS.length||filterFavs)return; /* F6: also no ring while the favorites filter is on (a batch in flight when the filter lands would otherwise re-show it from done()) */
+  /* v4.4-M.3: mobile in-flow ring — stay hidden while the seam is far below
+     the fold (prefetch is warming it); IO/pin call sites re-invoke as the
+     user approaches, and the ring fades in at the bottom of the gallery. */
+  if(window.innerWidth<=899&&!inflight&&!seamNear())return;
+  loadMore.hidden=false;
+  armRingPoll();
+  void loadMore.offsetHeight; /* flush so .is-on fades in from opacity 0 */
+  loadMore.classList.add('is-on');
+  /* F7: the visually-hidden span is what screen readers announce */
+  var st=document.getElementById('lmStatus'); if(st)st.textContent='Loading more photos';
+}
+function hideRing(){
+  loadMore.classList.remove('is-on');
+  loadMore.hidden=true;
+  var st=document.getElementById('lmStatus'); if(st)st.textContent=''; /* F7 */
+  if(ringPoll){ clearInterval(ringPoll); ringPoll=null; }
+}
+/* v4.4-M.3: while visible, re-check proximity — if an append pushes the seam
+   a full batch-height below the user, the in-flow ring would sit off-screen;
+   hide it and let the scroll listener / IO re-show it when the seam nears. */
+var ringPoll=null;
+function armRingPoll(){
+  if(window.innerWidth>899||ringPoll)return;
+  ringPoll=setInterval(function(){
+    if(loadMore.hidden)return;
+    if(rendered>=PHOTOS.length||filterFavs){ hideRing(); return; }
+    if(!seamNear()){ hideRing(); }  /* seam far: ring is off-screen anyway */
+  },500);
+}
+/* background pre-fetch (binding): kick next-batch photos-md fetches now, so
+   the NEXT seam is warm before the user reaches it. Non-blocking: the browser
+   queue handles it while tiles stay scrollable/tappable. */
+function prefetchNext(){
+  if(rendered>=PHOTOS.length)return;
+  var end=Math.min(rendered+BATCH,PHOTOS.length);
+  for(var i=rendered;i<end;i++){
+    /* F3: prefetch the tier the tile will display - v4.4-M.2: AVIF md (p[8])
+       on 10-element manifests, else photos-md JPEG (p[3]) */
+    var p=PHOTOS[i];
+    var src=(p.length>=10&&SRCSET_AVIF&&SRCSET_AVIF[p[6]]&&p[8])?p[8]:p[3];
+    var im=new Image(); im.decoding='async'; im.src=src;
+  }
+}
+function runBatch(start,end,topUp){
+  /* V4.3.1 batch-unit loading: build the batch OFF-DOM, background-fetch every
+     image, wait until ALL are decoded, then append once - the batch appears
+     complete, in its final spots, in a single paint. No mid-load pop-ins.
+     v4.4-M: figs are PLACED (place()) before the single append; the append
+     never re-places tiles from earlier batches (P8 zero movement). */
+  if(inflight||start>=end)return;
+  inflight=true;
+  var figs=[], pend=0, landed=false;
+  var fig;
+  for(var i=start;i<end;i++){
+    fig=tileHTML(PHOTOS[i],i,false);
+    figBy[i]=fig;
+    figs.push(fig);
+  }
+  rendered=end;
+  function settle(){
+    if(landed)return; landed=true;
+    var oldCols=cols;
+    measureCols();
+    if(cols!==oldCols){ relayoutAll(); } /* breakpoint crossed mid-walk */
+    for(var kp=0;kp<figs.length;kp++){ place(figs[kp],start+kp); } /* NEW figs only */
+    applyHeight();
+    var frag=document.createDocumentFragment();
+    for(var k=0;k<figs.length;k++){
+      markLoaded(figs[k]);
+      /* R3: watchdog-settled figs whose real img is still undecoded at append
+         time are resolved NOW: pre-mark data-loaded (or F8 on later failure)
+         so an appended tile can never remain a permanent invisible hole. */
+      var r3img=figs[k].querySelector('img');
+      if(r3img&&!r3img.complete){ figs[k].classList.add('b-go'); r3img.setAttribute('data-loaded','true'); }
+      else if(r3img&&r3img.complete&&r3img.naturalWidth===0){ figs[k].classList.add('ph-error'); figs[k].style.height=figs[k].dataset.slotH; }
+      frag.appendChild(figs[k]); /* R3 regression guard: the append to the batch fragment is load-bearing (dropping it empties the batch) */
+    }
+    grid.appendChild(frag); /* ONE DOM mutation: exactly figs.length nodes */
+    drawHearts(); /* F1: sync appended tiles' hearts with persisted favorites */
+    if(filterFavs)applyFilter();
+    /* batch fades in AS A UNIT (no per-tile stagger - that read as pop-ins) */
+    if(!REDUCE){
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          for(var k2=0;k2<figs.length;k2++){ figs[k2].classList.add('b-go'); }
+        });
+      });
+    }
+    /* ring stays up until the whole batch has landed */
+    done();
+    prefetchNext(); /* warm the NEXT seam immediately after the batch lands */
+  }
+  var pending=figs.length;
+  function one(){ if(--pending===0){ settle(); } }
+  for(var k3=0;k3<figs.length;k3++){
+    (function(f,idx){
+      var im=f.querySelector('img');
+      /* warm the browser cache with the SAME srcset the tile will render;
+         v4.4-M: this probe also learns w/h for 4-element manifests */
+      var probe=new Image(); probe.decoding='async';
+      var p=PHOTOS[idx];
+      /* v4.4-M.2: 10-element manifests render AVIF via <picture>; warm the AVIF
+         md URL the tile will actually display (probe srcset can't see <source>) */
+      if(p.length>=10&&SRCSET_AVIF&&SRCSET_AVIF[p[6]]&&p[8]){ probe.src=p[8]; }
+      else{
+        var src=im.getAttribute('src');
+        if(im.hasAttribute('srcset')){
+          /* let the browser resolve srcset by setting it on the probe too */
+          probe.srcset=im.getAttribute('srcset'); probe.sizes=im.getAttribute('sizes')||'';
+        }
+        probe.src=src;
+      }
+      var hit=function(){ /* decode warm - the real img will paint instantly */
+        recordDims(idx,probe); one(); };
+      if(probe.complete){ recordDims(idx,probe); one(); }
+      else{ probe.addEventListener('load',hit); probe.addEventListener('error',hit); }
+    })(figs[k3],start+k3);
+  }
+  /* safety watchdog: never hang the ring if an image stalls (8s) */
+  setTimeout(function(){ pending>0 && (pending=0, settle()); }, 8000);
+  /* ring lifecycle: hides when the whole batch has landed (or stays up when
+     the user is pinned and more batches are due).
+     v4.4-M gotcha fix: done() is a HOISTED DECLARATION - cache-complete
+     probes fire settle()->done() synchronously before execution reaches
+     this point; a var-assigned closure would still be undefined there. */
+  function done(){
+    inflight=false;
+    if(rendered>=PHOTOS.length){ hideRing(); if(moreObs&&sentinel)moreObs.unobserve(sentinel); }
+    else if(topUp&&pinnedAtBottom()&&!filterFavs){ /* v4.2.2: pump ONLY while truly pinned at
+      the dead-end (no scroll events can fire there); mid-wall reach top-ups
+      stay event-driven so each append lands as its own batch. F6: never
+      under the favorites filter. */
+      runBatch(rendered,Math.min(rendered+BATCH,PHOTOS.length),true); }
+    else{ showRing(); }
+  }
+  /* prefetch of the NEXT batch fires from settle() once this batch has landed */
+}
+/* v4.4-M wrapper: scroll/IO top-ups keep the EXACTLY-15 batch cadence */
+function appendBatch(topUp){ runBatch(rendered,Math.min(rendered+BATCH,PHOTOS.length),topUp); }
+/* reduced-motion render-all (P7): same placement engine, ONE placement pass.
+   6-element manifests place immediately; 4-element ones run a bounded
+   preload-probe sweep first (8s watchdog, same contract as the batch). */
+function renderAll(){
+  measureCols();
+  var i, needProbe=false;
+  for(i=0;i<PHOTOS.length;i++){ if(!manifestDims(i)){ needProbe=true; break; } }
+  var closed=false;
+  function finish(){
+    if(closed)return; closed=true;
+    for(var c=0;c<cols;c++)colH[c]=0;
+    var frag=document.createDocumentFragment();
+    for(var k=0;k<PHOTOS.length;k++){
+      var f=figBy[k]||tileHTML(PHOTOS[k],k,false);
+      figBy[k]=f; place(f,k); markLoaded(f);
+      /* R3 (reduced-motion path): same no-permanent-hole guarantee as settle() */
+      var r3img=f.querySelector('img');
+      if(r3img&&!r3img.complete){ r3img.setAttribute('data-loaded','true'); }
+      else if(r3img&&r3img.complete&&r3img.naturalWidth===0){ f.classList.add('ph-error'); f.style.height=f.dataset.slotH; }
+      frag.appendChild(f);
+    }
+    applyHeight();
+    grid.appendChild(frag);
+    rendered=PHOTOS.length;
+    drawHearts();
+    loadMore.hidden=true;
+  }
+  if(!needProbe){ finish(); return; }
+  var pend=PHOTOS.length;
+  function one(){ if(--pend===0){ finish(); } }
+  for(var j=0;j<PHOTOS.length;j++){
+    (function(idx){
+      var probe=new Image(); probe.decoding='async'; probe.src=PHOTOS[idx][2];
+      var hit=function(){ recordDims(idx,probe); one(); };
+      if(probe.complete){ recordDims(idx,probe); one(); }
+      else{ probe.addEventListener('load',hit); probe.addEventListener('error',hit); }
+    })(j);
+  }
+  setTimeout(function(){ pend=0; finish(); }, 8000); /* safety watchdog (8s) */
+}
+/* seam reach: IO top-ups are ENTRY-driven (one append per intersection
+   crossing, production semantics) - never a rect poll, or a slow scroll glide
+   would re-trigger every debounce tick while throttled tiles barely grow the
+   wall. The pinned dead-end case is pumped by the scroll backstop instead. */
+var userScrolled=false, sentinel=null;
+if(REDUCE){
+  /* reduced motion: no scroll-triggered appends - render everything at once */
+  renderAll();
+}else{
+  appendBatch(); /* first paint: EXACTLY 15 tiles */
+  sentinel=document.createElement('div');
+  sentinel.style.cssText='height:1px;width:100%';
+  grid.insertAdjacentElement('afterend',sentinel);
+  /* IO top-up. The load-time intersection report is deliberately ignored
+     (first paint stays EXACTLY 15, spec law #1); after the user has scrolled,
+     each ENTRY into the reach zone tops up in the background while the ring
+     plays at the seam. If a batch is already in flight the entry is skipped;
+     the wall then grows (thumbs decode) and pushes the sentinel back out of
+     the reach zone, so the next approach re-arms the observer - self-healing. */
+  var moreObs=('IntersectionObserver' in window)?new IntersectionObserver(function(es){
+    if(!userScrolled)return;
+    if(filterFavs)return; /* F6: no appends (hidden batches, wasted data) while the favorites filter is on */
+    if(es.some(function(en){return en.isIntersecting;})&&!inflight){
+      showRing(); appendBatch(true);
+    }
+  },{rootMargin:REACH}):null;
+  if(moreObs){ moreObs.observe(sentinel); }
+  else{
+    /* ancient browsers: pump every remaining batch sequentially (correctness
+       over cleverness). V4.3.1's raw render-all here double-painted the
+       first batch; the inflight guard + 15-batch cadence keeps one-mutation
+       appends and the ring/watchdog lifecycle intact. */
+    var pump=function(){
+      if(rendered>=PHOTOS.length)return;
+      if(inflight||filterFavs){ setTimeout(pump,200); return; }
+      appendBatch(true);
+      setTimeout(pump,200);
+    };
+    pump();
+  }
+  /* v4.2.2: scroll-listener backstop - pumps ONLY while the user is pinned at
+     the page's absolute bottom (a real dead-end: no further scroll events can
+     fire there and IO cannot re-fire without a re-entry transition); the
+     appendBatch chain while pinned keeps the wall growing. Debounced hook. */
+  var pinTimer=null;
+  window.addEventListener('scroll',function(){
+    userScrolled=true;
+    /* v4.4-M.3: as the user approaches the seam, reveal the in-flow ring if a
+       batch is loading there (mobile band); cheap boolean check per scroll. */
+    if(window.innerWidth<=899&&inflight&&loadMore.hidden&&seamNear()){ showRing(); }
+    if(pinTimer)return;
+    pinTimer=setTimeout(function(){
+      pinTimer=null;
+      if(rendered<PHOTOS.length&&pinnedAtBottom()&&!inflight&&!filterFavs){ showRing(); appendBatch(true); } /* F6 */
+    },120);
+  },{passive:true});
+  /* v4.4-M: breakpoint crossings (rotate/fold/desktop resize) re-place the
+     wall via the same pure assignment; appends themselves never re-place */
+  var rszT=null;
+  window.addEventListener('resize',function(){
+    if(rszT)return;
+    rszT=setTimeout(function(){
+      rszT=null;
+      var oldCols=cols, oldTileW=tileW;
+      measureCols();
+      if(cols!==oldCols||Math.abs(tileW-oldTileW)>0.5){
+        if(filterFavs){ applyFilter(); } else { relayoutAll(); }
+      }
+    },150);
+  },{passive:true});
+}
+
+function favCount(){ var n=Object.keys(favs).filter(function(k){return favs[k];}).length;
+  document.getElementById('favCount').textContent=n; return n; }
+/* favorites filter (R8: empty state + immediate re-evaluation on toggle) */
+var ff=document.getElementById('favFilter');
+var favEmpty=document.getElementById('favEmpty');
+function visiblePhotos(){
+  return PHOTOS.map(function(p,i){return i;}).filter(function(i){
+    return filterFavs ? !!favs[String(i)] : true;
+  });
+}
+function applyFilter(){
+  Array.prototype.forEach.call(document.querySelectorAll('.ph'),function(f){
+    var on=!!favs[f.getAttribute('data-idx')];
+    f.classList.toggle('hidden',filterFavs&&!on);});
+  favEmpty.hidden=!(filterFavs&&visiblePhotos().length===0);
+  /* v4.2: while the favorites filter is active, suppress infinite appends (the
+     filtered view is short by design); restore when back to all photos.
+     v4.3 D2: routed through showRing/hideRing so the ring's fade state (.is-on)
+     stays consistent with its hidden state. */
+  if(typeof loadMore!=='undefined'&&loadMore){
+    if(filterFavs||rendered>=PHOTOS.length){ hideRing(); }
+    else{ showRing(); }
+  }
+  /* v4.4-M: filter transitions re-place tiles (appends never do): entering
+     the filter compacts visible tiles; leaving restores the canonical wall
+     pixel-for-pixel (place() is a pure function of manifest order). */
+  if(filterFavs){ compactVisible(); } else { relayoutAll(); }
+}
+ff.addEventListener('click',function(){
+  filterFavs=!filterFavs;
+  ff.setAttribute('aria-pressed',filterFavs?'true':'false');
+  ff.querySelector('span').textContent=filterFavs?'Showing favorites':'Show favorites';
+  ff.setAttribute('aria-label',filterFavs?'Showing favorites':'Show only favorites'); /* R10d */
+  applyFilter();
+});
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-fav]'); if(!b)return;
+  var k=b.getAttribute('data-fav'); favs[k]=!favs[k];
+  try{localStorage.setItem(KEY,JSON.stringify(favs));}catch(err){}
+  drawHearts();
+  if(filterFavs)applyFilter(); /* R8: no stale empty grid while filtered */
+});
+function heartSVG(on){ return on
+  ? '<svg class="ic ic-f" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart-o"/></svg>'
+  : '<svg class="ic ic-o" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-heart-o"/></svg>'; }
+function drawHearts(){
+  favCount();
+  Array.prototype.forEach.call(document.querySelectorAll('.heart'),function(b){
+    var on=!!favs[b.getAttribute('data-fav')];
+    b.setAttribute('aria-pressed',on?'true':'false'); b.innerHTML=heartSVG(on);});
+  if(lbOpen){ var on=!!favs[String(cur)];
+    var lbf=document.getElementById('lbFav');
+    lbf.setAttribute('aria-pressed',on?'true':'false');
+    lbf.innerHTML=heartSVG(on);
+    lbf.setAttribute('aria-label',on?'Remove favorite':'Favorite this photo'); /* R2: label always reflects the CURRENT photo's state (open/navigate/toggle) */ }
+}
+drawHearts();
+
+/* lightbox (white chrome) */
+var lb=document.getElementById('lightbox'),lbImg=document.getElementById('lbImg'),
+    lbCap=document.getElementById('lbCap'),lbFav=document.getElementById('lbFav');
+function openLb(i,srcEl){
+  cur=i; lbOpen=true; lb.classList.add('open');
+  lbImg.src=PHOTOS[i][0]; lbImg.alt=PHOTOS[i][1]; lbCap.textContent=PHOTOS[i][1];
+  drawHearts(); lastFocus=srcEl||document.activeElement;
+  document.body.style.overflow='hidden'; /* R9: background scroll lock */
+  document.getElementById('lbClose').focus();
+}
+function closeLb(){
+  lbOpen=false; lb.classList.remove('open');
+  document.body.style.overflow=''; /* R9: unlock scroll */
+  if(lastFocus&&lastFocus.focus)lastFocus.focus();
+}
+/* R10c: arrow navigation skips photos hidden by the active favorites filter */
+function stepVisible(d){
+  var vis=visiblePhotos(); if(!vis.length)return;
+  var pos=vis.indexOf(cur);
+  cur=vis[(pos===-1?0:(pos+d+vis.length))%vis.length];
+  lbImg.src=PHOTOS[cur][0]; lbImg.alt=PHOTOS[cur][1]; lbCap.textContent=PHOTOS[cur][1]; drawHearts();
+}
+grid.addEventListener('click',function(e){
+  var img=e.target.closest('.ph img'); if(!img)return;
+  openLb(+img.closest('.ph').getAttribute('data-idx'),img);});
+grid.addEventListener('keydown',function(e){
+  var img=e.target.closest('.ph img'); if(!img)return;
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();openLb(+img.closest('.ph').getAttribute('data-idx'),img);}});
+document.getElementById('lbNext').addEventListener('click',function(){stepVisible(1);});
+document.getElementById('lbPrev').addEventListener('click',function(){stepVisible(-1);});
+document.getElementById('lbClose').addEventListener('click',closeLb);
+/* R2 (M1+n1): lightbox favorite toggle — SPEC.md names #lbFav; it must behave
+   exactly like a tile heart: toggle the current photo, persist, re-render,
+   then sync the tile heart (drawHearts does both). Label is dynamic. */
+lbFav.addEventListener('click',function(){
+  var k=String(cur);
+  favs[k]=!favs[k];
+  try{localStorage.setItem(KEY,JSON.stringify(favs));}catch(err){}
+  drawHearts(); /* syncs every tile heart, the counter, lbFav pressed/icon/label */
+  if(filterFavs)applyFilter(); /* mirror the tile-heart path: no stale tile under the favorites filter */
+});
+lb.addEventListener('click',function(e){
+  if(e.target===lb||e.target.classList.contains('lb-stage'))closeLb(); });
+document.addEventListener('keydown',function(e){
+  if(!lbOpen)return;
+  if(e.key==='ArrowRight')stepVisible(1);
+  else if(e.key==='ArrowLeft')stepVisible(-1);
+  else if(e.key==='Escape')closeLb();
+  else if(e.key==='Tab'){ /* R9: focus cycles inside #lightbox only */
+    var items=lb.querySelectorAll('button:not([disabled]), a[href], input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"])');
+    var list=[]; for(var i=0;i<items.length;i++)list.push(items[i]);
+    var first=list[0], last=list[list.length-1];
+    if(e.shiftKey){
+      if(document.activeElement===first||!lb.contains(document.activeElement)){e.preventDefault();last.focus();}
+    }else{
+      if(document.activeElement===last||!lb.contains(document.activeElement)){e.preventDefault();first.focus();}
+    }
+  }
+});
+/* touch: tap left/right half to navigate */
+lb.addEventListener('touchend',function(e){
+  if(!lbOpen)return;
+  var t=e.changedTouches[0]; if(!t)return;
+  if(e.target.closest('button')||e.target===lbImg)return;
+  (t.clientX> window.innerWidth/2)?stepVisible(1):stepVisible(-1);
+});
+
+/* PIN gate — modal opens straight to the input (no greeting) */
+var pinModal=document.getElementById('pinModal'),pinInput=document.getElementById('pinInput'),
+    pinMsg=document.getElementById('pinMsg');
+function needPin(afterMsg){
+  pinModal.classList.add('open');
+  setPinMsg('');
+  void afterMsg; /* R11: dead data-intent param removed; label retained for future use */
+  pinInput.focus();
+  setTimeout(function(){pinInput.focus();},60);
+}
+function setPinMsg(text,cls){
+  pinMsg.textContent=text||'';
+  pinMsg.className='pin-msg'+(cls?' '+cls:'');
+}
+function closePin(){ pinModal.classList.remove('open'); pinInput.value=''; }
+document.getElementById('pinCancel').addEventListener('click',closePin);
+pinModal.addEventListener('click',function(e){ if(e.target===pinModal)closePin(); });
+pinInput.addEventListener('input',function(){
+  pinInput.value=pinInput.value.replace(/\D/g,'').slice(0,8); /* R7: 4-8 digits */
+  if(pinInput.value.length===PIN.length){ document.getElementById('pinSubmit').click(); }
+});
+document.getElementById('pinSubmit').addEventListener('click',function(){
+  if(pinInput.value===PIN){
+    unlocked=true; setPinMsg('Unlocked! Your downloads are ready below.','ok');
+    setTimeout(function(){ closePin(); drainQueue(); },700);
+  }else{
+    setPinMsg("That PIN doesn't match — check your delivery email and try again.",'err');
+    pinInput.value=''; pinInput.focus();
+  }});
+function fireDownload(href){ /* R11: dead name param removed */
+  var a=document.createElement('a'); a.href=href; a.download=href.split('/').pop();
+  a.setAttribute('aria-label','Download'); a.style.position='fixed'; a.style.opacity='0';
+  document.body.appendChild(a); a.click(); setTimeout(function(){a.remove();},400);
+}
+function drainQueue(){ if(window.__jlpPending){ var f=window.__jlpPending; window.__jlpPending=null; f(); } }
+function gated(fn){
+  if(unlocked){ fn(); }
+  else{ window.__jlpPending=fn; needPin(fn===undefined?'':'Download'); }
+}
+document.getElementById('downloadBtn').addEventListener('click',function(){
+  gated(function(){ fireDownload(ZIP); });});
+document.getElementById('lbDl').addEventListener('click',function(){
+  var src=PHOTOS[cur][0];
+  gated(function(){ fireDownload(src); });
+});
+
+/* BACK TO TOP */
+document.getElementById('backTop').addEventListener('click',function(){
+  window.scrollTo({top:0,behavior:REDUCE?'auto':'smooth'});
+});
+
+/* download pill scroll-reveal: appears once the grid approaches, hides on
+   return to top / footer (never occludes the load view or footer text) */
+var dlBar=document.querySelector('.dl-bar');
+if(dlBar&&'IntersectionObserver' in window){
+  var dlGate=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ dlBar.classList.add('show'); }
+      else{ dlBar.classList.remove('show'); }
+    });
+  },{rootMargin:'0px 0px -25% 0px'});
+  dlGate.observe(document.getElementById('grid'));
+}else if(dlBar){ dlBar.classList.add('show'); }
+})();
+</script>
+</body>
+</html>
