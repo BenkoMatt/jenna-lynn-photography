@@ -130,9 +130,9 @@ button.text-btn[aria-pressed="true"]{background:var(--rose-fill);color:#fff;bord
    bottom breathing line is retired): a rose-deco 270° arc spins on a brand
    track inside a soft cream halo, the arc trailing a faint rose glow. The
    ring never intercepts pointers; tiles stay scrollable/tappable. */
-.load-more{position:fixed;left:0;right:0;bottom:calc(88px + env(safe-area-inset-bottom));z-index:45;
+.load-more{position:relative;left:auto;right:auto;bottom:auto;z-index:45;
   height:64px;display:flex;align-items:center;justify-content:center;pointer-events:none;
-  opacity:0;transition:opacity .3s ease}
+  opacity:0;transition:opacity .3s ease;margin:4px 0 12px}
 .load-more.is-on{opacity:1}
 .load-more[hidden]{display:none}
 /* F7: visually-hidden live-region text (screen readers announce it; sighted users see only the ring) */
@@ -521,10 +521,9 @@ function pinnedAtBottom(){
 /* v4.3 D2: one ring serves the whole progressive pipeline. Shown from the
    moment the seam is within reach (user approaching or pinned) until the
    batch is appended AND its first tiles have decoded; hidden when all done.
-   v4.4-M.3: on the mobile band (<=899px) the ring is in-flow at the gallery
-   seam, so it only shows when the seam is actually near the viewport —
-   proximity-gated (seamGap < 1.3 viewports); on desktop the fixed
-   bottom-center band shows unconditionally as before. */
+   v4.4-M.4: at ALL widths the ring is in-flow at the gallery seam, so it
+   only shows when the seam is actually near the viewport (proximity-gated);
+   a receding seam (append landed) hides it again via the poll. */
 function seamNear(){
   if(!sentinel)return true;
   var r=sentinel.getBoundingClientRect();
@@ -532,10 +531,10 @@ function seamNear(){
 }
 function showRing(){
   if(rendered>=PHOTOS.length||filterFavs)return; /* F6: also no ring while the favorites filter is on (a batch in flight when the filter lands would otherwise re-show it from done()) */
-  /* v4.4-M.3: mobile in-flow ring — stay hidden while the seam is far below
-     the fold (prefetch is warming it); IO/pin call sites re-invoke as the
-     user approaches, and the ring fades in at the bottom of the gallery. */
-  if(window.innerWidth<=899&&!inflight&&!seamNear())return;
+  /* v4.4-M.4: in-flow ring at ALL widths — stay hidden while the seam is far
+     below the fold (prefetch is warming it); IO/pin call sites re-invoke as
+     the user approaches, and the ring fades in at the bottom of the gallery. */
+  if(!inflight&&!seamNear())return;
   loadMore.hidden=false;
   armRingPoll();
   void loadMore.offsetHeight; /* flush so .is-on fades in from opacity 0 */
@@ -554,7 +553,7 @@ function hideRing(){
    hide it and let the scroll listener / IO re-show it when the seam nears. */
 var ringPoll=null;
 function armRingPoll(){
-  if(window.innerWidth>899||ringPoll)return;
+  if(ringPoll)return;
   ringPoll=setInterval(function(){
     if(loadMore.hidden)return;
     if(rendered>=PHOTOS.length||filterFavs){ hideRing(); return; }
@@ -758,9 +757,9 @@ if(REDUCE){
   var pinTimer=null;
   window.addEventListener('scroll',function(){
     userScrolled=true;
-    /* v4.4-M.3: as the user approaches the seam, reveal the in-flow ring if a
-       batch is loading there (mobile band); cheap boolean check per scroll. */
-    if(window.innerWidth<=899&&inflight&&loadMore.hidden&&seamNear()){ showRing(); }
+    /* v4.4-M.4: as the user approaches the seam, reveal the in-flow ring if a
+       batch is loading there (all widths); cheap boolean check per scroll. */
+    if(inflight&&loadMore.hidden&&seamNear()){ showRing(); }
     if(pinTimer)return;
     pinTimer=setTimeout(function(){
       pinTimer=null;

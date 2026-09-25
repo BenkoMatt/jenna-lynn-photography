@@ -401,3 +401,14 @@ relay + r.jina.ai. Backups: v4/backups/v44m-run1/.
   loading seam — exactly when it's wanted. Jump-to-bottom + stalled batch: ring
   shows in-flow at the seam. Desktop untouched (fixed, verified).
 - Gates: v44m probes ALL PASS 390+320 (P8=0, appends exact, 0 JS errors).
+## V4.4-M.4 — unified in-flow ring at ALL widths (2026-09-25, Matt: "same issue on
+## desktop... I want it to be the same as the mobile version")
+- .load-more base rule: position:relative (in-flow after #theGrid) at ALL widths;
+  the fixed bottom-screen band is GONE. Margin 4px 0 12px at the seam.
+- JS gates unified: showRing proximity gate, armRingPoll, and scroll-reveal no
+  longer key off innerWidth — one behavior everywhere.
+- Desktop verified: pos=relative, bottom=auto at 1440; mobile probes ALL PASS
+  390+320 (P8=0, 0 JS errors); battery 7/7 desktop + 7/7 mobile.
+- Note: production template had LOST the M.3 CSS override during M.2→M.3 sync
+  (winner-copy cross-stream); M.4 unifies base CSS so there is no per-band
+  divergence left to lose.
