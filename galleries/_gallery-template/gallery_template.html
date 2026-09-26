@@ -91,7 +91,11 @@ button{font-family:inherit;cursor:pointer}
 @media(max-width:520px){
   .cover-frame{inset:10px}
   .cover-brand{top:42px}
-  .cover-stack{padding-bottom:calc(10vh + 6px)}
+  .cover-stack{padding-bottom:calc(6vh + 6px)}
+  /* Mobile cover: shorter than viewport so object-fit:cover zooms out enough
+     to show a WIDE mural/sign full-width (a full-height 390x844 slice clips
+     art wider than ~1200px; at 76dvh the whole 1733px width fits). */
+  .cover{height:76vh;height:76dvh}
 }
 
 /* ---------- SVG ICONS ---------- */
