@@ -939,6 +939,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .form-field {
   margin-bottom: 20px;
+  min-width: 0;
 }
 .form-field label {
   display: block;
@@ -953,6 +954,8 @@ h1, h2, h3, h4, h5, h6 {
 .form-field select,
 .form-field textarea {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   padding: 12px 16px;
   border: 1px solid #ddd;
   border-radius: 2px;
@@ -962,6 +965,16 @@ h1, h2, h3, h4, h5, h6 {
   background: #fff;
   transition: border-color 0.2s;
   box-sizing: border-box;
+}
+/* Native date/time inputs refuse to shrink below an intrinsic minimum on
+   iOS Safari — strip the native chrome so they obey the grid like other
+   inputs (picker behavior is untouched). */
+input[type="date"],
+input[type="time"],
+input[type="month"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-height: 46px;
 }
 .form-field input:focus,
 .form-field select:focus,
