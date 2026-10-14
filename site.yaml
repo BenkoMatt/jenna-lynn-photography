@@ -99,11 +99,11 @@ services:
     spread: true
     tiers:
     - label: 4 hour coverage
-      price: 550
+      price: 700
     - label: 6 hour coverage
-      price: 750
-    - label: 8 hour coverage
-      price: 950
+      price: 1000
+    - label: 10 hour coverage
+      price: 1300
 gallery:
   section_tag: Portfolio
   title: Love in Every Frame
