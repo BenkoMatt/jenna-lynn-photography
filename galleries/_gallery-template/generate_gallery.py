@@ -22,8 +22,8 @@ from pathlib import Path
 
 TEMPLATE = Path(__file__).resolve().parent / "gallery_template.html"
 DELIVERIES = Path("/root/projects/sites/jlp-deliveries")
-PUBLIC_URL = "https://vmi3233088.tail66a84c.ts.net/jenna-photos"
-PUBLIC_HOST = "vmi3233088.tail66a84c.ts.net"
+PUBLIC_URL = "https://galleries.photographybyjennalynn.com"
+PUBLIC_HOST = "galleries.photographybyjennalynn.com"
 
 IMG_EXTS = {".jpeg", ".jpg", ".png", ".webp", ".heic", ".heif"}
 MAX_EDGE = 2600
